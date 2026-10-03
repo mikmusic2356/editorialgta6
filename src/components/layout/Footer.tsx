@@ -11,7 +11,7 @@ import { BrandLogo } from '../common/BrandLogo';
 interface FooterProps {
   onSelectCategory: (category: MainCategorySlug | 'portada') => void;
   onOpenLegalModal: (tab: 'about' | 'contact' | 'privacy' | 'cookies' | 'terms' | 'disclaimer') => void;
-  onOpenSEOInspector: () => void;
+  onOpenSEOInspector?: () => void;
   onOpenSitemap?: () => void;
   onOpenAdmin?: () => void;
   onOpenCookieSettings?: () => void;
@@ -148,13 +148,15 @@ export const Footer: React.FC<FooterProps> = ({
                   </button>
                 )}
 
-                <button
-                  onClick={onOpenSEOInspector}
-                  className="text-xs font-mono text-[#ffc456] hover:underline flex items-center gap-1 cursor-pointer"
-                >
-                  <FileText className="w-3.5 h-3.5" />
-                  <span>Sitemap XML & Schema</span>
-                </button>
+                {onOpenSEOInspector && (
+                  <button
+                    onClick={onOpenSEOInspector}
+                    className="text-xs font-mono text-[#ffc456] hover:underline flex items-center gap-1 cursor-pointer"
+                  >
+                    <FileText className="w-3.5 h-3.5" />
+                    <span>Sitemap XML & Schema</span>
+                  </button>
+                )}
 
                 {onOpenAdmin && (
                   <button

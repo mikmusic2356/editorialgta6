@@ -34,7 +34,7 @@ interface HeaderProps {
   onSelectCategory: (category: MainCategorySlug | 'portada' | string, subcategorySlug?: string) => void;
   onSelectArticle?: (slug: string) => void;
   onOpenSearch: () => void;
-  onOpenSEOInspector: () => void;
+  onOpenSEOInspector?: () => void;
   onOpenSitemap?: () => void;
   onOpenAdmin?: () => void;
 }
@@ -48,7 +48,7 @@ export const Header: React.FC<HeaderProps> = ({
   onOpenSitemap,
   onOpenAdmin,
 }) => {
-  const { categories, isTursoConnected } = useCMS();
+  const { categories, isTursoConnected, isAdminLoggedIn, logoutAdmin } = useCMS();
   const navCategories = categories && categories.length > 0 ? categories : SITE_TAXONOMY;
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -205,47 +205,63 @@ export const Header: React.FC<HeaderProps> = ({
             <Search className="w-4 h-4 text-[#ffc456]" />
           </button>
 
-          {/* Botón Sitemap XML */}
-          {onOpenSitemap && (
-            <button
-              onClick={onOpenSitemap}
-              className="hidden xl:flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-slate-300 bg-slate-900/90 border border-slate-800 rounded-lg hover:border-[#ff6486] hover:text-white transition-colors cursor-pointer font-mono"
-              title="Ver Mapa del Sitio Web y Sitemap XML"
-              aria-label="Mapa del Sitio Web"
-            >
-              <FileCode className="w-3.5 h-3.5 text-[#ff6486]" />
-              <span>Sitemap</span>
-            </button>
-          )}
-
-          {/* Botón Auditoría SEO */}
-          <button
-            onClick={onOpenSEOInspector}
-            className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-[#ffc456] bg-slate-900/90 border border-[#ffc456]/30 rounded-lg hover:bg-slate-800 hover:border-[#ffc456] transition-colors cursor-pointer font-mono"
-            title="Inspeccionar SEO, Schema.org y Arquitectura"
-            aria-label="Auditoría Técnica de SEO y Schema.org"
-          >
-            <ShieldCheck className="w-3.5 h-3.5 text-[#ffc456]" />
-            <span className="hidden lg:inline">Auditoría SEO</span>
-          </button>
-
-          {/* Botón Destacado Panel CMS con Turso DB */}
-          {onOpenAdmin && (
-            <button
-              onClick={onOpenAdmin}
-              className="flex items-center gap-2 px-3.5 py-1.5 text-xs font-bold text-slate-950 bg-gradient-to-r from-[#ff6486] via-rose-400 to-[#ffc456] hover:opacity-95 rounded-lg shadow-md hover:shadow-[#ff6486]/20 transition-all cursor-pointer font-mono shrink-0"
-              title="Acceso al Panel de Administración & CMS (Conectado a Turso DB)"
-            >
-              <Sparkles className="w-3.5 h-3.5 fill-slate-950" />
-              <span className="hidden xs:inline">Panel CMS</span>
-              <span className="xs:hidden">CMS</span>
-              {isTursoConnected && (
-                <span className="hidden md:inline-flex items-center gap-1 px-1.5 py-0.2 bg-slate-950/20 rounded text-[9px] font-mono">
-                  <Database className="w-2.5 h-2.5" />
-                  <span>Turso</span>
-                </span>
+          {/* Herramientas de Administrador (Solo visibles si la sesión de admin está activa) */}
+          {isAdminLoggedIn && (
+            <div className="flex items-center gap-2">
+              {/* Botón Sitemap XML */}
+              {onOpenSitemap && (
+                <button
+                  onClick={onOpenSitemap}
+                  className="hidden xl:flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-slate-300 bg-slate-900/90 border border-slate-800 rounded-lg hover:border-[#ff6486] hover:text-white transition-colors cursor-pointer font-mono"
+                  title="Ver Mapa del Sitio Web y Sitemap XML"
+                  aria-label="Mapa del Sitio Web"
+                >
+                  <FileCode className="w-3.5 h-3.5 text-[#ff6486]" />
+                  <span>Sitemap</span>
+                </button>
               )}
-            </button>
+
+              {/* Botón Auditoría SEO */}
+              {onOpenSEOInspector && (
+                <button
+                  onClick={onOpenSEOInspector}
+                  className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-[#ffc456] bg-slate-900/90 border border-[#ffc456]/30 rounded-lg hover:bg-slate-800 hover:border-[#ffc456] transition-colors cursor-pointer font-mono"
+                  title="Inspeccionar SEO, Schema.org y Arquitectura"
+                  aria-label="Auditoría Técnica de SEO y Schema.org"
+                >
+                  <ShieldCheck className="w-3.5 h-3.5 text-[#ffc456]" />
+                  <span className="hidden lg:inline">Auditoría SEO</span>
+                </button>
+              )}
+
+              {/* Botón Destacado Panel CMS con Turso DB */}
+              {onOpenAdmin && (
+                <button
+                  onClick={onOpenAdmin}
+                  className="flex items-center gap-2 px-3.5 py-1.5 text-xs font-bold text-slate-950 bg-gradient-to-r from-[#ff6486] via-rose-400 to-[#ffc456] hover:opacity-95 rounded-lg shadow-md hover:shadow-[#ff6486]/20 transition-all cursor-pointer font-mono shrink-0"
+                  title="Acceso al Panel de Administración & CMS (Conectado a Turso DB)"
+                >
+                  <Sparkles className="w-3.5 h-3.5 fill-slate-950" />
+                  <span className="hidden xs:inline">Panel CMS</span>
+                  <span className="xs:hidden">CMS</span>
+                  {isTursoConnected && (
+                    <span className="hidden md:inline-flex items-center gap-1 px-1.5 py-0.2 bg-slate-950/20 rounded text-[9px] font-mono">
+                      <Database className="w-2.5 h-2.5" />
+                      <span>Turso</span>
+                    </span>
+                  )}
+                </button>
+              )}
+
+              {/* Botón Cerrar Sesión Admin */}
+              <button
+                onClick={logoutAdmin}
+                className="hidden 2xl:flex items-center gap-1 px-2.5 py-1.5 text-[11px] font-mono text-slate-400 bg-slate-900/80 hover:bg-red-950/50 hover:text-red-400 border border-slate-800 hover:border-red-800 rounded-lg transition-colors cursor-pointer"
+                title="Cerrar Sesión de Administrador"
+              >
+                <span>Salir</span>
+              </button>
+            </div>
           )}
 
           {/* Toggle Menú Móvil */}
@@ -603,37 +619,67 @@ export const Header: React.FC<HeaderProps> = ({
             })}
           </div>
 
-          {/* Enlaces Técnicos y Botón CMS en Móvil */}
-          <div className="pt-3 border-t border-slate-800 flex flex-col gap-2 text-xs text-slate-400">
-            {onOpenAdmin && (
+          {/* Enlaces Técnicos y Botón CMS en Móvil (Solo visible para Administradores autenticados) */}
+          {isAdminLoggedIn && (
+            <div className="pt-3 border-t border-slate-800 flex flex-col gap-2 text-xs text-slate-400">
+              <div className="text-[10px] font-mono text-rose-400 font-bold uppercase tracking-wider flex items-center justify-between">
+                <span>Herramientas de Redacción</span>
+                <span className="px-1.5 py-0.5 bg-rose-500/20 text-rose-300 rounded text-[9px]">Admin Activo</span>
+              </div>
+
+              {onOpenAdmin && (
+                <button
+                  onClick={() => {
+                    onOpenAdmin();
+                    setMobileMenuOpen(false);
+                  }}
+                  className="w-full py-3 px-4 bg-gradient-to-r from-[#ff6486] via-rose-400 to-[#ffc456] text-slate-950 font-black rounded-xl flex items-center justify-center gap-2 cursor-pointer shadow-lg hover:opacity-95 transition-opacity"
+                >
+                  <Sparkles className="w-4 h-4 fill-slate-950" />
+                  <span>ACCEDER AL PANEL CMS (TURSO DB)</span>
+                </button>
+              )}
+
+              {onOpenSitemap && (
+                <button
+                  onClick={() => {
+                    onOpenSitemap();
+                    setMobileMenuOpen(false);
+                  }}
+                  className="w-full py-2 px-3 bg-slate-900 border border-slate-800 text-slate-300 hover:text-white rounded-lg flex items-center justify-center gap-2 font-mono text-xs cursor-pointer"
+                >
+                  <FileCode className="w-3.5 h-3.5 text-[#ff6486]" />
+                  <span>Ver Mapa del Sitio (Sitemap XML)</span>
+                </button>
+              )}
+
+              {onOpenSEOInspector && (
+                <button
+                  onClick={() => {
+                    onOpenSEOInspector();
+                    setMobileMenuOpen(false);
+                  }}
+                  className="w-full py-2 px-3 bg-slate-900 border border-[#ffc456]/40 text-[#ffc456] hover:bg-slate-800 rounded-lg flex items-center justify-center gap-2 font-mono text-xs cursor-pointer"
+                >
+                  <ShieldCheck className="w-3.5 h-3.5 text-[#ffc456]" />
+                  <span>Inspeccionar Auditoría SEO</span>
+                </button>
+              )}
+
               <button
                 onClick={() => {
-                  onOpenAdmin();
+                  logoutAdmin();
                   setMobileMenuOpen(false);
                 }}
-                className="w-full py-3 px-4 bg-gradient-to-r from-[#ff6486] via-rose-400 to-[#ffc456] text-slate-950 font-black rounded-xl flex items-center justify-center gap-2 cursor-pointer shadow-lg hover:opacity-95 transition-opacity"
+                className="w-full py-2 px-3 bg-red-950/40 border border-red-800/60 text-red-300 hover:bg-red-900/50 rounded-lg flex items-center justify-center gap-2 font-mono text-xs cursor-pointer"
               >
-                <Sparkles className="w-4 h-4 fill-slate-950" />
-                <span>ACCEDER AL PANEL CMS (TURSO DB)</span>
+                <span>Cerrar Sesión de Administrador</span>
               </button>
-            )}
-
-            {onOpenSitemap && (
-              <button
-                onClick={() => {
-                  onOpenSitemap();
-                  setMobileMenuOpen(false);
-                }}
-                className="w-full py-2 px-3 bg-slate-900 border border-slate-800 text-slate-300 hover:text-white rounded-lg flex items-center justify-center gap-2 font-mono text-xs cursor-pointer"
-              >
-                <FileCode className="w-3.5 h-3.5 text-[#ff6486]" />
-                <span>Ver Mapa del Sitio (Sitemap XML)</span>
-              </button>
-            )}
-
-            <div className="text-center pt-2 font-mono text-[10px] text-slate-500">
-              KAIROSION © {new Date().getFullYear()} · Sistema Turso DB Conectado
             </div>
+          )}
+
+          <div className="text-center pt-2 font-mono text-[10px] text-slate-500">
+            KAIROSION © {new Date().getFullYear()} · Sistema Editorial Profesional
           </div>
         </div>
       )}

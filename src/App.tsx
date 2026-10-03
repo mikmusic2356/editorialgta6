@@ -643,15 +643,15 @@ function AppContent() {
   return (
     <div className="min-h-screen flex flex-col bg-[#080c14] text-slate-100 selection:bg-rose-500 selection:text-white">
       
-      {/* 1. HEADER */}
+      {/* 1. HEADER (Herramientas de Sitemap, Auditoría SEO y CMS ocultas para público general; visibles tras login de Admin) */}
       <Header
         currentCategory={activeHeaderCategory}
         onSelectCategory={handleSelectCategory}
         onSelectArticle={handleSelectArticle}
         onOpenSearch={() => setSearchOpen(true)}
-        onOpenSEOInspector={() => setSeoModalOpen(true)}
-        onOpenSitemap={() => navigate({ type: 'sitemap' })}
-        onOpenAdmin={() => navigate({ type: 'admin', section: 'dashboard' })}
+        onOpenSEOInspector={isAdminLoggedIn ? () => setSeoModalOpen(true) : undefined}
+        onOpenSitemap={isAdminLoggedIn ? () => navigate({ type: 'sitemap' }) : undefined}
+        onOpenAdmin={isAdminLoggedIn ? () => navigate({ type: 'admin', section: 'dashboard' }) : undefined}
       />
 
       {/* 2. MAIN EDITORIAL CONTENT ARCHITECTURE */}
@@ -771,9 +771,9 @@ function AppContent() {
       <Footer
         onSelectCategory={handleSelectCategory}
         onOpenLegalModal={handleOpenLegal}
-        onOpenSEOInspector={() => setSeoModalOpen(true)}
-        onOpenSitemap={() => navigate({ type: 'sitemap' })}
-        onOpenAdmin={() => navigate({ type: 'admin', section: 'dashboard' })}
+        onOpenSEOInspector={isAdminLoggedIn ? () => setSeoModalOpen(true) : undefined}
+        onOpenSitemap={isAdminLoggedIn ? () => navigate({ type: 'sitemap' }) : undefined}
+        onOpenAdmin={isAdminLoggedIn ? () => navigate({ type: 'admin', section: 'dashboard' }) : undefined}
         onOpenCookieSettings={() => handleOpenLegal('cookies')}
       />
 
