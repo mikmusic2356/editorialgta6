@@ -1,0 +1,250 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-display: 'Bebas Neue', 'Syne', sans-serif;
+    --font-heading: 'Syne', sans-serif;
+    --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --color-primary-text: #ffffff;
+    --color-secondary: #ff6486;
+    --color-tertiary: #ffc456;
+    --color-bg: #080c14;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background-color: #080c14;
+    color: #ffffff;
+    overflow-x: hidden;
+  }
+
+  h1, .font-display {
+    letter-spacing: -0.015em;
+    color: #ffffff;
+  }
+
+  h2, h3, h4 {
+    letter-spacing: -0.01em;
+  }
+}
+
+/* Main Editorial Content Container */
+.content-layout {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.main-content {
+  width: 100%;
+  max-width: 1200px;
+  min-width: 0;
+  flex: 1 1 0%;
+}
+
+/* Article Reading Column constraint */
+.editorial-prose {
+  max-width: 72ch;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.8;
+  font-size: 1.0625rem;
+  color: #ffffff;
+}
+
+.editorial-prose p {
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+  font-weight: 300;
+}
+
+.editorial-prose h2 {
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #ff6486;
+  margin-top: 2.75rem;
+  margin-bottom: 1.25rem;
+  line-height: 1.3;
+}
+
+.editorial-prose h3 {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: #ff6486;
+  margin-top: 2rem;
+  margin-bottom: 0.875rem;
+  line-height: 1.4;
+}
+
+.editorial-prose a {
+  color: #ffc456;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: opacity 0.2s ease;
+}
+
+.editorial-prose a:hover {
+  opacity: 0.85;
+}
+
+.editorial-prose strong {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.editorial-prose ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+}
+
+.editorial-prose ol {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+}
+
+.editorial-prose li {
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+}
+
+/* Drop cap for first paragraph of article */
+.drop-cap::first-letter {
+  font-family: var(--font-display);
+  float: left;
+  font-size: 3.75rem;
+  line-height: 0.85;
+  padding-top: 4px;
+  padding-right: 12px;
+  padding-bottom: 0;
+  color: #ff6486;
+  font-weight: 700;
+}
+
+/* YouTube 16:9 responsive wrapper */
+.video-responsive-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  height: 0;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  background-color: #0f172a;
+}
+
+.video-responsive-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Smooth Infinite Marquee for Breaking News Ticker */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 35s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+.mask-linear-fade {
+  mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+}
+
+/* ========================================================= */
+/* KAIROSION Custom Brand Scrollbar System                  */
+/* ========================================================= */
+
+/* Global Scrollbar for Chrome, Safari, Edge */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #080c14;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #ff6486, #ffc456);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #ff4068, #ffb834);
+  box-shadow: 0 0 8px rgba(255, 100, 134, 0.6);
+}
+
+/* Firefox Standard */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #ff6486 #080c14;
+}
+
+/* Specific Branded Mini-Scrollbar for Category Navigation */
+.brand-scrollbar::-webkit-scrollbar {
+  height: 3px;
+  width: 3px;
+}
+
+.brand-scrollbar::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.6);
+  border-radius: 9999px;
+}
+
+.brand-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #ff6486, #ffc456);
+  border-radius: 9999px;
+}
+
+.brand-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #ff6486;
+  box-shadow: 0 0 6px rgba(255, 100, 134, 0.8);
+}
+
+.brand-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #ff6486 rgba(15, 23, 42, 0.6);
+}
+
+/* Utility to completely hide scrollbar on category nav and designated containers */
+.no-scrollbar::-webkit-scrollbar,
+.category-nav-bar::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+  -webkit-appearance: none !important;
+}
+
+.no-scrollbar,
+.category-nav-bar {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
+
+

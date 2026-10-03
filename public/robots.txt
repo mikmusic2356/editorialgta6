@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Host
+Host: https://kairosion.online
+
+# Sitemaps
+Sitemap: https://kairosion.online/sitemap.xml

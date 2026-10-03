@@ -1,0 +1,8 @@
+{
+  "name": "Leonida Chronicle - GTA 6 Portal Editorial",
+  "description": "Portal editorial y revista digital independiente de GTA 6 y Grand Theft Auto VI: noticias de última hora, guías paso a paso, manuales de juego, análisis del mapa de Leonida, vehículos, armas y secretos optimizados para SEO y Google AdSense.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
