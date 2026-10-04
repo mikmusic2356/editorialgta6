@@ -84,11 +84,11 @@ export const AdminMediaLibrary: React.FC = () => {
   };
 
   // Deduplicate unique media items by URL and normalize to WebP
-  const staticMap = new Map(ALL_MEDIA_ITEMS.map(m => [m.url, m]));
+  const staticMap = new Map((ALL_MEDIA_ITEMS || []).map(m => [m.url, m]));
   const uniqueMediaMap = new Map<string, MediaItem>();
 
-  media.forEach(m => {
-    if (!m.url) return;
+  (media || []).forEach(m => {
+    if (!m || !m.url) return;
     const cleanUrl = m.url.startsWith('/images/') ? m.url.replace(/\.(jpg|jpeg|png)$/i, '.webp') : m.url;
     const staticInfo = staticMap.get(cleanUrl);
     if (!uniqueMediaMap.has(cleanUrl)) {
@@ -96,7 +96,8 @@ export const AdminMediaLibrary: React.FC = () => {
     }
   });
 
-  ALL_MEDIA_ITEMS.forEach(m => {
+  (ALL_MEDIA_ITEMS || []).forEach(m => {
+    if (!m || !m.url) return;
     if (!uniqueMediaMap.has(m.url)) {
       uniqueMediaMap.set(m.url, m);
     }

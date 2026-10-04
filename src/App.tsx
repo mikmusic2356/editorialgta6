@@ -22,6 +22,7 @@ import { VehicleDetailModal } from './components/vehicles/VehicleDetailModal';
 import { WeaponDetailModal } from './components/weapons/WeaponDetailModal';
 import { MapExplorerModal } from './components/map/MapExplorerModal';
 import { CookieConsentBanner } from './components/common/CookieConsentBanner';
+import { ErrorBoundary } from './components/common/ErrorBoundary';
 
 import { CHARACTERS_DATA } from './data/characters';
 import { VEHICLES_DATA } from './data/vehicles';
@@ -554,86 +555,88 @@ function AppContent() {
     }
 
     return (
-      <AdminLayout
-        currentSection={activeSection}
-        onNavigate={handleAdminNavigate}
-        onBackToPublicSite={() => navigate({ type: 'portada' })}
-        editingArticleId={editingId}
-      >
-        {activeSection === 'dashboard' && (
-          <AdminDashboard onNavigate={handleAdminNavigate} />
-        )}
+      <ErrorBoundary fallbackTitle="Error en el Panel de Administración">
+        <AdminLayout
+          currentSection={activeSection}
+          onNavigate={handleAdminNavigate}
+          onBackToPublicSite={() => navigate({ type: 'portada' })}
+          editingArticleId={editingId}
+        >
+          {activeSection === 'dashboard' && (
+            <AdminDashboard onNavigate={handleAdminNavigate} />
+          )}
 
-        {activeSection === 'articles' && (
-          <AdminArticlesList
-            onNavigate={handleAdminNavigate}
-            onPreviewArticle={(art) => {
-              navigate({ type: 'article', slug: art.slug });
-            }}
-          />
-        )}
+          {activeSection === 'articles' && (
+            <AdminArticlesList
+              onNavigate={handleAdminNavigate}
+              onPreviewArticle={(art) => {
+                navigate({ type: 'article', slug: art.slug });
+              }}
+            />
+          )}
 
-        {activeSection === 'popularity' && (
-          <AdminPopularity
-            onNavigate={handleAdminNavigate}
-            onPreviewArticle={(art) => {
-              navigate({ type: 'article', slug: art.slug });
-            }}
-          />
-        )}
+          {activeSection === 'popularity' && (
+            <AdminPopularity
+              onNavigate={handleAdminNavigate}
+              onPreviewArticle={(art) => {
+                navigate({ type: 'article', slug: art.slug });
+              }}
+            />
+          )}
 
-        {(activeSection === 'new-article' || activeSection === 'edit-article') && (
-          <AdminArticleEditor
-            articleId={editingId}
-            onNavigate={handleAdminNavigate}
-            onClose={() => handleAdminNavigate('articles')}
-          />
-        )}
+          {(activeSection === 'new-article' || activeSection === 'edit-article') && (
+            <AdminArticleEditor
+              articleId={editingId}
+              onNavigate={handleAdminNavigate}
+              onClose={() => handleAdminNavigate('articles')}
+            />
+          )}
 
-        {activeSection === 'banners' && (
-          <AdminBanners />
-        )}
+          {activeSection === 'banners' && (
+            <AdminBanners />
+          )}
 
-        {activeSection === 'breaking-news' && (
-          <AdminBreakingNews />
-        )}
+          {activeSection === 'breaking-news' && (
+            <AdminBreakingNews />
+          )}
 
-        {activeSection === 'ai-assistant' && (
-          <AdminAIAssistant onNavigate={handleAdminNavigate} />
-        )}
+          {activeSection === 'ai-assistant' && (
+            <AdminAIAssistant onNavigate={handleAdminNavigate} />
+          )}
 
-        {activeSection === 'categories' && (
-          <AdminCategories />
-        )}
+          {activeSection === 'categories' && (
+            <AdminCategories />
+          )}
 
-        {activeSection === 'tags' && (
-          <AdminTags />
-        )}
+          {activeSection === 'tags' && (
+            <AdminTags />
+          )}
 
-        {activeSection === 'media' && (
-          <AdminMediaLibrary />
-        )}
+          {activeSection === 'media' && (
+            <AdminMediaLibrary />
+          )}
 
-        {activeSection === 'authors' && (
-          <AdminAuthors />
-        )}
+          {activeSection === 'authors' && (
+            <AdminAuthors />
+          )}
 
-        {activeSection === 'menus' && (
-          <AdminMenus />
-        )}
+          {activeSection === 'menus' && (
+            <AdminMenus />
+          )}
 
-        {activeSection === 'pages' && (
-          <AdminPages />
-        )}
+          {activeSection === 'pages' && (
+            <AdminPages />
+          )}
 
-        {activeSection === 'cookies' && (
-          <AdminCookieSettings />
-        )}
+          {activeSection === 'cookies' && (
+            <AdminCookieSettings />
+          )}
 
-        {activeSection === 'settings' && (
-          <AdminSettings />
-        )}
-      </AdminLayout>
+          {activeSection === 'settings' && (
+            <AdminSettings />
+          )}
+        </AdminLayout>
+      </ErrorBoundary>
     );
   }
 

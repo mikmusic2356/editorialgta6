@@ -79,9 +79,9 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [roleSwitcherOpen, setRoleSwitcherOpen] = useState(false);
 
-  const pendingReviewCount = articles.filter(a => a.status === 'revision').length;
-  const pendingAiCount = aiProposals.filter(p => p.status === 'pending').length;
-  const draftsCount = articles.filter(a => a.status === 'borrador').length;
+  const pendingReviewCount = (articles || []).filter(a => a && a.status === 'revision').length;
+  const pendingAiCount = (aiProposals || []).filter(p => p && p.status === 'pending').length;
+  const draftsCount = (articles || []).filter(a => a && a.status === 'borrador').length;
 
   const navGroups = [
     {
@@ -240,13 +240,16 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
             <div className="p-2 rounded-xl bg-slate-950 border border-slate-800/80 flex items-center justify-between text-xs">
               <div className="flex items-center gap-2 min-w-0">
                 <img
-                  src={currentUser.avatar}
-                  alt={currentUser.name}
+                  src={currentUser?.avatar || '/images/Personajes/Jason_Duval_01.webp'}
+                  alt={currentUser?.name || 'Admin'}
+                  onError={(e) => {
+                    (e.currentTarget as HTMLImageElement).src = '/images/Personajes/Jason_Duval_01.webp';
+                  }}
                   className="w-7 h-7 rounded-full object-cover border border-slate-700 shrink-0"
                 />
                 <div className="min-w-0">
-                  <div className="font-bold text-white truncate text-[11px]">{currentUser.name}</div>
-                  <div className="text-[10px] text-rose-400 font-mono">{currentUser.role}</div>
+                  <div className="font-bold text-white truncate text-[11px]">{currentUser?.name || 'Administrador'}</div>
+                  <div className="text-[10px] text-rose-400 font-mono">{currentUser?.role || 'Admin'}</div>
                 </div>
               </div>
               <button

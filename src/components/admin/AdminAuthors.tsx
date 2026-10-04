@@ -525,17 +525,17 @@ export const AdminAuthors: React.FC = () => {
         <div className="flex items-center justify-between">
           <div className="text-xs font-mono uppercase tracking-wider text-[#ffc456] font-bold flex items-center gap-2">
             <Users className="w-4 h-4" />
-            <span>Miembros del Equipo & Autores Registrados ({authors.length})</span>
+            <span>Miembros del Equipo & Autores Registrados ({(authors || []).length})</span>
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {authors.map((auth) => {
-            const authorArticleCount = articles.filter(a => a.author?.name === auth.name && a.status !== 'papelera').length;
+          {(authors || []).filter(Boolean).map((auth) => {
+            const authorArticleCount = (articles || []).filter(a => a && a.author?.name === auth.name && a.status !== 'papelera').length;
 
             return (
               <div
-                key={auth.id}
+                key={auth.id || auth.name}
                 className={`p-6 rounded-3xl border transition-all duration-200 flex flex-col justify-between space-y-4 shadow-sm ${
                   auth.isAiAgent 
                     ? 'bg-purple-950/20 border-purple-500/40 hover:border-purple-500/70' 
@@ -549,8 +549,11 @@ export const AdminAuthors: React.FC = () => {
                     <div className="flex items-center gap-3.5">
                       <div className="relative shrink-0">
                         <img
-                          src={auth.avatar}
-                          alt={auth.name}
+                          src={auth.avatar || '/images/Personajes/Jason_Duval_01.webp'}
+                          alt={auth.name || 'Autor'}
+                          onError={(e) => {
+                            (e.currentTarget as HTMLImageElement).src = '/images/Personajes/Jason_Duval_01.webp';
+                          }}
                           className="w-14 h-14 rounded-2xl object-cover border-2 border-slate-700 shadow-md"
                         />
                         {auth.isAiAgent && (

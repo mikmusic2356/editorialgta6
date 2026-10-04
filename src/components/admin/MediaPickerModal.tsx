@@ -2,6 +2,8 @@ import React, { useState, useRef } from 'react';
 import { useCMS } from '../../context/CMSContext';
 import { MediaItem } from '../../types/cms';
 import { uploadCompressedToR2, deleteFromR2 } from '../../lib/r2Service';
+import { ImageOptimizerModal } from './ImageOptimizerModal';
+import { PRESET_STOCK_MEDIA } from '../../data/mediaData';
 import { 
   X, 
   Search, 
@@ -25,9 +27,6 @@ interface MediaPickerModalProps {
   onSelectMedia: (media: { url: string; alt?: string; caption?: string; title?: string }) => void;
   title?: string;
 }
-
-import { ImageOptimizerModal } from './ImageOptimizerModal';
-import { PRESET_STOCK_MEDIA } from '../../data/mediaData';
 
 export const MediaPickerModal: React.FC<MediaPickerModalProps> = ({
   isOpen,
@@ -86,11 +85,11 @@ export const MediaPickerModal: React.FC<MediaPickerModalProps> = ({
   };
 
   // Combine media uniquely by URL to ensure zero duplicates and strict WebP
-  const staticMap = new Map(PRESET_STOCK_MEDIA.map(p => [p.url, p]));
+  const staticMap = new Map((PRESET_STOCK_MEDIA || []).map(p => [p.url, p]));
   const mediaMap = new Map<string, any>();
 
-  media.forEach(m => {
-    if (!m.url) return;
+  (media || []).forEach(m => {
+    if (!m || !m.url) return;
     const cleanUrl = m.url.startsWith('/images/') ? m.url.replace(/\.(jpg|jpeg|png)$/i, '.webp') : m.url;
     const staticInfo = staticMap.get(cleanUrl);
     mediaMap.set(cleanUrl, {
@@ -107,8 +106,8 @@ export const MediaPickerModal: React.FC<MediaPickerModalProps> = ({
     });
   });
 
-  PRESET_STOCK_MEDIA.forEach((p: any) => {
-    if (!p.url) return;
+  (PRESET_STOCK_MEDIA || []).forEach((p: any) => {
+    if (!p || !p.url) return;
     if (!mediaMap.has(p.url)) {
       mediaMap.set(p.url, {
         id: p.id || p.url,
