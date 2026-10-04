@@ -1063,8 +1063,11 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
           const merged = dbArticles.map(dbA => {
             const localA = prevMap.get(dbA.slug);
             if (!localA) return dbA;
+            const localTime = new Date(localA.updatedAt || localA.publishedAt || 0).getTime();
+            const dbTime = new Date(dbA.updatedAt || dbA.publishedAt || 0).getTime();
+            const base = localTime > dbTime ? localA : dbA;
             return {
-              ...dbA,
+              ...base,
               likes: Math.max(dbA.likes ?? 0, localA.likes ?? 0),
               shares: Math.max(dbA.shares ?? 0, localA.shares ?? 0),
               views: Math.max(dbA.views ?? 0, localA.views ?? 0)
@@ -2193,16 +2196,35 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       const newTimestamp = Date.now();
       setCacheBuster(newTimestamp);
 
-      // 1. Purge all LocalStorage & SessionStorage cache keys
+      // 0. Ensure all in-memory articles and authors are synced to Turso Cloud DB first
+      try {
+        await Promise.all(articles.map(art => tursoService.saveArticle(art)));
+        await Promise.all(authors.map(aut => tursoService.saveAuthor(aut)));
+      } catch (saveErr) {
+        console.warn('Pre-cache-clear sync warning:', saveErr);
+      }
+
+      // 1. Purge ephemeral LocalStorage & SessionStorage cache keys (preserving articles/authors/auth)
       try {
         if (typeof localStorage !== 'undefined') {
+          const keysToPreserve = new Set([
+            `${STORAGE_KEY_PREFIX}auth`,
+            `${STORAGE_KEY_PREFIX}articles`,
+            `${STORAGE_KEY_PREFIX}authors`,
+            `${STORAGE_KEY_PREFIX}media`,
+            `${STORAGE_KEY_PREFIX}categories`,
+            `${STORAGE_KEY_PREFIX}settings`,
+            `${STORAGE_KEY_PREFIX}banners`,
+            `${STORAGE_KEY_PREFIX}breaking_news`,
+            `${STORAGE_KEY_PREFIX}static_pages`,
+            `${STORAGE_KEY_PREFIX}tags`
+          ]);
+
           const keysToRemove: string[] = [];
           for (let i = 0; i < localStorage.length; i++) {
             const k = localStorage.key(i);
-            if (k && (k.startsWith(STORAGE_KEY_PREFIX) || k.startsWith('leonida_') || k.startsWith('kairosion_'))) {
-              if (k !== `${STORAGE_KEY_PREFIX}auth`) { // preserve current admin login session
-                keysToRemove.push(k);
-              }
+            if (k && !keysToPreserve.has(k) && (k.startsWith(STORAGE_KEY_PREFIX) || k.startsWith('leonida_') || k.startsWith('kairosion_'))) {
+              keysToRemove.push(k);
             }
           }
           keysToRemove.forEach(k => localStorage.removeItem(k));

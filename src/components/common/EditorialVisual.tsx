@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ImageAsset, MainCategorySlug } from '../../types';
+import { useCMS } from '../../context/CMSContext';
 import { 
   Palmtree, 
   Car, 
@@ -31,14 +32,30 @@ export const EditorialVisual: React.FC<EditorialVisualProps> = ({
   priority = false,
 }) => {
   const [imageError, setImageError] = useState(false);
+  let cacheBuster: number | undefined;
+  try {
+    const cms = useCMS();
+    cacheBuster = cms.cacheBuster;
+  } catch (e) {
+    // Graceful fallback if rendered outside CMSProvider
+  }
 
   // Automatically reset image error state whenever the image URL changes
   useEffect(() => {
     setImageError(false);
-  }, [image?.url]);
+  }, [image?.url, cacheBuster]);
 
   const rawUrl = image?.url?.trim() || '';
-  const sanitizedUrl = rawUrl ? (rawUrl.startsWith('http') || rawUrl.startsWith('/') ? rawUrl : `/${rawUrl}`) : '';
+  let sanitizedUrl = rawUrl ? (rawUrl.startsWith('http') || rawUrl.startsWith('/') || rawUrl.startsWith('data:') || rawUrl.startsWith('blob:') ? rawUrl : `/${rawUrl}`) : '';
+
+  // Append cache buster if not a base64 or blob URL
+  if (sanitizedUrl && cacheBuster && !sanitizedUrl.startsWith('data:') && !sanitizedUrl.startsWith('blob:')) {
+    const separator = sanitizedUrl.includes('?') ? '&' : '?';
+    if (!sanitizedUrl.includes('_cb=')) {
+      sanitizedUrl = `${sanitizedUrl}${separator}_cb=${cacheBuster}`;
+    }
+  }
+
   const hasRealImage = Boolean(sanitizedUrl && !imageError);
 
   // Select authentic color palette per category

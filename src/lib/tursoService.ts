@@ -204,6 +204,15 @@ export const tursoService = {
 
   async saveArticle(art: CMSArticle) {
     try {
+      // 1. Remove any old duplicate by id or slug to avoid UNIQUE constraint conflicts
+      try {
+        await turso.execute({
+          sql: 'DELETE FROM articles WHERE id = ? OR slug = ?',
+          args: [art.id, art.slug]
+        });
+      } catch (delErr) { /* ignore */ }
+
+      // 2. Insert clean updated article record
       await turso.execute({
         sql: `
           INSERT INTO articles (
@@ -213,37 +222,6 @@ export const tursoService = {
             tags_json, likes, shares, views, is_hero, is_trending, is_latest, featured_image_json,
             youtube_video_id, schema_type, content_json, related_slugs_json, status, revisions_json
           ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-          ON CONFLICT(id) DO UPDATE SET
-            slug=excluded.slug,
-            title=excluded.title,
-            subtitle=excluded.subtitle,
-            seo_title=excluded.seo_title,
-            seo_description=excluded.seo_description,
-            canonical_url=excluded.canonical_url,
-            excerpt=excluded.excerpt,
-            category=excluded.category,
-            subcategory_slug=excluded.subcategory_slug,
-            category_label=excluded.category_label,
-            verification_type=excluded.verification_type,
-            author_json=excluded.author_json,
-            published_at=excluded.published_at,
-            updated_at=excluded.updated_at,
-            scheduled_at=excluded.scheduled_at,
-            read_time_minutes=excluded.read_time_minutes,
-            tags_json=excluded.tags_json,
-            likes=excluded.likes,
-            shares=excluded.shares,
-            views=excluded.views,
-            is_hero=excluded.is_hero,
-            is_trending=excluded.is_trending,
-            is_latest=excluded.is_latest,
-            featured_image_json=excluded.featured_image_json,
-            youtube_video_id=excluded.youtube_video_id,
-            schema_type=excluded.schema_type,
-            content_json=excluded.content_json,
-            related_slugs_json=excluded.related_slugs_json,
-            status=excluded.status,
-            revisions_json=excluded.revisions_json
         `,
         args: [
           art.id,
@@ -260,7 +238,7 @@ export const tursoService = {
           art.verificationType || 'oficial',
           JSON.stringify(art.author),
           art.publishedAt,
-          art.updatedAt || art.publishedAt,
+          art.updatedAt || new Date().toISOString(),
           art.scheduledAt || null,
           art.readTimeMinutes || 5,
           JSON.stringify(art.tags || []),
@@ -279,8 +257,9 @@ export const tursoService = {
           JSON.stringify(art.revisions || [])
         ]
       });
+      console.log(`✅ [Turso] Article "${art.title}" (${art.slug}) saved permanently with image:`, art.featuredImage?.url);
     } catch (e) {
-      console.error(`Error saving article ${art.id} to Turso:`, e);
+      console.error(`❌ [Turso] Error saving article ${art.id} to Turso:`, e);
     }
   },
 
