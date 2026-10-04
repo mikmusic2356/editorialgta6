@@ -685,14 +685,27 @@ export function safeLocalStorageSet(key: string, value: any) {
     const stringified = typeof value === 'string' ? value : JSON.stringify(value);
     localStorage.setItem(key, stringified);
   } catch (e: any) {
-    console.warn(`[SafeStorage] LocalStorage quota reached for "${key}". Cleaning cached logs...`, e?.message);
     try {
       // Purge non-critical local logs to free up storage space
       localStorage.removeItem(`${STORAGE_KEY_PREFIX}traffic_logs`);
       localStorage.removeItem(`${STORAGE_KEY_PREFIX}consent_logs`);
       localStorage.removeItem(`${STORAGE_KEY_PREFIX}media`);
-      const stringified = typeof value === 'string' ? value : JSON.stringify(value);
-      localStorage.setItem(key, stringified);
+      if (key === `${STORAGE_KEY_PREFIX}articles` && Array.isArray(value)) {
+        // Store lightweight article descriptors to prevent quota errors
+        const compact = value.map(a => ({
+          id: a.id,
+          slug: a.slug,
+          title: a.title,
+          category: a.category,
+          subcategorySlug: a.subcategorySlug,
+          categoryLabel: a.categoryLabel,
+          featuredImage: a.featuredImage,
+          publishedAt: a.publishedAt,
+          updatedAt: a.updatedAt,
+          status: a.status
+        }));
+        localStorage.setItem(key, JSON.stringify(compact));
+      }
     } catch (innerErr) {
       // Cloud database Turso persists everything; silently continue without crashing React
     }
@@ -1032,40 +1045,13 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       ]);
 
       if (dbArticles.length > 0) {
-        const existingSlugs = new Set(dbArticles.map(a => a.slug));
-        const defaultArticles = ARTICLES.map(a => ({
-          ...a,
-          likes: a.likes ?? 0,
-          shares: a.shares ?? 0,
-          views: a.views ?? 0,
-          status: 'publicado' as ArticleStatus,
-          revisions: [
-            {
-              id: `rev-init-${a.id}`,
-              version: 1,
-              timestamp: a.publishedAt,
-              authorName: a.author?.name || 'Marcos Valiente',
-              summary: 'Versión original publicada',
-              title: a.title,
-              excerpt: a.excerpt,
-              contentLead: a.content?.leadText || ''
-            }
-          ]
-        }));
-        const missingDefault = defaultArticles.filter(a => !existingSlugs.has(a.slug));
-        if (missingDefault.length > 0) {
-          for (const art of missingDefault) {
-            await tursoService.saveArticle(art);
-          }
-        }
-
         setArticles(prev => {
           const prevMap = new Map(prev.map(p => [p.slug, p]));
           const prevIdMap = new Map(prev.map(p => [p.id, p]));
           const merged = dbArticles.map(dbA => {
             const localA = prevMap.get(dbA.slug) || prevIdMap.get(dbA.id);
             if (!localA) return dbA;
-            // Turso is the source of truth for user-edited articles and featured images
+            // Turso is the source of truth for user-edited articles, titles, paragraphs, and images
             return {
               ...dbA,
               likes: Math.max(dbA.likes ?? 0, localA.likes ?? 0),
