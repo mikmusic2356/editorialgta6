@@ -792,11 +792,12 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       try {
         const parsed: CMSArticle[] = JSON.parse(saved);
         const defaultSlugMap = new Map(defaultArticles.map(d => [d.slug, d]));
-        const defaultIdMap = new Map(defaultArticles.map(d => [d.id, d]));
         const merged = parsed.map(p => {
           const def = defaultSlugMap.get(p.slug) || (p.id ? defaultIdMap.get(p.id) : undefined);
           if (!def) return p;
-          const isPlaceholder = p.featuredImage?.url?.includes('images.unsplash.com');
+          const isInvalidOrBroken = !p.featuredImage?.url || 
+            p.featuredImage.url.includes('Localizaciones') || 
+            p.featuredImage.url.includes('images.unsplash.com');
           return {
             ...def,
             ...p,
@@ -804,7 +805,7 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
             likes: typeof p.likes === 'number' ? p.likes : def.likes,
             shares: typeof p.shares === 'number' ? p.shares : def.shares,
             views: typeof p.views === 'number' ? p.views : def.views,
-            featuredImage: isPlaceholder ? def.featuredImage : (p.featuredImage || def.featuredImage),
+            featuredImage: isInvalidOrBroken ? def.featuredImage : (p.featuredImage || def.featuredImage),
             author: {
               ...def.author,
               ...p.author,
@@ -2188,7 +2189,7 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   // Cache & Live Sync Management
-  const [cacheBuster, setCacheBuster] = useState<number>(() => Date.now());
+  const [cacheBuster, setCacheBuster] = useState<number>(0);
 
   const clearAllCache = async (options: { reload?: boolean; bustImages?: boolean } = { reload: false, bustImages: true }): Promise<{ success: boolean; message: string }> => {
     try {

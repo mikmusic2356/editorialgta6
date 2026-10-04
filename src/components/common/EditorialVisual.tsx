@@ -48,8 +48,8 @@ export const EditorialVisual: React.FC<EditorialVisualProps> = ({
   const rawUrl = image?.url?.trim() || '';
   let sanitizedUrl = rawUrl ? (rawUrl.startsWith('http') || rawUrl.startsWith('/') || rawUrl.startsWith('data:') || rawUrl.startsWith('blob:') ? rawUrl : `/${rawUrl}`) : '';
 
-  // Append cache buster if not a base64 or blob URL
-  if (sanitizedUrl && cacheBuster && !sanitizedUrl.startsWith('data:') && !sanitizedUrl.startsWith('blob:')) {
+  // Append cache buster only when explicitly active (> 0) e.g. after manual CMS purge
+  if (sanitizedUrl && cacheBuster && cacheBuster > 0 && !sanitizedUrl.startsWith('data:') && !sanitizedUrl.startsWith('blob:')) {
     const separator = sanitizedUrl.includes('?') ? '&' : '?';
     if (!sanitizedUrl.includes('_cb=')) {
       sanitizedUrl = `${sanitizedUrl}${separator}_cb=${cacheBuster}`;

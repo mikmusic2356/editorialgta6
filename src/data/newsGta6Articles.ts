@@ -33,8 +33,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": true,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Artes_y_Ediciones/Official_Cover_Art_landscape.webp",
-      "alt": "Actividades al Aire Libre y Deportes en GTA 6: Pesca, Carreras y Ocio - Noticia Oficial GTA 6",
+      "url": "/images/Vehiculos/ULTIMATE_EDITION_SQUALO_01.webp",
+      "alt": "Actividades al Aire Libre y Deportes en GTA 6: Pesca, Carreras y Ocio - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Actividades al Aire Libre y Deportes en GTA 6: Pesca, Carreras y Ocio.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -127,7 +127,7 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isLatest": true,
     "featuredImage": {
       "url": "/images/Personajes/Jason_and_Lucia_Motel_landscape.webp",
-      "alt": "Cómo Cyberleek Confirmó a Jason y Lucia Años Antes del Tráiler Oficial - Noticia Oficial GTA 6",
+      "alt": "Cómo Cyberleek Confirmó a Jason y Lucia Años Antes del Tráiler Oficial - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Cómo Cyberleek Confirmó a Jason y Lucia Años Antes del Tráiler Oficial.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -216,8 +216,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": true,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Vehiculos/ULTIMATE_EDITION_GROTTI_CHEETAH_01.webp",
-      "alt": "Consecuencias Legales del Caso Cyberleek: Detenciones y Cierre de Servidores - Noticia Oficial GTA 6",
+      "url": "/images/Personajes/Jason_and_Lucia_Robbery_With_Logo_landscape.webp",
+      "alt": "Consecuencias Legales del Caso Cyberleek: Detenciones y Cierre de Servidores - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Consecuencias Legales del Caso Cyberleek: Detenciones y Cierre de Servidores.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -304,8 +304,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": true,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Localizaciones/VICE_CITY_DOWNTOWN_SUNSET_01.webp",
-      "alt": "Análisis Técnico de los Clips de Cyberleek: Depuración, IA y RAGE Engine - Noticia Oficial GTA 6",
+      "url": "/images/Personajes/Jason_Duval_01.webp",
+      "alt": "Análisis Técnico de los Clips de Cyberleek: Depuración, IA y RAGE Engine - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Análisis Técnico de los Clips de Cyberleek: Depuración, IA y RAGE Engine.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -389,8 +389,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": true,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Localizaciones/VICE_CITY_BEACH_OCEAN_DRIVE_01.webp",
-      "alt": "Por Qué Cyberleek Impulsó las Ediciones Físicas sin Disco en GTA 6 - Noticia Oficial GTA 6",
+      "url": "/images/Personajes/Jason_and_Lucia_Motel_landscape.webp",
+      "alt": "Por Qué Cyberleek Impulsó las Ediciones Físicas sin Disco en GTA 6 - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Por Qué Cyberleek Impulsó las Ediciones Físicas sin Disco en GTA 6.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -479,8 +479,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Localizaciones/PORT_GELLHORN_INDUSTRIAL_01.webp",
-      "alt": "La Filtración de Cyberleek: El Mayor Incidente de Ciberseguridad en los Videojuegos - Noticia Oficial GTA 6",
+      "url": "/images/Personajes/Jason_and_Lucia_Robbery_With_Logo_landscape.webp",
+      "alt": "La Filtración de Cyberleek: El Mayor Incidente de Ciberseguridad en los Videojuegos - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre La Filtración de Cyberleek: El Mayor Incidente de Ciberseguridad en los Videojuegos.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -572,8 +572,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Localizaciones/GRASSRIVERS_WETLANDS_SUNRISE_01.webp",
-      "alt": "Mecánicas de Robo y FISA Bank Filtradas en Cyberleek - Noticia Oficial GTA 6",
+      "url": "/images/Lugares_y_Mapas/Port_Gellhorn_Postcard_landscape.webp",
+      "alt": "Mecánicas de Robo y FISA Bank Filtradas en Cyberleek - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Mecánicas de Robo y FISA Bank Filtradas en Cyberleek.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -662,8 +662,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Armas/ULTIMATE_EDITION_WEAPON_VARIANTS_01.webp",
-      "alt": "Cyberleek: Mitos vs. Realidad de las Compilaciones de Desarrollo Antiguas - Noticia Oficial GTA 6",
+      "url": "/images/Personajes/Jason_Duval_01.webp",
+      "alt": "Cyberleek: Mitos vs. Realidad de las Compilaciones de Desarrollo Antiguas - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Cyberleek: Mitos vs. Realidad de las Compilaciones de Desarrollo Antiguas.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -752,8 +752,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Artes_y_Ediciones/Official_Cover_Art_landscape.webp",
-      "alt": "La Reacción de la Industria Gaming y Creadores de Contenido ante Cyberleek - Noticia Oficial GTA 6",
+      "url": "/images/Personajes/Jason_and_Lucia_Motel_landscape.webp",
+      "alt": "La Reacción de la Industria Gaming y Creadores de Contenido ante Cyberleek - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre La Reacción de la Industria Gaming y Creadores de Contenido ante Cyberleek.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -839,8 +839,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Personajes/Jason_and_Lucia_Motel_landscape.webp",
-      "alt": "La Respuesta Oficial de Rockstar Games y Take-Two tras el Incidente Cyberleek - Noticia Oficial GTA 6",
+      "url": "/images/Personajes/Jason_and_Lucia_Robbery_With_Logo_landscape.webp",
+      "alt": "La Respuesta Oficial de Rockstar Games y Take-Two tras el Incidente Cyberleek - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre La Respuesta Oficial de Rockstar Games y Take-Two tras el Incidente Cyberleek.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -926,8 +926,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Vehiculos/ULTIMATE_EDITION_GROTTI_CHEETAH_01.webp",
-      "alt": "El Mapa de Leonida Revelado en Cyberleek: Coordenadas, Regiones y Escala - Noticia Oficial GTA 6",
+      "url": "/images/Personajes/Jason_Duval_01.webp",
+      "alt": "El Mapa de Leonida Revelado en Cyberleek: Coordenadas, Regiones y Escala - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre El Mapa de Leonida Revelado en Cyberleek: Coordenadas, Regiones y Escala.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -1010,8 +1010,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Localizaciones/VICE_CITY_DOWNTOWN_SUNSET_01.webp",
-      "alt": "Eventos Dinámicos y Cambios Estacionales en GTA 6 - Noticia Oficial GTA 6",
+      "url": "/images/Vehiculos/ULTIMATE_EDITION_SQUALO_02.webp",
+      "alt": "Eventos Dinámicos y Cambios Estacionales en GTA 6 - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Eventos Dinámicos y Cambios Estacionales en GTA 6.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -1102,8 +1102,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Localizaciones/VICE_CITY_BEACH_OCEAN_DRIVE_01.webp",
-      "alt": "El Futuro de GTA Online en Leonida: Todo sobre el Nuevo Multijugador - Noticia Oficial GTA 6",
+      "url": "/images/Lugares_y_Mapas/Vice_City_Postcard_landscape.webp",
+      "alt": "El Futuro de GTA Online en Leonida: Todo sobre el Nuevo Multijugador - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre El Futuro de GTA Online en Leonida: Todo sobre el Nuevo Multijugador.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -1195,8 +1195,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Localizaciones/PORT_GELLHORN_INDUSTRIAL_01.webp",
-      "alt": "Guía de Combate Táctico y Tiroteos en GTA 6: Coberturas, Apuntado y Armas - Noticia Oficial GTA 6",
+      "url": "/images/Armas/ULTIMATE_EDITION_HAWK_AND_LITTLE_MORGAN_REVOLVERS_01.webp",
+      "alt": "Guía de Combate Táctico y Tiroteos en GTA 6: Coberturas, Apuntado y Armas - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Guía de Combate Táctico y Tiroteos en GTA 6: Coberturas, Apuntado y Armas.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -1296,8 +1296,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Localizaciones/GRASSRIVERS_WETLANDS_SUNRISE_01.webp",
-      "alt": "Guía de Coleccionables y Secretos Ocultos en el Mapa de Leonida - Noticia Oficial GTA 6",
+      "url": "/images/Vehiculos/ULTIMATE_EDITION_SQUALO_03.webp",
+      "alt": "Guía de Coleccionables y Secretos Ocultos en el Mapa de Leonida - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Guía de Coleccionables y Secretos Ocultos en el Mapa de Leonida.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -1388,8 +1388,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Armas/ULTIMATE_EDITION_WEAPON_VARIANTS_01.webp",
-      "alt": "Guía de la Economía en GTA 6: Blanqueo de Dinero, Negocios y Dinero Sucio - Noticia Oficial GTA 6",
+      "url": "/images/Personajes/Jason_and_Lucia_Motel_landscape.webp",
+      "alt": "Guía de la Economía en GTA 6: Blanqueo de Dinero, Negocios y Dinero Sucio - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Guía de la Economía en GTA 6: Blanqueo de Dinero, Negocios y Dinero Sucio.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -1492,8 +1492,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Artes_y_Ediciones/Official_Cover_Art_landscape.webp",
-      "alt": "Guía de Sigilo e Infiltración Táctica en GTA 6: Sombras, Silenciadores y Cámaras - Noticia Oficial GTA 6",
+      "url": "/images/Vehiculos/ULTIMATE_EDITION_SQUALO_04.webp",
+      "alt": "Guía de Sigilo e Infiltración Táctica en GTA 6: Sombras, Silenciadores y Cámaras - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Guía de Sigilo e Infiltración Táctica en GTA 6: Sombras, Silenciadores y Cámaras.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -1592,8 +1592,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Personajes/Jason_and_Lucia_Motel_landscape.webp",
-      "alt": "Guía del Sistema de Confianza entre Jason y Lucia en GTA 6 - Noticia Oficial GTA 6",
+      "url": "/images/Armas/ULTIMATE_EDITION_HAWK_AND_LITTLE_MORGAN_REVOLVERS_02.webp",
+      "alt": "Guía del Sistema de Confianza entre Jason y Lucia en GTA 6 - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Guía del Sistema de Confianza entre Jason y Lucia en GTA 6.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -1692,8 +1692,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Vehiculos/ULTIMATE_EDITION_GROTTI_CHEETAH_01.webp",
-      "alt": "Guía de Marcas Ficticias y Parodias Comerciales en GTA 6 - Noticia Oficial GTA 6",
+      "url": "/images/Vehiculos/ULTIMATE_EDITION_SQUALO_01.webp",
+      "alt": "Guía de Marcas Ficticias y Parodias Comerciales en GTA 6 - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Guía de Marcas Ficticias y Parodias Comerciales en GTA 6.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -1786,8 +1786,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Localizaciones/VICE_CITY_DOWNTOWN_SUNSET_01.webp",
-      "alt": "Guía de Moda y Personalización de Ropa en GTA 6: Estilo en Vice City - Noticia Oficial GTA 6",
+      "url": "/images/Vehiculos/ULTIMATE_EDITION_SQUALO_02.webp",
+      "alt": "Guía de Moda y Personalización de Ropa en GTA 6: Estilo en Vice City - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Guía de Moda y Personalización de Ropa en GTA 6: Estilo en Vice City.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -1880,8 +1880,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Localizaciones/VICE_CITY_BEACH_OCEAN_DRIVE_01.webp",
-      "alt": "Negocios de Contrabando y Propiedades Comerciales en GTA Online 2 - Noticia Oficial GTA 6",
+      "url": "/images/Lugares_y_Mapas/Port_Gellhorn_01.webp",
+      "alt": "Negocios de Contrabando y Propiedades Comerciales en GTA Online 2 - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Negocios de Contrabando y Propiedades Comerciales en GTA Online 2.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -1972,8 +1972,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Localizaciones/PORT_GELLHORN_INDUSTRIAL_01.webp",
-      "alt": "Roleplay Oficial en GTA 6: La Integración de FiveM y Cfx.re - Noticia Oficial GTA 6",
+      "url": "/images/Artes_y_Ediciones/Official_Cover_Art_landscape.webp",
+      "alt": "Roleplay Oficial en GTA 6: La Integración de FiveM y Cfx.re - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Roleplay Oficial en GTA 6: La Integración de FiveM y Cfx.re.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -2066,8 +2066,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Localizaciones/GRASSRIVERS_WETLANDS_SUNRISE_01.webp",
-      "alt": "La Sátira Social de GTA 6: Parodia de la Cultura Americana y Florida - Noticia Oficial GTA 6",
+      "url": "/images/Personajes/Brian_Heder_landscape.webp",
+      "alt": "La Sátira Social de GTA 6: Parodia de la Cultura Americana y Florida - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre La Sátira Social de GTA 6: Parodia de la Cultura Americana y Florida.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -2158,8 +2158,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Armas/ULTIMATE_EDITION_WEAPON_VARIANTS_01.webp",
-      "alt": "Sistema de Crews y Clanes en GTA 6: Organización Criminal Multijugador - Noticia Oficial GTA 6",
+      "url": "/images/Personajes/Brian_Heder_01.webp",
+      "alt": "Sistema de Crews y Clanes en GTA 6: Organización Criminal Multijugador - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Sistema de Crews y Clanes en GTA 6: Organización Criminal Multijugador.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -2250,8 +2250,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Artes_y_Ediciones/Official_Cover_Art_landscape.webp",
-      "alt": "GTA 6 en PC: Explicación Oficial del Retraso y Estrategia 'Console-First' - Noticia Oficial GTA 6",
+      "url": "/images/Personajes/Raul_Bautista_landscape.webp",
+      "alt": "GTA 6 en PC: Explicación Oficial del Retraso y Estrategia 'Console-First' - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre GTA 6 en PC: Explicación Oficial del Retraso y Estrategia 'Console-First'.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -2357,8 +2357,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Personajes/Jason_and_Lucia_Motel_landscape.webp",
-      "alt": "Ediciones Físicas de GTA 6 Sin Disco: Por Qué Usarán Código de Descarga - Noticia Oficial GTA 6",
+      "url": "/images/Vehiculos/ULTIMATE_EDITION_WYMAN_CAR_COLLECTION_01.webp",
+      "alt": "Ediciones Físicas de GTA 6 Sin Disco: Por Qué Usarán Código de Descarga - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Ediciones Físicas de GTA 6 Sin Disco: Por Qué Usarán Código de Descarga.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -2465,8 +2465,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Vehiculos/ULTIMATE_EDITION_GROTTI_CHEETAH_01.webp",
-      "alt": "Las Revelaciones del Extended Look de GTA 6: Más de 150 Detalles Nuevos - Noticia Oficial GTA 6",
+      "url": "/images/Personajes/Raul_Bautista_03.webp",
+      "alt": "Las Revelaciones del Extended Look de GTA 6: Más de 150 Detalles Nuevos - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Las Revelaciones del Extended Look de GTA 6: Más de 150 Detalles Nuevos.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -2573,8 +2573,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Localizaciones/VICE_CITY_DOWNTOWN_SUNSET_01.webp",
-      "alt": "Fecha de Lanzamiento de GTA 6 Confirmada: 19 de Noviembre de 2026 - Noticia Oficial GTA 6",
+      "url": "/images/Artes_y_Ediciones/ULTIMATE_EDITION_01.webp",
+      "alt": "Fecha de Lanzamiento de GTA 6 Confirmada: 19 de Noviembre de 2026 - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Fecha de Lanzamiento de GTA 6 Confirmada: 19 de Noviembre de 2026.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -2682,8 +2682,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Localizaciones/VICE_CITY_BEACH_OCEAN_DRIVE_01.webp",
-      "alt": "Filtraciones 'Cyberleek' de GTA 6: Qué Revelaron y Cómo Respondió Rockstar - Noticia Oficial GTA 6",
+      "url": "/images/Personajes/Jason_and_Lucia_Robbery_With_Logo_landscape.webp",
+      "alt": "Filtraciones 'Cyberleek' de GTA 6: Qué Revelaron y Cómo Respondió Rockstar - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Filtraciones 'Cyberleek' de GTA 6: Qué Revelaron y Cómo Respondió Rockstar.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -2791,8 +2791,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Localizaciones/PORT_GELLHORN_INDUSTRIAL_01.webp",
-      "alt": "GTA VI: The Album - Novedades de la Banda Sonora de 34 Canciones - Noticia Oficial GTA 6",
+      "url": "/images/Personajes/DreQuan_Priest_landscape.webp",
+      "alt": "GTA VI: The Album - Novedades de la Banda Sonora de 34 Canciones - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre GTA VI: The Album - Novedades de la Banda Sonora de 34 Canciones.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -2902,8 +2902,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Localizaciones/GRASSRIVERS_WETLANDS_SUNRISE_01.webp",
-      "alt": "Guía Completa de Pre-órdenes de GTA 6: Reservas del 25 de Junio - Noticia Oficial GTA 6",
+      "url": "/images/Artes_y_Ediciones/VINTAGE_VICE_CITY_PACK_01.webp",
+      "alt": "Guía Completa de Pre-órdenes de GTA 6: Reservas del 25 de Junio - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Guía Completa de Pre-órdenes de GTA 6: Reservas del 25 de Junio.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -3011,8 +3011,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Armas/ULTIMATE_EDITION_WEAPON_VARIANTS_01.webp",
-      "alt": "Jason y Lucia en GTA 6: La Historia de Amor y Crimen Estilo Bonnie & Clyde - Noticia Oficial GTA 6",
+      "url": "/images/Personajes/Jason_Duval_01.webp",
+      "alt": "Jason y Lucia en GTA 6: La Historia de Amor y Crimen Estilo Bonnie & Clyde - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Jason y Lucia en GTA 6: La Historia de Amor y Crimen Estilo Bonnie & Clyde.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -3122,8 +3122,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Artes_y_Ediciones/Official_Cover_Art_landscape.webp",
-      "alt": "Interiores Accesibles en GTA 6: Más de 700 Edificios Explorables - Noticia Oficial GTA 6",
+      "url": "/images/Artes_y_Ediciones/VINTAGE_VICE_CITY_PACK_02.webp",
+      "alt": "Interiores Accesibles en GTA 6: Más de 700 Edificios Explorables - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Interiores Accesibles en GTA 6: Más de 700 Edificios Explorables.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -3229,8 +3229,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Personajes/Jason_and_Lucia_Motel_landscape.webp",
-      "alt": "El Mapa del Estado de Leonida en GTA 6: Tamaño, Regiones y Comparativa - Noticia Oficial GTA 6",
+      "url": "/images/Lugares_y_Mapas/Vice_City_Postcard_landscape.webp",
+      "alt": "El Mapa del Estado de Leonida en GTA 6: Tamaño, Regiones y Comparativa - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre El Mapa del Estado de Leonida en GTA 6: Tamaño, Regiones y Comparativa.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -3339,8 +3339,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Vehiculos/ULTIMATE_EDITION_GROTTI_CHEETAH_01.webp",
-      "alt": "El Nuevo Sistema Policial de GTA 6: IA Táctica, Cámaras y Nivel de Búsqueda - Noticia Oficial GTA 6",
+      "url": "/images/Vehiculos/ULTIMATE_EDITION_SQUALO_03.webp",
+      "alt": "El Nuevo Sistema Policial de GTA 6: IA Táctica, Cámaras y Nivel de Búsqueda - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre El Nuevo Sistema Policial de GTA 6: IA Táctica, Cámaras y Nivel de Búsqueda.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -3447,8 +3447,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Localizaciones/VICE_CITY_DOWNTOWN_SUNSET_01.webp",
-      "alt": "Snapmatic y Cultura Viral en GTA 6: La Sátira de las Redes Sociales - Noticia Oficial GTA 6",
+      "url": "/images/Artes_y_Ediciones/Official_Cover_Art_landscape.webp",
+      "alt": "Snapmatic y Cultura Viral en GTA 6: La Sátira de las Redes Sociales - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Snapmatic y Cultura Viral en GTA 6: La Sátira de las Redes Sociales.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -3554,8 +3554,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Localizaciones/VICE_CITY_BEACH_OCEAN_DRIVE_01.webp",
-      "alt": "¿Rendimiento de 60 FPS en GTA 6? Análisis Técnico en PS5 y Xbox - Noticia Oficial GTA 6",
+      "url": "/images/Personajes/Brian_Heder_landscape.webp",
+      "alt": "¿Rendimiento de 60 FPS en GTA 6? Análisis Técnico en PS5 y Xbox - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre ¿Rendimiento de 60 FPS en GTA 6? Análisis Técnico en PS5 y Xbox.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -3663,8 +3663,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Localizaciones/PORT_GELLHORN_INDUSTRIAL_01.webp",
-      "alt": "Reporte Financiero Q1 2027 de Take-Two: Éxito Garantizado de GTA 6 - Noticia Oficial GTA 6",
+      "url": "/images/Personajes/Brian_Heder_01.webp",
+      "alt": "Reporte Financiero Q1 2027 de Take-Two: Éxito Garantizado de GTA 6 - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Reporte Financiero Q1 2027 de Take-Two: Éxito Garantizado de GTA 6.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -3770,8 +3770,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Localizaciones/GRASSRIVERS_WETLANDS_SUNRISE_01.webp",
-      "alt": "El Regreso a Vice City en GTA 6: Comparativa, Evolución y Nostalgia - Noticia Oficial GTA 6",
+      "url": "/images/Personajes/Raul_Bautista_landscape.webp",
+      "alt": "El Regreso a Vice City en GTA 6: Comparativa, Evolución y Nostalgia - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre El Regreso a Vice City en GTA 6: Comparativa, Evolución y Nostalgia.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -3878,8 +3878,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Armas/ULTIMATE_EDITION_WEAPON_VARIANTS_01.webp",
-      "alt": "Guía de la Vida Nocturna en Vice City: Clubes, Fiestas y Entretenimiento en GTA 6 - Noticia Oficial GTA 6",
+      "url": "/images/Personajes/Raul_Bautista_03.webp",
+      "alt": "Guía de la Vida Nocturna en Vice City: Clubes, Fiestas y Entretenimiento en GTA 6 - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Guía de la Vida Nocturna en Vice City: Clubes, Fiestas y Entretenimiento en GTA 6.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -3979,8 +3979,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Artes_y_Ediciones/Official_Cover_Art_landscape.webp",
-      "alt": "El Abogado del Contenedor de Basura: El Personaje Más Viral de GTA 6 - Noticia Oficial GTA 6",
+      "url": "/images/Artes_y_Ediciones/ULTIMATE_EDITION_01.webp",
+      "alt": "El Abogado del Contenedor de Basura: El Personaje Más Viral de GTA 6 - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre El Abogado del Contenedor de Basura: El Personaje Más Viral de GTA 6.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -4088,8 +4088,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Personajes/Jason_and_Lucia_Motel_landscape.webp",
-      "alt": "Caimanes en Piscinas y Supermercados: La Fauna Viral de GTA 6 - Noticia Oficial GTA 6",
+      "url": "/images/Lugares_y_Mapas/Grassrivers_Postcard_landscape.webp",
+      "alt": "Caimanes en Piscinas y Supermercados: La Fauna Viral de GTA 6 - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Caimanes en Piscinas y Supermercados: La Fauna Viral de GTA 6.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -4194,7 +4194,7 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isLatest": true,
     "featuredImage": {
       "url": "/images/Vehiculos/ULTIMATE_EDITION_GROTTI_CHEETAH_01.webp",
-      "alt": "Takeovers y Carreras Ilegales en GTA 6: El Fenómeno del Tuning Viral - Noticia Oficial GTA 6",
+      "alt": "Takeovers y Carreras Ilegales en GTA 6: El Fenómeno del Tuning Viral - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Takeovers y Carreras Ilegales en GTA 6: El Fenómeno del Tuning Viral.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -4302,8 +4302,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Localizaciones/VICE_CITY_DOWNTOWN_SUNSET_01.webp",
-      "alt": "La Chica del Bikini de GTA 6: La Búsqueda Viral de su Identidad - Noticia Oficial GTA 6",
+      "url": "/images/Artes_y_Ediciones/VINTAGE_VICE_CITY_PACK_01.webp",
+      "alt": "La Chica del Bikini de GTA 6: La Búsqueda Viral de su Identidad - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre La Chica del Bikini de GTA 6: La Búsqueda Viral de su Identidad.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -4412,8 +4412,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Localizaciones/VICE_CITY_BEACH_OCEAN_DRIVE_01.webp",
-      "alt": "Miami vs. Vice City: La Comparativa Viral Fotograma a Fotograma - Noticia Oficial GTA 6",
+      "url": "/images/Artes_y_Ediciones/VINTAGE_VICE_CITY_PACK_02.webp",
+      "alt": "Miami vs. Vice City: La Comparativa Viral Fotograma a Fotograma - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Miami vs. Vice City: La Comparativa Viral Fotograma a Fotograma.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -4519,8 +4519,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Localizaciones/PORT_GELLHORN_INDUSTRIAL_01.webp",
-      "alt": "El Trunk Challenge en GTA 6: La Persecución Viral del Streamer - Noticia Oficial GTA 6",
+      "url": "/images/Lugares_y_Mapas/Vice_City_Postcard_landscape.webp",
+      "alt": "El Trunk Challenge en GTA 6: La Persecución Viral del Streamer - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre El Trunk Challenge en GTA 6: La Persecución Viral del Streamer.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -4641,8 +4641,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Localizaciones/GRASSRIVERS_WETLANDS_SUNRISE_01.webp",
-      "alt": "La 'Karen de Leonida': El Altercado Viral en el Restaurante de Hamlet - Noticia Oficial GTA 6",
+      "url": "/images/Vehiculos/ULTIMATE_EDITION_SQUALO_04.webp",
+      "alt": "La 'Karen de Leonida': El Altercado Viral en el Restaurante de Hamlet - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre La 'Karen de Leonida': El Altercado Viral en el Restaurante de Hamlet.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -4751,8 +4751,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Armas/ULTIMATE_EDITION_WEAPON_VARIANTS_01.webp",
-      "alt": "La Mujer de los Martillos de Hamlet: El Fenómeno Viral de GTA 6 - Noticia Oficial GTA 6",
+      "url": "/images/Vehiculos/ULTIMATE_EDITION_SQUALO_01.webp",
+      "alt": "La Mujer de los Martillos de Hamlet: El Fenómeno Viral de GTA 6 - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre La Mujer de los Martillos de Hamlet: El Fenómeno Viral de GTA 6.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -4876,8 +4876,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Artes_y_Ediciones/Official_Cover_Art_landscape.webp",
-      "alt": "Lucia Caminos: La Conversación Global sobre la Protagonista de GTA 6 - Noticia Oficial GTA 6",
+      "url": "/images/Personajes/Jason_and_Lucia_Motel_landscape.webp",
+      "alt": "Lucia Caminos: La Conversación Global sobre la Protagonista de GTA 6 - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Lucia Caminos: La Conversación Global sobre la Protagonista de GTA 6.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -4983,8 +4983,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Personajes/Jason_and_Lucia_Motel_landscape.webp",
-      "alt": "Leonida Man: La Parodia Viral de 'Florida Man' en GTA 6 - Noticia Oficial GTA 6",
+      "url": "/images/Artes_y_Ediciones/Official_Cover_Art_landscape.webp",
+      "alt": "Leonida Man: La Parodia Viral de 'Florida Man' en GTA 6 - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Leonida Man: La Parodia Viral de 'Florida Man' en GTA 6.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -5094,8 +5094,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Vehiculos/ULTIMATE_EDITION_GROTTI_CHEETAH_01.webp",
-      "alt": "RHYNO de Travis Scott y Daft Punk: El Hit Viral de GTA VI: The Album - Noticia Oficial GTA 6",
+      "url": "/images/Personajes/Brian_Heder_landscape.webp",
+      "alt": "RHYNO de Travis Scott y Daft Punk: El Hit Viral de GTA VI: The Album - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre RHYNO de Travis Scott y Daft Punk: El Hit Viral de GTA VI: The Album.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -5206,8 +5206,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Localizaciones/VICE_CITY_DOWNTOWN_SUNSET_01.webp",
-      "alt": "Jason y Lucia: El Fenómeno Viral de la Pareja Bonnie & Clyde en GTA 6 - Noticia Oficial GTA 6",
+      "url": "/images/Personajes/Jason_and_Lucia_Robbery_With_Logo_landscape.webp",
+      "alt": "Jason y Lucia: El Fenómeno Viral de la Pareja Bonnie & Clyde en GTA 6 - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Jason y Lucia: El Fenómeno Viral de la Pareja Bonnie & Clyde en GTA 6.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -5317,8 +5317,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Localizaciones/VICE_CITY_BEACH_OCEAN_DRIVE_01.webp",
-      "alt": "La Reacción de Streamers al Extended Look de GTA 6: Furor en Twitch - Noticia Oficial GTA 6",
+      "url": "/images/Personajes/Brian_Heder_01.webp",
+      "alt": "La Reacción de Streamers al Extended Look de GTA 6: Furor en Twitch - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre La Reacción de Streamers al Extended Look de GTA 6: Furor en Twitch.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -5428,8 +5428,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Localizaciones/PORT_GELLHORN_INDUSTRIAL_01.webp",
-      "alt": "El Récord Mundial del Tráiler 1 de GTA 6: Historia del Video Viral - Noticia Oficial GTA 6",
+      "url": "/images/Personajes/Raul_Bautista_landscape.webp",
+      "alt": "El Récord Mundial del Tráiler 1 de GTA 6: Historia del Video Viral - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre El Récord Mundial del Tráiler 1 de GTA 6: Historia del Video Viral.",
       "badge": "ACTUALIDAD GTA 6"
     },
@@ -5536,8 +5536,8 @@ export const NEWS_GTA6_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Localizaciones/GRASSRIVERS_WETLANDS_SUNRISE_01.webp",
-      "alt": "El Gran Salto de Tom Petty en Spotify tras el Tráiler de GTA 6 - Noticia Oficial GTA 6",
+      "url": "/images/Personajes/Raul_Bautista_03.webp",
+      "alt": "El Gran Salto de Tom Petty en Spotify tras el Tráiler de GTA 6 - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre El Gran Salto de Tom Petty en Spotify tras el Tráiler de GTA 6.",
       "badge": "ACTUALIDAD GTA 6"
     },

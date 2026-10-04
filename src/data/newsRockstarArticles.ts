@@ -36,8 +36,8 @@ export const NEWS_ROCKSTAR_ARTICLES: Article[] = [
     "isTrending": true,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Artes_y_Ediciones/Official_Cover_Art_landscape.webp",
-      "alt": "Sistema de Clima Dinámico y Tormentas Tropicales en GTA 6 - Noticia Oficial GTA 6",
+      "url": "/images/Vehiculos/ULTIMATE_EDITION_GROTTI_CHEETAH_01.webp",
+      "alt": "Sistema de Clima Dinámico y Tormentas Tropicales en GTA 6 - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Sistema de Clima Dinámico y Tormentas Tropicales en GTA 6.",
       "badge": "NOTICIA ROCKSTAR"
     },
@@ -132,8 +132,8 @@ export const NEWS_ROCKSTAR_ARTICLES: Article[] = [
     "isTrending": true,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Personajes/Jason_and_Lucia_Motel_landscape.webp",
-      "alt": "Eventos Aleatorios y la Sátira del 'Leonida Man' en GTA 6 - Noticia Oficial GTA 6",
+      "url": "/images/Lugares_y_Mapas/Vice_City_Postcard_landscape.webp",
+      "alt": "Eventos Aleatorios y la Sátira del 'Leonida Man' en GTA 6 - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Eventos Aleatorios y la Sátira del 'Leonida Man' en GTA 6.",
       "badge": "NOTICIA ROCKSTAR"
     },
@@ -227,8 +227,8 @@ export const NEWS_ROCKSTAR_ARTICLES: Article[] = [
     "isTrending": true,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Vehiculos/ULTIMATE_EDITION_GROTTI_CHEETAH_01.webp",
-      "alt": "Ecosistema Animal y la Agencia POACH en GTA 6: Caimanes, Caza y Vida Silvestre - Noticia Oficial GTA 6",
+      "url": "/images/Vehiculos/ULTIMATE_EDITION_SQUALO_01.webp",
+      "alt": "Ecosistema Animal y la Agencia POACH en GTA 6: Caimanes, Caza y Vida Silvestre - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Ecosistema Animal y la Agencia POACH en GTA 6: Caimanes, Caza y Vida Silvestre.",
       "badge": "NOTICIA ROCKSTAR"
     },
@@ -324,8 +324,8 @@ export const NEWS_ROCKSTAR_ARTICLES: Article[] = [
     "isTrending": true,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Localizaciones/VICE_CITY_DOWNTOWN_SUNSET_01.webp",
-      "alt": "Más de 700 Interiores Accesibles Sin Pantallas de Carga en GTA 6 - Noticia Oficial GTA 6",
+      "url": "/images/Artes_y_Ediciones/Official_Cover_Art_landscape.webp",
+      "alt": "Más de 700 Interiores Accesibles Sin Pantallas de Carga en GTA 6 - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Más de 700 Interiores Accesibles Sin Pantallas de Carga en GTA 6.",
       "badge": "NOTICIA ROCKSTAR"
     },
@@ -422,8 +422,8 @@ export const NEWS_ROCKSTAR_ARTICLES: Article[] = [
     "isTrending": true,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Localizaciones/VICE_CITY_BEACH_OCEAN_DRIVE_01.webp",
-      "alt": "Mecánicas de Robo y Cerrajería Moderna en GTA 6: App Wank y Key Fob Cloning - Noticia Oficial GTA 6",
+      "url": "/images/Vehiculos/ULTIMATE_EDITION_GROTTI_CHEETAH_02.webp",
+      "alt": "Mecánicas de Robo y Cerrajería Moderna en GTA 6: App Wank y Key Fob Cloning - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Mecánicas de Robo y Cerrajería Moderna en GTA 6: App Wank y Key Fob Cloning.",
       "badge": "NOTICIA ROCKSTAR"
     },
@@ -520,8 +520,8 @@ export const NEWS_ROCKSTAR_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Localizaciones/PORT_GELLHORN_INDUSTRIAL_01.webp",
-      "alt": "La Evolución de los Atracos en GTA 6: Planificación y el Golpe al FISA Bank - Noticia Oficial GTA 6",
+      "url": "/images/Lugares_y_Mapas/Port_Gellhorn_Postcard_landscape.webp",
+      "alt": "La Evolución de los Atracos en GTA 6: Planificación y el Golpe al FISA Bank - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre La Evolución de los Atracos en GTA 6: Planificación y el Golpe al FISA Bank.",
       "badge": "NOTICIA ROCKSTAR"
     },
@@ -622,8 +622,8 @@ export const NEWS_ROCKSTAR_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Localizaciones/GRASSRIVERS_WETLANDS_SUNRISE_01.webp",
-      "alt": "Rockstar Games y el Futuro del Roleplay: La Integración de Cfx.re (FiveM) en GTA 6 - Noticia Oficial GTA 6",
+      "url": "/images/Personajes/Brian_Heder_landscape.webp",
+      "alt": "Rockstar Games y el Futuro del Roleplay: La Integración de Cfx.re (FiveM) en GTA 6 - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Rockstar Games y el Futuro del Roleplay: La Integración de Cfx.re (FiveM) en GTA 6.",
       "badge": "NOTICIA ROCKSTAR"
     },
@@ -713,8 +713,8 @@ export const NEWS_ROCKSTAR_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Armas/ULTIMATE_EDITION_WEAPON_VARIANTS_01.webp",
-      "alt": "Rockstar Games y Atlantic Records Se Alían para 'GTA VI: The Album' - Noticia Oficial GTA 6",
+      "url": "/images/Personajes/DreQuan_Priest_landscape.webp",
+      "alt": "Rockstar Games y Atlantic Records Se Alían para 'GTA VI: The Album' - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Rockstar Games y Atlantic Records Se Alían para 'GTA VI: The Album'.",
       "badge": "NOTICIA ROCKSTAR"
     },
@@ -812,8 +812,8 @@ export const NEWS_ROCKSTAR_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Artes_y_Ediciones/Official_Cover_Art_landscape.webp",
-      "alt": "La Arquitectura Comercial de GTA 6: Innovación en Monetización, Cultura y Ecosistema Digital - Noticia Oficial GTA 6",
+      "url": "/images/Personajes/Brian_Heder_01.webp",
+      "alt": "La Arquitectura Comercial de GTA 6: Innovación en Monetización, Cultura y Ecosistema Digital - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre La Arquitectura Comercial de GTA 6: Innovación en Monetización, Cultura y Ecosistema Digital.",
       "badge": "NOTICIA ROCKSTAR"
     },
@@ -907,8 +907,8 @@ export const NEWS_ROCKSTAR_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Personajes/Jason_and_Lucia_Motel_landscape.webp",
-      "alt": "La Estrategia de Marketing Viral de GTA 6: Redes Sociales, Muros y Anuncios Reales - Noticia Oficial GTA 6",
+      "url": "/images/Vehiculos/ULTIMATE_EDITION_SQUALO_02.webp",
+      "alt": "La Estrategia de Marketing Viral de GTA 6: Redes Sociales, Muros y Anuncios Reales - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre La Estrategia de Marketing Viral de GTA 6: Redes Sociales, Muros y Anuncios Reales.",
       "badge": "NOTICIA ROCKSTAR"
     },
@@ -998,8 +998,8 @@ export const NEWS_ROCKSTAR_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Vehiculos/ULTIMATE_EDITION_GROTTI_CHEETAH_01.webp",
-      "alt": "CircoLoco Records y Rockstar Games: La Alianza para la Música Electrónica en GTA 6 - Noticia Oficial GTA 6",
+      "url": "/images/Personajes/DreQuan_Priest_02.webp",
+      "alt": "CircoLoco Records y Rockstar Games: La Alianza para la Música Electrónica en GTA 6 - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre CircoLoco Records y Rockstar Games: La Alianza para la Música Electrónica en GTA 6.",
       "badge": "NOTICIA ROCKSTAR"
     },
@@ -1097,8 +1097,8 @@ export const NEWS_ROCKSTAR_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Localizaciones/VICE_CITY_DOWNTOWN_SUNSET_01.webp",
-      "alt": "El Debate de la IA Generativa en el Gaming: El Ejemplo de GTA 6 - Noticia Oficial GTA 6",
+      "url": "/images/Vehiculos/ULTIMATE_EDITION_SQUALO_03.webp",
+      "alt": "El Debate de la IA Generativa en el Gaming: El Ejemplo de GTA 6 - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre El Debate de la IA Generativa en el Gaming: El Ejemplo de GTA 6.",
       "badge": "NOTICIA ROCKSTAR"
     },
@@ -1202,8 +1202,8 @@ export const NEWS_ROCKSTAR_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Localizaciones/VICE_CITY_BEACH_OCEAN_DRIVE_01.webp",
-      "alt": "Strauss Zelnick (CEO de Take-Two) y el Valor Entretenimiento/Hora de GTA 6 - Noticia Oficial GTA 6",
+      "url": "/images/Personajes/Raul_Bautista_landscape.webp",
+      "alt": "Strauss Zelnick (CEO de Take-Two) y el Valor Entretenimiento/Hora de GTA 6 - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Strauss Zelnick (CEO de Take-Two) y el Valor Entretenimiento/Hora de GTA 6.",
       "badge": "NOTICIA ROCKSTAR"
     },
@@ -1293,8 +1293,8 @@ export const NEWS_ROCKSTAR_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Localizaciones/PORT_GELLHORN_INDUSTRIAL_01.webp",
-      "alt": "Ediciones Físicas de GTA 6 Sin Disco: Control de Precios, Leaks y Fin de la Segunda Mano - Noticia Oficial GTA 6",
+      "url": "/images/Personajes/Raul_Bautista_03.webp",
+      "alt": "Ediciones Físicas de GTA 6 Sin Disco: Control de Precios, Leaks y Fin de la Segunda Mano - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Ediciones Físicas de GTA 6 Sin Disco: Control de Precios, Leaks y Fin de la Segunda Mano.",
       "badge": "NOTICIA ROCKSTAR"
     },
@@ -1388,8 +1388,8 @@ export const NEWS_ROCKSTAR_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Localizaciones/GRASSRIVERS_WETLANDS_SUNRISE_01.webp",
-      "alt": "Rockstar Confirma Estrategia 'Console-First': Por Qué la Versión de PC de GTA 6 Llegará Más Tarde - Noticia Oficial GTA 6",
+      "url": "/images/Artes_y_Ediciones/ULTIMATE_EDITION_01.webp",
+      "alt": "Rockstar Confirma Estrategia 'Console-First': Por Qué la Versión de PC de GTA 6 Llegará Más Tarde - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Rockstar Confirma Estrategia 'Console-First': Por Qué la Versión de PC de GTA 6 Llegará Más Tarde.",
       "badge": "NOTICIA ROCKSTAR"
     },
@@ -1485,8 +1485,8 @@ export const NEWS_ROCKSTAR_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Armas/ULTIMATE_EDITION_WEAPON_VARIANTS_01.webp",
-      "alt": "La Transición de GTA Online: Qué Pasará con los Jugadores de Los Santos en GTA 6 - Noticia Oficial GTA 6",
+      "url": "/images/Artes_y_Ediciones/VINTAGE_VICE_CITY_PACK_01.webp",
+      "alt": "La Transición de GTA Online: Qué Pasará con los Jugadores de Los Santos en GTA 6 - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre La Transición de GTA Online: Qué Pasará con los Jugadores de Los Santos en GTA 6.",
       "badge": "NOTICIA ROCKSTAR"
     },
@@ -1576,8 +1576,8 @@ export const NEWS_ROCKSTAR_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Artes_y_Ediciones/Official_Cover_Art_landscape.webp",
-      "alt": "El 'Extended Look' de Netflix y Previews Exclusivas: Las Revelaciones de Rockstar a Puerta Cerrada - Noticia Oficial GTA 6",
+      "url": "/images/Artes_y_Ediciones/VINTAGE_VICE_CITY_PACK_02.webp",
+      "alt": "El 'Extended Look' de Netflix y Previews Exclusivas: Las Revelaciones de Rockstar a Puerta Cerrada - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre El 'Extended Look' de Netflix y Previews Exclusivas: Las Revelaciones de Rockstar a Puerta Cerrada.",
       "badge": "NOTICIA ROCKSTAR"
     },
@@ -1671,8 +1671,8 @@ export const NEWS_ROCKSTAR_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Personajes/Jason_and_Lucia_Motel_landscape.webp",
-      "alt": "Anuncio Oficial: GTA 6 se Lanzará el 19 de Noviembre de 2026 en PS5 y Xbox Series X|S - Noticia Oficial GTA 6",
+      "url": "/images/Lugares_y_Mapas/Vice_City_Postcard_landscape.webp",
+      "alt": "Anuncio Oficial: GTA 6 se Lanzará el 19 de Noviembre de 2026 en PS5 y Xbox Series X|S - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Anuncio Oficial: GTA 6 se Lanzará el 19 de Noviembre de 2026 en PS5 y Xbox Series X|S.",
       "badge": "NOTICIA ROCKSTAR"
     },
@@ -1767,8 +1767,8 @@ export const NEWS_ROCKSTAR_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Vehiculos/ULTIMATE_EDITION_GROTTI_CHEETAH_01.webp",
-      "alt": "El Hermetismo de los Actores de Voz de GTA 6: Cláusulas de Confidencialidad y Rumores - Noticia Oficial GTA 6",
+      "url": "/images/Personajes/Jason_and_Lucia_Motel_landscape.webp",
+      "alt": "El Hermetismo de los Actores de Voz de GTA 6: Cláusulas de Confidencialidad y Rumores - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre El Hermetismo de los Actores de Voz de GTA 6: Cláusulas de Confidencialidad y Rumores.",
       "badge": "NOTICIA ROCKSTAR"
     },
@@ -1858,8 +1858,8 @@ export const NEWS_ROCKSTAR_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Localizaciones/VICE_CITY_DOWNTOWN_SUNSET_01.webp",
-      "alt": "IA de la Fauna en GTA 6: Ecosistema Animal y la Agencia POACH - Noticia Oficial GTA 6",
+      "url": "/images/Vehiculos/ULTIMATE_EDITION_SQUALO_04.webp",
+      "alt": "IA de la Fauna en GTA 6: Ecosistema Animal y la Agencia POACH - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre IA de la Fauna en GTA 6: Ecosistema Animal y la Agencia POACH.",
       "badge": "NOTICIA ROCKSTAR"
     },
@@ -1971,8 +1971,8 @@ export const NEWS_ROCKSTAR_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Localizaciones/VICE_CITY_BEACH_OCEAN_DRIVE_01.webp",
-      "alt": "IA de Locomoción Procedural en GTA 6: Más de 600.000 Animaciones - Noticia Oficial GTA 6",
+      "url": "/images/Artes_y_Ediciones/Official_Cover_Art_landscape.webp",
+      "alt": "IA de Locomoción Procedural en GTA 6: Más de 600.000 Animaciones - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre IA de Locomoción Procedural en GTA 6: Más de 600.000 Animaciones.",
       "badge": "NOTICIA ROCKSTAR"
     },
@@ -2082,8 +2082,8 @@ export const NEWS_ROCKSTAR_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Localizaciones/PORT_GELLHORN_INDUSTRIAL_01.webp",
-      "alt": "La Parodia de IA en Call of Duty y las Falsas Promesas de la Competencia - Noticia Oficial GTA 6",
+      "url": "/images/Personajes/Brian_Heder_landscape.webp",
+      "alt": "La Parodia de IA en Call of Duty y las Falsas Promesas de la Competencia - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre La Parodia de IA en Call of Duty y las Falsas Promesas de la Competencia.",
       "badge": "NOTICIA ROCKSTAR"
     },
@@ -2184,8 +2184,8 @@ export const NEWS_ROCKSTAR_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Localizaciones/GRASSRIVERS_WETLANDS_SUNRISE_01.webp",
-      "alt": "IA de Tráfico y Sociedad en GTA 6: La Vida Urbana de Vice City - Noticia Oficial GTA 6",
+      "url": "/images/Personajes/Brian_Heder_01.webp",
+      "alt": "IA de Tráfico y Sociedad en GTA 6: La Vida Urbana de Vice City - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre IA de Tráfico y Sociedad en GTA 6: La Vida Urbana de Vice City.",
       "badge": "NOTICIA ROCKSTAR"
     },
@@ -2293,8 +2293,8 @@ export const NEWS_ROCKSTAR_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Armas/ULTIMATE_EDITION_WEAPON_VARIANTS_01.webp",
-      "alt": "El Sistema Conversacional Contextual en GTA 6: Diálogos con IA de Red Dead 2 - Noticia Oficial GTA 6",
+      "url": "/images/Vehiculos/ULTIMATE_EDITION_SQUALO_01.webp",
+      "alt": "El Sistema Conversacional Contextual en GTA 6: Diálogos con IA de Red Dead 2 - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre El Sistema Conversacional Contextual en GTA 6: Diálogos con IA de Red Dead 2.",
       "badge": "NOTICIA ROCKSTAR"
     },
@@ -2403,8 +2403,8 @@ export const NEWS_ROCKSTAR_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Artes_y_Ediciones/Official_Cover_Art_landscape.webp",
-      "alt": "El Sistema de Perfil Criminal en GTA 6: La Evolución del Honor - Noticia Oficial GTA 6",
+      "url": "/images/Personajes/Jason_and_Lucia_Robbery_With_Logo_landscape.webp",
+      "alt": "El Sistema de Perfil Criminal en GTA 6: La Evolución del Honor - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre El Sistema de Perfil Criminal en GTA 6: La Evolución del Honor.",
       "badge": "NOTICIA ROCKSTAR"
     },
@@ -2514,8 +2514,8 @@ export const NEWS_ROCKSTAR_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Personajes/Jason_and_Lucia_Motel_landscape.webp",
-      "alt": "La IA Táctica Policial en GTA 6: Persecuciones, Cámaras y Nivel de Búsqueda - Noticia Oficial GTA 6",
+      "url": "/images/Vehiculos/ULTIMATE_EDITION_SQUALO_02.webp",
+      "alt": "La IA Táctica Policial en GTA 6: Persecuciones, Cámaras y Nivel de Búsqueda - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre La IA Táctica Policial en GTA 6: Persecuciones, Cámaras y Nivel de Búsqueda.",
       "badge": "NOTICIA ROCKSTAR"
     },
@@ -2626,8 +2626,8 @@ export const NEWS_ROCKSTAR_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Vehiculos/ULTIMATE_EDITION_GROTTI_CHEETAH_01.webp",
-      "alt": "Nuevas Medidas de Ciberseguridad en Rockstar Games Tras las Filtraciones de GTA 6 - Noticia Oficial GTA 6",
+      "url": "/images/Personajes/Jason_Duval_01.webp",
+      "alt": "Nuevas Medidas de Ciberseguridad en Rockstar Games Tras las Filtraciones de GTA 6 - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Nuevas Medidas de Ciberseguridad en Rockstar Games Tras las Filtraciones de GTA 6.",
       "badge": "NOTICIA ROCKSTAR"
     },
@@ -2717,8 +2717,8 @@ export const NEWS_ROCKSTAR_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Localizaciones/VICE_CITY_DOWNTOWN_SUNSET_01.webp",
-      "alt": "Rendimiento Técnico de GTA 6: Expertos Analizan el Desafío de los 60 FPS en Consolas y PC - Noticia Oficial GTA 6",
+      "url": "/images/Personajes/Raul_Bautista_landscape.webp",
+      "alt": "Rendimiento Técnico de GTA 6: Expertos Analizan el Desafío de los 60 FPS en Consolas y PC - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Rendimiento Técnico de GTA 6: Expertos Analizan el Desafío de los 60 FPS en Consolas y PC.",
       "badge": "NOTICIA ROCKSTAR"
     },
@@ -2812,8 +2812,8 @@ export const NEWS_ROCKSTAR_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Localizaciones/VICE_CITY_BEACH_OCEAN_DRIVE_01.webp",
-      "alt": "Las Patentes de IA de Take-Two: Revolucionando los PNJs en GTA 6 - Noticia Oficial GTA 6",
+      "url": "/images/Personajes/Raul_Bautista_03.webp",
+      "alt": "Las Patentes de IA de Take-Two: Revolucionando los PNJs en GTA 6 - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Las Patentes de IA de Take-Two: Revolucionando los PNJs en GTA 6.",
       "badge": "NOTICIA ROCKSTAR"
     },
@@ -2923,8 +2923,8 @@ export const NEWS_ROCKSTAR_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Localizaciones/PORT_GELLHORN_INDUSTRIAL_01.webp",
-      "alt": "Las Patentes de IA y Locomoción Registradas por Take-Two para GTA 6 - Noticia Oficial GTA 6",
+      "url": "/images/Artes_y_Ediciones/ULTIMATE_EDITION_01.webp",
+      "alt": "Las Patentes de IA y Locomoción Registradas por Take-Two para GTA 6 - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Las Patentes de IA y Locomoción Registradas por Take-Two para GTA 6.",
       "badge": "NOTICIA ROCKSTAR"
     },
@@ -3015,8 +3015,8 @@ export const NEWS_ROCKSTAR_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Localizaciones/GRASSRIVERS_WETLANDS_SUNRISE_01.webp",
-      "alt": "Apertura de Pre-órdenes de GTA 6 el 25 de Junio: Paquetes Digitales y Beneficios Exclusivos - Noticia Oficial GTA 6",
+      "url": "/images/Artes_y_Ediciones/VINTAGE_VICE_CITY_PACK_01.webp",
+      "alt": "Apertura de Pre-órdenes de GTA 6 el 25 de Junio: Paquetes Digitales y Beneficios Exclusivos - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Apertura de Pre-órdenes de GTA 6 el 25 de Junio: Paquetes Digitales y Beneficios Exclusivos.",
       "badge": "NOTICIA ROCKSTAR"
     },
@@ -3115,8 +3115,8 @@ export const NEWS_ROCKSTAR_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Armas/ULTIMATE_EDITION_WEAPON_VARIANTS_01.webp",
-      "alt": "Reporte Financiero Q1 2027 de Take-Two: Proyecciones Récord e Impacto Económico de GTA 6 - Noticia Oficial GTA 6",
+      "url": "/images/Artes_y_Ediciones/VINTAGE_VICE_CITY_PACK_02.webp",
+      "alt": "Reporte Financiero Q1 2027 de Take-Two: Proyecciones Récord e Impacto Económico de GTA 6 - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Reporte Financiero Q1 2027 de Take-Two: Proyecciones Récord e Impacto Económico de GTA 6.",
       "badge": "NOTICIA ROCKSTAR"
     },
@@ -3210,8 +3210,8 @@ export const NEWS_ROCKSTAR_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Artes_y_Ediciones/Official_Cover_Art_landscape.webp",
-      "alt": "La Respuesta de Rockstar a las Filtraciones de 'Cyberleek': Seguridad e Impacto en el Desarrollo - Noticia Oficial GTA 6",
+      "url": "/images/Personajes/Jason_and_Lucia_Motel_landscape.webp",
+      "alt": "La Respuesta de Rockstar a las Filtraciones de 'Cyberleek': Seguridad e Impacto en el Desarrollo - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre La Respuesta de Rockstar a las Filtraciones de 'Cyberleek': Seguridad e Impacto en el Desarrollo.",
       "badge": "NOTICIA ROCKSTAR"
     },
@@ -3305,8 +3305,8 @@ export const NEWS_ROCKSTAR_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Personajes/Jason_and_Lucia_Motel_landscape.webp",
-      "alt": "Rockstar North y la Red Global de Estudios: Cómo se Creó el Mundo de GTA 6 - Noticia Oficial GTA 6",
+      "url": "/images/Lugares_y_Mapas/Vice_City_Postcard_landscape.webp",
+      "alt": "Rockstar North y la Red Global de Estudios: Cómo se Creó el Mundo de GTA 6 - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Rockstar North y la Red Global de Estudios: Cómo se Creó el Mundo de GTA 6.",
       "badge": "NOTICIA ROCKSTAR"
     },
@@ -3396,8 +3396,8 @@ export const NEWS_ROCKSTAR_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Vehiculos/ULTIMATE_EDITION_GROTTI_CHEETAH_01.webp",
-      "alt": "Rockstar Confirma: GTA 6 NO Utilizará Inteligencia Artificial Generativa - Noticia Oficial GTA 6",
+      "url": "/images/Artes_y_Ediciones/Official_Cover_Art_landscape.webp",
+      "alt": "Rockstar Confirma: GTA 6 NO Utilizará Inteligencia Artificial Generativa - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Rockstar Confirma: GTA 6 NO Utilizará Inteligencia Artificial Generativa.",
       "badge": "NOTICIA ROCKSTAR"
     },
@@ -3502,8 +3502,8 @@ export const NEWS_ROCKSTAR_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Localizaciones/VICE_CITY_DOWNTOWN_SUNSET_01.webp",
-      "alt": "Personalización Física Dinámica en GTA 6: Gimnasio, Nutrición, Fatiga y Guardarropa - Noticia Oficial GTA 6",
+      "url": "/images/Ropa_y_Personalizacion/ULTIMATE_EDITION_VICE_CITY_STYLE_01.webp",
+      "alt": "Personalización Física Dinámica en GTA 6: Gimnasio, Nutrición, Fatiga y Guardarropa - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Personalización Física Dinámica en GTA 6: Gimnasio, Nutrición, Fatiga y Guardarropa.",
       "badge": "NOTICIA ROCKSTAR"
     },
@@ -3600,8 +3600,8 @@ export const NEWS_ROCKSTAR_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Localizaciones/VICE_CITY_BEACH_OCEAN_DRIVE_01.webp",
-      "alt": "Redes Sociales y Cultura Viral en GTA 6: Snapmatic, Streaming y Tendencias - Noticia Oficial GTA 6",
+      "url": "/images/Personajes/Brian_Heder_landscape.webp",
+      "alt": "Redes Sociales y Cultura Viral en GTA 6: Snapmatic, Streaming y Tendencias - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre Redes Sociales y Cultura Viral en GTA 6: Snapmatic, Streaming y Tendencias.",
       "badge": "NOTICIA ROCKSTAR"
     },
@@ -3697,8 +3697,8 @@ export const NEWS_ROCKSTAR_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Localizaciones/PORT_GELLHORN_INDUSTRIAL_01.webp",
-      "alt": "El Nuevo Sistema Policial de GTA 6: IA Táctica, Cámaras y Nivel de Búsqueda - Noticia Oficial GTA 6",
+      "url": "/images/Vehiculos/ULTIMATE_EDITION_SQUALO_03.webp",
+      "alt": "El Nuevo Sistema Policial de GTA 6: IA Táctica, Cámaras y Nivel de Búsqueda - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre El Nuevo Sistema Policial de GTA 6: IA Táctica, Cámaras y Nivel de Búsqueda.",
       "badge": "NOTICIA ROCKSTAR"
     },
@@ -3799,8 +3799,8 @@ export const NEWS_ROCKSTAR_ARTICLES: Article[] = [
     "isTrending": false,
     "isLatest": true,
     "featuredImage": {
-      "url": "/images/Localizaciones/GRASSRIVERS_WETLANDS_SUNRISE_01.webp",
-      "alt": "La Evolución del Motor Gráfico RAGE en GTA 6: Iluminación Global, Ray Tracing y Físicas - Noticia Oficial GTA 6",
+      "url": "/images/Personajes/Brian_Heder_01.webp",
+      "alt": "La Evolución del Motor Gráfico RAGE en GTA 6: Iluminación Global, Ray Tracing y Físicas - KAIROSION GTA 6",
       "caption": "Material visual ilustrativo sobre La Evolución del Motor Gráfico RAGE en GTA 6: Iluminación Global, Ray Tracing y Físicas.",
       "badge": "NOTICIA ROCKSTAR"
     },
