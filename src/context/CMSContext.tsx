@@ -674,14 +674,39 @@ function parseClientInfo() {
   return { deviceType, browser, userAgent: ua, os };
 }
 
+// Safe LocalStorage setter with QuotaExceeded recovery
+export function safeLocalStorageSet(key: string, value: any) {
+  if (typeof localStorage === 'undefined') return;
+  try {
+    const stringified = typeof value === 'string' ? value : JSON.stringify(value);
+    localStorage.setItem(key, stringified);
+  } catch (e: any) {
+    console.warn(`[SafeStorage] LocalStorage quota reached for "${key}". Cleaning cached logs...`, e?.message);
+    try {
+      // Purge non-critical local logs to free up storage space
+      localStorage.removeItem(`${STORAGE_KEY_PREFIX}traffic_logs`);
+      localStorage.removeItem(`${STORAGE_KEY_PREFIX}consent_logs`);
+      localStorage.removeItem(`${STORAGE_KEY_PREFIX}media`);
+      const stringified = typeof value === 'string' ? value : JSON.stringify(value);
+      localStorage.setItem(key, stringified);
+    } catch (innerErr) {
+      // Cloud database Turso persists everything; silently continue without crashing React
+    }
+  }
+}
+
 function getOrCreateAnonymousUserId(): string {
   if (typeof localStorage === 'undefined') return `usr_anon_${Math.random().toString(36).slice(2, 8)}`;
-  let uid = localStorage.getItem('kairosion_anon_uid');
-  if (!uid) {
-    uid = `usr_anon_${Math.random().toString(36).slice(2, 8)}`;
-    localStorage.setItem('kairosion_anon_uid', uid);
+  try {
+    let uid = localStorage.getItem('kairosion_anon_uid');
+    if (!uid) {
+      uid = `usr_anon_${Math.random().toString(36).slice(2, 8)}`;
+      safeLocalStorageSet('kairosion_anon_uid', uid);
+    }
+    return uid;
+  } catch (e) {
+    return `usr_anon_${Math.random().toString(36).slice(2, 8)}`;
   }
-  return uid;
 }
 
 const CMSContext = createContext<CMSContextType | null>(null);
@@ -1129,61 +1154,61 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     syncWithTurso();
   }, []);
 
-  // Sync to localStorage
+  // Safe Sync to localStorage
   useEffect(() => {
-    localStorage.setItem(`${STORAGE_KEY_PREFIX}articles`, JSON.stringify(articles));
+    safeLocalStorageSet(`${STORAGE_KEY_PREFIX}articles`, articles);
   }, [articles]);
 
   useEffect(() => {
-    localStorage.setItem(`${STORAGE_KEY_PREFIX}categories`, JSON.stringify(categories));
+    safeLocalStorageSet(`${STORAGE_KEY_PREFIX}categories`, categories);
   }, [categories]);
 
   useEffect(() => {
-    localStorage.setItem(`${STORAGE_KEY_PREFIX}main_menu`, JSON.stringify(mainMenu));
+    safeLocalStorageSet(`${STORAGE_KEY_PREFIX}main_menu`, mainMenu);
   }, [mainMenu]);
 
   useEffect(() => {
-    localStorage.setItem(`${STORAGE_KEY_PREFIX}media`, JSON.stringify(media));
+    safeLocalStorageSet(`${STORAGE_KEY_PREFIX}media`, media);
   }, [media]);
 
   useEffect(() => {
-    localStorage.setItem(`${STORAGE_KEY_PREFIX}tags`, JSON.stringify(tags));
+    safeLocalStorageSet(`${STORAGE_KEY_PREFIX}tags`, tags);
   }, [tags]);
 
   useEffect(() => {
-    localStorage.setItem(`${STORAGE_KEY_PREFIX}authors`, JSON.stringify(authors));
+    safeLocalStorageSet(`${STORAGE_KEY_PREFIX}authors`, authors);
   }, [authors]);
 
   useEffect(() => {
-    localStorage.setItem(`${STORAGE_KEY_PREFIX}static_pages`, JSON.stringify(staticPages));
+    safeLocalStorageSet(`${STORAGE_KEY_PREFIX}static_pages`, staticPages);
   }, [staticPages]);
 
   useEffect(() => {
-    localStorage.setItem(`${STORAGE_KEY_PREFIX}settings`, JSON.stringify(settings));
+    safeLocalStorageSet(`${STORAGE_KEY_PREFIX}settings`, settings);
   }, [settings]);
 
   useEffect(() => {
-    localStorage.setItem('leonida_cookie_consent_v1', JSON.stringify(cookieConsent));
+    safeLocalStorageSet('leonida_cookie_consent_v1', cookieConsent);
   }, [cookieConsent]);
 
   useEffect(() => {
-    localStorage.setItem(`${STORAGE_KEY_PREFIX}consent_logs`, JSON.stringify(consentLogs));
+    safeLocalStorageSet(`${STORAGE_KEY_PREFIX}consent_logs`, consentLogs);
   }, [consentLogs]);
 
   useEffect(() => {
-    localStorage.setItem(`${STORAGE_KEY_PREFIX}traffic_logs`, JSON.stringify(trafficLogs));
+    safeLocalStorageSet(`${STORAGE_KEY_PREFIX}traffic_logs`, trafficLogs);
   }, [trafficLogs]);
 
   useEffect(() => {
-    localStorage.setItem(`${STORAGE_KEY_PREFIX}banners`, JSON.stringify(banners));
+    safeLocalStorageSet(`${STORAGE_KEY_PREFIX}banners`, banners);
   }, [banners]);
 
   useEffect(() => {
-    localStorage.setItem(`${STORAGE_KEY_PREFIX}breaking_news`, JSON.stringify(breakingNews));
+    safeLocalStorageSet(`${STORAGE_KEY_PREFIX}breaking_news`, breakingNews);
   }, [breakingNews]);
 
   useEffect(() => {
-    localStorage.setItem(`${STORAGE_KEY_PREFIX}ai_proposals`, JSON.stringify(aiProposals));
+    safeLocalStorageSet(`${STORAGE_KEY_PREFIX}ai_proposals`, aiProposals);
   }, [aiProposals]);
 
   // Cascade & synchronize authors with articles
