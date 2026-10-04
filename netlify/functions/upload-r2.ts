@@ -1,20 +1,27 @@
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
 
 export async function handler(event: any) {
+  const headers = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers': '*',
+    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+    'Content-Type': 'application/json'
+  };
+
   if (event.httpMethod === 'OPTIONS') {
     return {
       statusCode: 200,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': '*',
-        'Access-Control-Allow-Methods': 'POST, OPTIONS'
-      },
+      headers,
       body: ''
     };
   }
 
   if (event.httpMethod !== 'POST') {
-    return { statusCode: 405, body: 'Method Not Allowed' };
+    return { 
+      statusCode: 405, 
+      headers, 
+      body: JSON.stringify({ success: false, error: 'Method Not Allowed' }) 
+    };
   }
 
   try {
@@ -34,21 +41,44 @@ export async function handler(event: any) {
       }
     });
 
-    const filenameHeader = event.headers['x-filename'] || event.headers['X-Filename'] || 'image.webp';
-    const originalFilename = decodeURIComponent(filenameHeader);
-    const contentType = event.headers['content-type'] || event.headers['Content-Type'] || 'image/webp';
-    const folder = event.headers['x-folder'] || event.headers['X-Folder'] || 'articulos';
+    let filename = 'imagen.webp';
+    let contentType = 'image/webp';
+    let folder = 'articulos';
+    let bodyBuffer: Buffer;
 
-    const cleanBaseName = originalFilename
+    // Support JSON payload with Base64 or direct binary body
+    if (event.headers['content-type']?.includes('application/json')) {
+      try {
+        const parsed = JSON.parse(event.body || '{}');
+        filename = parsed.filename || filename;
+        contentType = parsed.contentType || contentType;
+        folder = parsed.folder || folder;
+        if (parsed.base64) {
+          const rawBase64 = parsed.base64.replace(/^data:image\/[a-z0-9]+;base64,/, '');
+          bodyBuffer = Buffer.from(rawBase64, 'base64');
+        } else {
+          throw new Error('No base64 data provided');
+        }
+      } catch (e: any) {
+        throw new Error('Error al parsear el cuerpo JSON: ' + e.message);
+      }
+    } else {
+      const filenameHeader = event.headers['x-filename'] || event.headers['X-Filename'] || filename;
+      filename = decodeURIComponent(filenameHeader);
+      contentType = event.headers['content-type'] || event.headers['Content-Type'] || contentType;
+      folder = event.headers['x-folder'] || event.headers['X-Folder'] || folder;
+
+      bodyBuffer = event.isBase64Encoded 
+        ? Buffer.from(event.body || '', 'base64')
+        : Buffer.from(event.body || '');
+    }
+
+    const cleanBaseName = filename
       .replace(/\.[^/.]+$/, '')
       .toLowerCase()
       .replace(/[^a-z0-9_-]/g, '-');
-    const ext = originalFilename.split('.').pop() || 'webp';
+    const ext = filename.split('.').pop() || 'webp';
     const fileKey = `${folder}/${cleanBaseName}-${Date.now()}.${ext}`;
-
-    const bodyBuffer = event.isBase64Encoded 
-      ? Buffer.from(event.body || '', 'base64')
-      : Buffer.from(event.body || '');
 
     const command = new PutObjectCommand({
       Bucket: bucketName,
@@ -69,15 +99,12 @@ export async function handler(event: any) {
 
     return {
       statusCode: 200,
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
-      },
+      headers,
       body: JSON.stringify({
         success: true,
         url: publicUrl,
         key: fileKey,
-        name: originalFilename,
+        name: filename,
         sizeKb: Math.round(bodyBuffer.length / 1024)
       })
     };
@@ -85,8 +112,9 @@ export async function handler(event: any) {
     console.error('Error in upload-r2 function:', error);
     return {
       statusCode: 500,
-      headers: { 'Content-Type': 'application/json' },
+      headers,
       body: JSON.stringify({ success: false, error: error.message || 'Error al subir a Cloudflare R2' })
     };
   }
 }
+

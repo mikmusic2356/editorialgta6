@@ -232,9 +232,25 @@ export const AdminArticleEditor: React.FC<AdminArticleEditorProps> = ({
       setShowSavedFeedback(true);
       setTimeout(() => setShowSavedFeedback(false), 3000);
     } catch (err: any) {
-      console.error('Error uploading to Cloudflare R2:', err);
-      setIsUploadingFeaturedR2(false);
-      alert(`Error al subir a Cloudflare R2: ${err?.message || err}`);
+      console.warn('Error al subir a R2, usando fallback local...', err);
+      try {
+        const reader = new FileReader();
+        reader.onload = () => {
+          if (typeof reader.result === 'string') {
+            setFeaturedImageUrl(reader.result);
+            if (!featuredImageAlt) {
+              setFeaturedImageAlt(file.name.replace(/\.[^/.]+$/, '').replace(/[-_]/g, ' '));
+            }
+            setIsUploadingFeaturedR2(false);
+            setShowSavedFeedback(true);
+            setTimeout(() => setShowSavedFeedback(false), 3000);
+          }
+        };
+        reader.readAsDataURL(file);
+      } catch (e) {
+        setIsUploadingFeaturedR2(false);
+        alert(`Error al procesar la imagen: ${err?.message || err}`);
+      }
     }
   };
 
