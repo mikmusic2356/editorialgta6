@@ -1,7 +1,7 @@
 import { createClient } from "@libsql/client/web";
 
 const rawUrl = import.meta.env.VITE_TURSO_DATABASE_URL || "https://dbkairosion-mikmusic2356.aws-us-east-2.turso.io";
-const authToken = import.meta.env.VITE_TURSO_AUTH_TOKEN || "eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJhIjoicnciLCJpYXQiOjE3OTA4MjIxODksImlkIjoiMDFhMGY1NTEtZDkwMS03NTM1LWFiMTQtMTRiMDg1ZTVhN2Q0Iiwia2lkIjoiT19jVUNRdEI2Y3hWTlBrSzJFZFJPTEI0ZUhqR2wweFEtNUlEUVNaSjBOUSIsInJpZCI6IjFhZjQ2MWZhLTcxMmMtNDJiYi1iNGM3LTc5MWU0YTc5M2YxOCJ9.AasRWYUysTZWsZicNL5q2VLpbmQi7jsPScGxJYdIEmUvhpbWOGkBVw-3vkbZDKhfIDOZ6lz4yZzqKRG8o5pqAA";
+const authToken = import.meta.env.VITE_TURSO_AUTH_TOKEN || "";
 
 // Normalize URL: replace libsql:// with https:// for browser HTTP fetch client
 const url = rawUrl.replace(/^libsql:\/\//, "https://");

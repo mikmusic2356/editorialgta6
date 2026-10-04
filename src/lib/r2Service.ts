@@ -1,12 +1,12 @@
 import { S3Client, PutObjectCommand, DeleteObjectCommand, HeadBucketCommand } from '@aws-sdk/client-s3';
 
 // Cloudflare R2 Environment Configuration
-const R2_ACCOUNT_ID = import.meta.env.VITE_R2_ACCOUNT_ID || '4628a8ac5700bdd4518fb941c0d74bb1';
-const R2_ACCESS_KEY_ID = import.meta.env.VITE_R2_ACCESS_KEY_ID || 'b363d7a059011e862c03f9d636b221d1';
-const R2_SECRET_ACCESS_KEY = import.meta.env.VITE_R2_SECRET_ACCESS_KEY || '0ba492eab5a57de7a07e0647553303901620d12c5010fc6119f158dee2bc4105';
+const R2_ACCOUNT_ID = import.meta.env.VITE_R2_ACCOUNT_ID || '';
+const R2_ACCESS_KEY_ID = import.meta.env.VITE_R2_ACCESS_KEY_ID || '';
+const R2_SECRET_ACCESS_KEY = import.meta.env.VITE_R2_SECRET_ACCESS_KEY || '';
 const R2_BUCKET_NAME = import.meta.env.VITE_R2_BUCKET_NAME || 'bubketgta6';
-const R2_ENDPOINT = import.meta.env.VITE_R2_ENDPOINT || `https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com`;
-const R2_PUBLIC_URL = import.meta.env.VITE_R2_PUBLIC_URL || `https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com/${R2_BUCKET_NAME}`;
+const R2_ENDPOINT = import.meta.env.VITE_R2_ENDPOINT || (R2_ACCOUNT_ID ? `https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com` : '');
+const R2_PUBLIC_URL = import.meta.env.VITE_R2_PUBLIC_URL || (R2_ENDPOINT ? `${R2_ENDPOINT}/${R2_BUCKET_NAME}` : '');
 
 // Initialize S3 Client configured for Cloudflare R2
 export const r2Client = new S3Client({

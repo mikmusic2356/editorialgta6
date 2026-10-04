@@ -11,11 +11,11 @@ dotenv.config();
 
 // Local Node Middleware for Cloudflare R2 Uploads, Streaming & Deletion (Zero CORS / Instant Visibility)
 function cloudflareR2Plugin(): Plugin {
-  const accountId = process.env.VITE_R2_ACCOUNT_ID || '4628a8ac5700bdd4518fb941c0d74bb1';
-  const accessKeyId = process.env.VITE_R2_ACCESS_KEY_ID || 'b363d7a059011e862c03f9d636b221d1';
-  const secretAccessKey = process.env.VITE_R2_SECRET_ACCESS_KEY || '0ba492eab5a57de7a07e0647553303901620d12c5010fc6119f158dee2bc4105';
+  const accountId = process.env.VITE_R2_ACCOUNT_ID || '';
+  const accessKeyId = process.env.VITE_R2_ACCESS_KEY_ID || '';
+  const secretAccessKey = process.env.VITE_R2_SECRET_ACCESS_KEY || '';
   const bucketName = process.env.VITE_R2_BUCKET_NAME || 'bubketgta6';
-  const endpoint = process.env.VITE_R2_ENDPOINT || `https://${accountId}.r2.cloudflarestorage.com`;
+  const endpoint = process.env.VITE_R2_ENDPOINT || (accountId ? `https://${accountId}.r2.cloudflarestorage.com` : '');
   const publicUrlBase = process.env.VITE_R2_PUBLIC_URL || '';
 
   const s3 = new S3Client({
