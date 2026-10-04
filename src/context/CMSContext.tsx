@@ -126,6 +126,10 @@ interface CMSContextType {
   generateAIDraftProposal: (prompt: string, category: MainCategorySlug) => Promise<AIProposal>;
   acceptAIProposal: (proposalId: string) => CMSArticle | null;
   rejectAIProposal: (proposalId: string) => void;
+
+  // Cache & Live Sync Management
+  cacheBuster: number;
+  clearAllCache: (options?: { reload?: boolean; bustImages?: boolean }) => Promise<{ success: boolean; message: string }>;
 }
 
 const STORAGE_KEY_PREFIX = 'leonida_cms_v5_';
@@ -2180,12 +2184,82 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     }));
   };
 
+  // Cache & Live Sync Management
+  const [cacheBuster, setCacheBuster] = useState<number>(() => Date.now());
+
+  const clearAllCache = async (options: { reload?: boolean; bustImages?: boolean } = { reload: false, bustImages: true }): Promise<{ success: boolean; message: string }> => {
+    try {
+      setIsSyncing(true);
+      const newTimestamp = Date.now();
+      setCacheBuster(newTimestamp);
+
+      // 1. Purge all LocalStorage & SessionStorage cache keys
+      try {
+        if (typeof localStorage !== 'undefined') {
+          const keysToRemove: string[] = [];
+          for (let i = 0; i < localStorage.length; i++) {
+            const k = localStorage.key(i);
+            if (k && (k.startsWith(STORAGE_KEY_PREFIX) || k.startsWith('leonida_') || k.startsWith('kairosion_'))) {
+              if (k !== `${STORAGE_KEY_PREFIX}auth`) { // preserve current admin login session
+                keysToRemove.push(k);
+              }
+            }
+          }
+          keysToRemove.forEach(k => localStorage.removeItem(k));
+        }
+        if (typeof sessionStorage !== 'undefined') {
+          sessionStorage.clear();
+        }
+      } catch (e) {
+        console.warn('Error clearing local/session storage:', e);
+      }
+
+      // 2. Clear Browser CacheStorage (service worker & HTTP cache) if supported
+      if (typeof window !== 'undefined' && 'caches' in window) {
+        try {
+          const cacheKeys = await window.caches.keys();
+          await Promise.all(cacheKeys.map(k => window.caches.delete(k)));
+        } catch (e) {
+          console.warn('Error purging CacheStorage:', e);
+        }
+      }
+
+      // 3. Force full re-sync directly from Turso Cloud DB (Source of Truth)
+      await syncWithTurso();
+
+      // 4. Force browser image cache busting across all media & articles
+      if (options.bustImages) {
+        setMedia(prev => prev.map(m => ({ ...m })));
+        setArticles(prev => prev.map(a => ({ ...a })));
+      }
+
+      setIsSyncing(false);
+
+      if (options.reload && typeof window !== 'undefined') {
+        window.location.reload();
+      }
+
+      return {
+        success: true,
+        message: '¡Caché del CMS y portal público limpiada con éxito! Datos 100% actualizados desde Turso Cloud DB.'
+      };
+    } catch (err: any) {
+      setIsSyncing(false);
+      return {
+        success: false,
+        message: `Error al limpiar caché: ${err?.message || err}`
+      };
+    }
+  };
+
   return (
     <CMSContext.Provider
       value={{
         isTursoConnected,
         isSyncing,
         syncWithTurso,
+        cacheBuster,
+        clearAllCache,
         currentUser,
         setCurrentUserRole,
         isAdminLoggedIn,

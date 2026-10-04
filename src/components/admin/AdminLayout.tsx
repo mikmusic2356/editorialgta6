@@ -73,11 +73,24 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
     aiProposals,
     isTursoConnected,
     isSyncing,
-    syncWithTurso
+    syncWithTurso,
+    clearAllCache
   } = useCMS();
 
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [roleSwitcherOpen, setRoleSwitcherOpen] = useState(false);
+  const [cacheModalOpen, setCacheModalOpen] = useState(false);
+  const [cacheToast, setCacheToast] = useState<string | null>(null);
+  const [isClearingCache, setIsClearingCache] = useState(false);
+
+  const handleClearCache = async (reloadPublicSite: boolean = false) => {
+    setIsClearingCache(true);
+    const result = await clearAllCache({ reload: reloadPublicSite, bustImages: true });
+    setIsClearingCache(false);
+    setCacheToast(result.message);
+    setTimeout(() => setCacheToast(null), 5000);
+    setCacheModalOpen(false);
+  };
 
   const pendingReviewCount = (articles || []).filter(a => a && a.status === 'revision').length;
   const pendingAiCount = (aiProposals || []).filter(p => p && p.status === 'pending').length;
@@ -288,6 +301,17 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
           {/* Quick Tools & Role Switcher */}
           <div className="flex items-center gap-2.5 sm:gap-3">
             
+            {/* Cache Cleaner & Live Sync Button */}
+            <button
+              onClick={() => setCacheModalOpen(true)}
+              disabled={isClearingCache || isSyncing}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-linear-to-r from-amber-500/20 to-orange-500/20 hover:from-amber-500/30 hover:to-orange-500/30 border border-amber-500/40 text-amber-300 font-bold text-xs shadow-xs transition-all cursor-pointer"
+              title="Limpiar caché de imágenes, navegador y sincronizar con Turso DB"
+            >
+              <Sparkles className={`w-3.5 h-3.5 text-amber-400 ${isClearingCache ? 'animate-spin' : ''}`} />
+              <span className="hidden sm:inline">{isClearingCache ? 'Limpiando...' : '🧹 Limpiar Caché'}</span>
+            </button>
+
             {/* Turso Cloud DB Status Pill */}
             <button
               onClick={() => syncWithTurso()}
@@ -348,6 +372,81 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
 
           </div>
         </header>
+
+        {/* Global Toast Notification */}
+        {cacheToast && (
+          <div className="fixed bottom-6 right-6 z-50 max-w-md p-4 rounded-2xl bg-emerald-950 border-2 border-emerald-500/80 text-emerald-200 shadow-2xl flex items-center gap-3 animate-in fade-in slide-in-from-bottom-4">
+            <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
+            <div className="text-xs font-medium">{cacheToast}</div>
+            <button onClick={() => setCacheToast(null)} className="p-1 text-slate-400 hover:text-white rounded-lg">
+              <X className="w-3.5 h-3.5" />
+            </button>
+          </div>
+        )}
+
+        {/* Cache Management Modal */}
+        {cacheModalOpen && (
+          <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-in fade-in duration-200">
+            <div className="bg-slate-900 border-2 border-amber-500/40 rounded-3xl p-6 sm:p-8 max-w-lg w-full space-y-6 shadow-2xl animate-in zoom-in-95 duration-200">
+              
+              <div className="flex items-start justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="p-2.5 rounded-2xl bg-amber-500/20 border border-amber-500/40 text-amber-300">
+                    <Sparkles className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-extrabold text-white font-display">
+                      Gestión de Caché & Sincronización
+                    </h3>
+                    <p className="text-xs text-slate-400">
+                      Elimina copias locales antiguas y sincroniza todo con Turso Cloud DB.
+                    </p>
+                  </div>
+                </div>
+                <button
+                  onClick={() => setCacheModalOpen(false)}
+                  className="p-1.5 text-slate-400 hover:text-white rounded-lg bg-slate-950 border border-slate-800"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+
+              <div className="space-y-3 bg-slate-950/60 p-4 rounded-2xl border border-slate-800 text-xs text-slate-300">
+                <div className="flex items-center gap-2 text-amber-400 font-mono font-bold">
+                  <CheckCircle2 className="w-4 h-4" />
+                  <span>¿Qué hace esta limpieza?</span>
+                </div>
+                <ul className="space-y-1.5 list-disc list-inside text-slate-400 text-[11px] leading-relaxed">
+                  <li>Limpia la caché de imágenes y galería (forzando la recarga en alta resolución).</li>
+                  <li>Elimina caché residual de <code className="text-amber-300">localStorage</code> y <code className="text-amber-300">CacheStorage</code> del navegador.</li>
+                  <li>Descarga la versión más reciente en tiempo real desde <strong>Turso Cloud DB</strong>.</li>
+                  <li>Mantiene intacta tu sesión de inicio de sesión de administrador.</li>
+                </ul>
+              </div>
+
+              <div className="space-y-3 pt-2">
+                <button
+                  onClick={() => handleClearCache(false)}
+                  disabled={isClearingCache}
+                  className="w-full py-3 px-4 rounded-xl bg-linear-to-r from-amber-500 to-orange-500 hover:opacity-95 text-slate-950 font-black text-xs shadow-lg transition-transform active:scale-95 flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  <Sparkles className={`w-4 h-4 ${isClearingCache ? 'animate-spin' : ''}`} />
+                  <span>{isClearingCache ? 'Limpiando y Sincronizando...' : '🧹 Limpiar Caché del CMS & Refrescar Imágenes'}</span>
+                </button>
+
+                <button
+                  onClick={() => handleClearCache(true)}
+                  disabled={isClearingCache}
+                  className="w-full py-2.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs border border-slate-700 transition-colors flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  <RefreshCw className="w-4 h-4 text-emerald-400" />
+                  <span>Limpiar Todo y Recargar Sitio Web Completo</span>
+                </button>
+              </div>
+
+            </div>
+          </div>
+        )}
 
         {/* Scrollable Work Area */}
         <main className="flex-1 overflow-y-auto p-4 sm:p-8 space-y-6">

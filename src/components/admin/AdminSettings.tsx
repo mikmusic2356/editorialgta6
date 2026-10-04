@@ -183,6 +183,91 @@ export const AdminSettings: React.FC = () => {
 
       </div>
 
+      {/* 3. Cache & Performance Management Panel */}
+      <AdminCacheSettingsPanel />
+
+    </div>
+  );
+};
+
+const AdminCacheSettingsPanel: React.FC = () => {
+  const { clearAllCache, isTursoConnected, isSyncing, syncWithTurso } = useCMS();
+  const [isClearing, setIsClearing] = useState(false);
+  const [message, setMessage] = useState<string | null>(null);
+
+  const handlePurge = async (reload: boolean = false) => {
+    setIsClearing(true);
+    const res = await clearAllCache({ reload, bustImages: true });
+    setIsClearing(false);
+    setMessage(res.message);
+    setTimeout(() => setMessage(null), 5000);
+  };
+
+  return (
+    <div className="p-6 rounded-2xl bg-slate-900/80 border border-amber-500/30 space-y-5">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div className="flex items-center gap-2.5">
+          <div className="p-2 rounded-xl bg-amber-500/20 text-amber-300">
+            <Shield className="w-5 h-5" />
+          </div>
+          <div>
+            <h3 className="text-base font-bold text-white">Gestión de Caché & Sincronización Turso</h3>
+            <p className="text-xs text-slate-400">Purga imágenes cacheadas, almacenamiento local y fuerza la sincronización con la nube.</p>
+          </div>
+        </div>
+
+        <span className={`px-2.5 py-1 rounded-full text-xs font-mono font-bold w-fit ${
+          isTursoConnected 
+            ? 'bg-emerald-950/60 text-emerald-300 border border-emerald-500/30' 
+            : 'bg-amber-950/60 text-amber-300 border border-amber-500/30'
+        }`}>
+          {isTursoConnected ? '● Base de Datos Turso Conectada' : '○ Conectando Base de Datos...'}
+        </span>
+      </div>
+
+      {message && (
+        <div className="p-3 rounded-xl bg-emerald-950 border border-emerald-500/50 text-emerald-200 text-xs font-medium animate-in fade-in">
+          {message}
+        </div>
+      )}
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
+        <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3 flex flex-col justify-between">
+          <div className="space-y-1">
+            <div className="text-xs font-bold text-white flex items-center gap-1.5">
+              <span>🧹 Limpiar Caché de Galería e Imágenes</span>
+            </div>
+            <p className="text-[11px] text-slate-400 leading-relaxed">
+              Fuerza la recarga de imágenes en alta resolución en todo el panel de administración y el portal público sin cerrar tu sesión.
+            </p>
+          </div>
+          <button
+            onClick={() => handlePurge(false)}
+            disabled={isClearing || isSyncing}
+            className="w-full py-2.5 px-3 rounded-lg bg-linear-to-r from-amber-500 to-orange-500 hover:opacity-90 text-slate-950 font-black text-xs transition-transform active:scale-95 cursor-pointer"
+          >
+            {isClearing ? 'Limpiando...' : 'Vaciar Caché & Refrescar Galería'}
+          </button>
+        </div>
+
+        <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-3 flex flex-col justify-between">
+          <div className="space-y-1">
+            <div className="text-xs font-bold text-white flex items-center gap-1.5">
+              <span>🔄 Purgar Caché y Recargar Todo el Sitio</span>
+            </div>
+            <p className="text-[11px] text-slate-400 leading-relaxed">
+              Elimina todos los datos temporales del navegador, descarga los artículos frescos de Turso y recarga la página por completo.
+            </p>
+          </div>
+          <button
+            onClick={() => handlePurge(true)}
+            disabled={isClearing || isSyncing}
+            className="w-full py-2.5 px-3 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs border border-slate-700 transition-colors cursor-pointer"
+          >
+            Limpiar Todo y Recargar Página
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
