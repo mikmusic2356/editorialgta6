@@ -1,9 +1,25 @@
 [build]
   command = "npm run build"
   publish = "dist"
+  functions = "netlify/functions"
 
 [build.environment]
   SECRETS_SCAN_ENABLED = "false"
+
+[[redirects]]
+  from = "/api/upload-r2"
+  to = "/.netlify/functions/upload-r2"
+  status = 200
+
+[[redirects]]
+  from = "/api/delete-r2"
+  to = "/.netlify/functions/delete-r2"
+  status = 200
+
+[[redirects]]
+  from = "/api/r2-file"
+  to = "/.netlify/functions/r2-file"
+  status = 200
 
 [[redirects]]
   from = "/*"

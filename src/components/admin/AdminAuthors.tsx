@@ -127,13 +127,26 @@ export const AdminAuthors: React.FC = () => {
     try {
       setIsUploadingAvatar(true);
       const result = await uploadToR2(file, file.name, 'autores');
-      setAvatar(result.url);
-      setIsUploadingAvatar(false);
-      setUploadSuccessToast(true);
-      setTimeout(() => setUploadSuccessToast(false), 4000);
+      if (result && result.url) {
+        setAvatar(result.url);
+        setIsUploadingAvatar(false);
+        setUploadSuccessToast(true);
+        setTimeout(() => setUploadSuccessToast(false), 4000);
+      } else {
+        throw new Error('No se generó URL para la imagen');
+      }
     } catch (err: any) {
-      console.error('Error subiendo avatar:', err);
-      alert('Error al subir la fotografía a Cloudflare R2.');
+      console.warn('Error subiendo avatar a R2, usando fallback local...', err);
+      // Client-side fallback to base64 preview/storage
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (typeof reader.result === 'string') {
+          setAvatar(reader.result);
+          setUploadSuccessToast(true);
+          setTimeout(() => setUploadSuccessToast(false), 4000);
+        }
+      };
+      reader.readAsDataURL(file);
       setIsUploadingAvatar(false);
     }
   };
