@@ -700,6 +700,7 @@ function AppContent() {
             {/* VIEW C: ARTICLE DETAIL (With Hierarchical URL Traceability) */}
             {currentView.type === 'article' && currentArticle && (
               <ArticleDetail
+                key={currentArticle.slug || currentArticle.id}
                 article={currentArticle}
                 onBack={() => {
                   if (currentArticle.category) {

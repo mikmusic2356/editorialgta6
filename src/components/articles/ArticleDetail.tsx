@@ -428,10 +428,12 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
       {/* Featured Visual */}
       <div className="mb-10">
         <EditorialVisual
-          image={article.featuredImage}
-          category={article.category}
-          title={article.title}
+          key={liveArticle.slug || liveArticle.id || article.slug}
+          image={liveArticle.featuredImage || article.featuredImage}
+          category={liveArticle.category || article.category}
+          title={liveArticle.title || article.title}
           aspectRatio="16:9"
+          priority={true}
           className="w-full"
         />
       </div>

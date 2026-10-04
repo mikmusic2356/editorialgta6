@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ImageAsset, MainCategorySlug } from '../../types';
 import { 
   Palmtree, 
@@ -28,8 +28,18 @@ export const EditorialVisual: React.FC<EditorialVisualProps> = ({
   title = 'Grand Theft Auto VI',
   aspectRatio = '16:9',
   className = '',
+  priority = false,
 }) => {
   const [imageError, setImageError] = useState(false);
+
+  // Automatically reset image error state whenever the image URL changes
+  useEffect(() => {
+    setImageError(false);
+  }, [image?.url]);
+
+  const rawUrl = image?.url?.trim() || '';
+  const sanitizedUrl = rawUrl ? (rawUrl.startsWith('http') || rawUrl.startsWith('/') ? rawUrl : `/${rawUrl}`) : '';
+  const hasRealImage = Boolean(sanitizedUrl && !imageError);
 
   // Select authentic color palette per category
   const getThemeConfig = (cat: MainCategorySlug) => {
@@ -129,8 +139,6 @@ export const EditorialVisual: React.FC<EditorialVisualProps> = ({
         ? 'aspect-4/3' 
         : 'aspect-square';
 
-  const hasRealImage = Boolean(image?.url && !imageError);
-
   return (
     <figure className={`overflow-hidden rounded-xl group relative ${className}`}>
       {/* Visual Render Canvas */}
@@ -140,11 +148,12 @@ export const EditorialVisual: React.FC<EditorialVisualProps> = ({
         {hasRealImage ? (
           <>
             <img
-              src={image!.url}
+              src={sanitizedUrl}
               alt={image?.alt || title}
               onError={() => setImageError(true)}
               className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-              loading="lazy"
+              loading={priority ? 'eager' : 'lazy'}
+              decoding={priority ? 'sync' : 'async'}
             />
             {/* Subtle bottom gradient overlay for readability */}
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none" />
