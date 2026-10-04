@@ -1061,21 +1061,21 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
         setArticles(prev => {
           const prevMap = new Map(prev.map(p => [p.slug, p]));
+          const prevIdMap = new Map(prev.map(p => [p.id, p]));
           const merged = dbArticles.map(dbA => {
-            const localA = prevMap.get(dbA.slug);
+            const localA = prevMap.get(dbA.slug) || prevIdMap.get(dbA.id);
             if (!localA) return dbA;
-            const localTime = new Date(localA.updatedAt || localA.publishedAt || 0).getTime();
-            const dbTime = new Date(dbA.updatedAt || dbA.publishedAt || 0).getTime();
-            const base = localTime > dbTime ? localA : dbA;
+            // Turso is the source of truth for user-edited articles and featured images
             return {
-              ...base,
+              ...dbA,
               likes: Math.max(dbA.likes ?? 0, localA.likes ?? 0),
               shares: Math.max(dbA.shares ?? 0, localA.shares ?? 0),
               views: Math.max(dbA.views ?? 0, localA.views ?? 0)
             };
           });
           const mergedSlugs = new Set(merged.map(m => m.slug));
-          const rest = missingDefault.filter(d => !mergedSlugs.has(d.slug));
+          const mergedIds = new Set(merged.map(m => m.id));
+          const rest = prev.filter(p => !mergedSlugs.has(p.slug) && !mergedIds.has(p.id));
           return [...merged, ...rest];
         });
       }
@@ -1346,10 +1346,10 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   const updateArticle = (id: string, updates: Partial<CMSArticle>, revisionSummary?: string) => {
-    setArticles(prev => prev.map(art => {
-      if (art.id !== id) return art;
+    setArticles(prev => {
+      const target = prev.find(a => a.id === id || a.slug === id || (updates.slug && a.slug === updates.slug));
 
-      const currentRevisions = art.revisions || [];
+      const currentRevisions = target?.revisions || [];
       const newVersionNum = currentRevisions.length + 1;
       
       const newRevision: ArticleRevision = {
@@ -1358,21 +1358,32 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         timestamp: new Date().toISOString(),
         authorName: currentUser.name,
         summary: revisionSummary || `Actualización v${newVersionNum}`,
-        title: updates.title || art.title,
-        excerpt: updates.excerpt || art.excerpt,
-        contentLead: updates.content?.leadText || art.content?.leadText || ''
+        title: updates.title || target?.title || '',
+        excerpt: updates.excerpt || target?.excerpt || '',
+        contentLead: updates.content?.leadText || target?.content?.leadText || ''
       };
 
       const updatedArticle: CMSArticle = {
-        ...art,
+        ...(target || { id, slug: updates.slug || id }),
         ...updates,
+        id: target?.id || id,
         updatedAt: new Date().toISOString(),
         revisions: [newRevision, ...currentRevisions]
       };
 
       tursoService.saveArticle(updatedArticle);
-      return updatedArticle;
-    }));
+
+      if (!target) {
+        return [updatedArticle, ...prev];
+      }
+
+      return prev.map(art => {
+        if (art.id === id || art.slug === id || (updates.slug && art.slug === updates.slug)) {
+          return updatedArticle;
+        }
+        return art;
+      });
+    });
   };
 
   const deleteArticle = (id: string, permanent: boolean = false) => {
