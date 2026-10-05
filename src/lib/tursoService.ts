@@ -263,6 +263,34 @@ export const tursoService = {
     }
   },
 
+  async updateArticleMetrics(slugOrId: string, metrics: { likes?: number; shares?: number; views?: number }) {
+    try {
+      const updates: string[] = [];
+      const args: any[] = [];
+      if (metrics.likes !== undefined) {
+        updates.push('likes = ?');
+        args.push(Math.max(0, Math.floor(Number(metrics.likes))));
+      }
+      if (metrics.shares !== undefined) {
+        updates.push('shares = ?');
+        args.push(Math.max(0, Math.floor(Number(metrics.shares))));
+      }
+      if (metrics.views !== undefined) {
+        updates.push('views = ?');
+        args.push(Math.max(0, Math.floor(Number(metrics.views))));
+      }
+      if (updates.length === 0) return;
+      args.push(slugOrId, slugOrId);
+      await turso.execute({
+        sql: `UPDATE articles SET ${updates.join(', ')} WHERE id = ? OR slug = ?`,
+        args
+      });
+      console.log(`✅ [Turso] Metrics updated for "${slugOrId}":`, metrics);
+    } catch (e) {
+      console.error(`❌ [Turso] Error updating metrics for article ${slugOrId}:`, e);
+    }
+  },
+
   async deleteArticle(id: string) {
     try {
       await turso.execute({

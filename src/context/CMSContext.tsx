@@ -1523,14 +1523,23 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       const art = prev.find(a => a.slug === slugOrId || a.id === slugOrId);
       if (!art) return prev;
 
+      const nextLikes = metrics.likes !== undefined ? Math.max(0, Math.floor(metrics.likes)) : (art.likes ?? 0);
+      const nextShares = metrics.shares !== undefined ? Math.max(0, Math.floor(metrics.shares)) : (art.shares ?? 0);
+      const nextViews = metrics.views !== undefined ? Math.max(0, Math.floor(metrics.views)) : (art.views ?? 0);
+
       const updatedArticle: CMSArticle = {
         ...art,
-        likes: metrics.likes !== undefined ? Math.max(0, Math.floor(metrics.likes)) : (art.likes ?? 0),
-        shares: metrics.shares !== undefined ? Math.max(0, Math.floor(metrics.shares)) : (art.shares ?? 0),
-        views: metrics.views !== undefined ? Math.max(0, Math.floor(metrics.views)) : (art.views ?? 0)
+        likes: nextLikes,
+        shares: nextShares,
+        views: nextViews
       };
 
       tursoService.saveArticle(updatedArticle);
+      tursoService.updateArticleMetrics(art.id, { likes: nextLikes, shares: nextShares, views: nextViews });
+      if (art.slug) {
+        tursoService.updateArticleMetrics(art.slug, { likes: nextLikes, shares: nextShares, views: nextViews });
+      }
+
       return prev.map(a => (a.id === art.id ? updatedArticle : a));
     });
   };
@@ -1546,14 +1555,23 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       const currentShares = art.shares ?? 0;
       const currentViews = art.views ?? 0;
 
+      const nextLikes = Math.max(0, currentLikes + (boost.likes || 0));
+      const nextShares = Math.max(0, currentShares + (boost.shares || 0));
+      const nextViews = Math.max(0, currentViews + (boost.views || 0));
+
       const updatedArticle: CMSArticle = {
         ...art,
-        likes: Math.max(0, currentLikes + (boost.likes || 0)),
-        shares: Math.max(0, currentShares + (boost.shares || 0)),
-        views: Math.max(0, currentViews + (boost.views || 0))
+        likes: nextLikes,
+        shares: nextShares,
+        views: nextViews
       };
 
       tursoService.saveArticle(updatedArticle);
+      tursoService.updateArticleMetrics(art.id, { likes: nextLikes, shares: nextShares, views: nextViews });
+      if (art.slug) {
+        tursoService.updateArticleMetrics(art.slug, { likes: nextLikes, shares: nextShares, views: nextViews });
+      }
+
       return prev.map(a => (a.id === art.id ? updatedArticle : a));
     });
   };
@@ -1570,14 +1588,23 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         const currentShares = art.shares ?? 0;
         const currentViews = art.views ?? 0;
 
+        const nextLikes = Math.max(0, currentLikes + (boost.likes || 0));
+        const nextShares = Math.max(0, currentShares + (boost.shares || 0));
+        const nextViews = Math.max(0, currentViews + (boost.views || 0));
+
         const updatedArticle: CMSArticle = {
           ...art,
-          likes: Math.max(0, currentLikes + (boost.likes || 0)),
-          shares: Math.max(0, currentShares + (boost.shares || 0)),
-          views: Math.max(0, currentViews + (boost.views || 0))
+          likes: nextLikes,
+          shares: nextShares,
+          views: nextViews
         };
 
         tursoService.saveArticle(updatedArticle);
+        tursoService.updateArticleMetrics(art.id, { likes: nextLikes, shares: nextShares, views: nextViews });
+        if (art.slug) {
+          tursoService.updateArticleMetrics(art.slug, { likes: nextLikes, shares: nextShares, views: nextViews });
+        }
+
         return updatedArticle;
       });
     });
@@ -1599,6 +1626,11 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         };
 
         tursoService.saveArticle(updatedArticle);
+        tursoService.updateArticleMetrics(art.id, { likes: 0, shares: 0, views: 0 });
+        if (art.slug) {
+          tursoService.updateArticleMetrics(art.slug, { likes: 0, shares: 0, views: 0 });
+        }
+
         return updatedArticle;
       });
     });

@@ -90,6 +90,9 @@ export const AdminArticleEditor: React.FC<AdminArticleEditorProps> = ({
     addArticle, 
     updateArticle, 
     revertToRevision,
+    setArticleMetrics,
+    boostArticleMetrics,
+    resetArticleMetrics,
     currentUser 
   } = useCMS();
 
@@ -177,6 +180,8 @@ export const AdminArticleEditor: React.FC<AdminArticleEditorProps> = ({
   const [showSavedFeedback, setShowSavedFeedback] = useState(false);
   const [savedArticleSlug, setSavedArticleSlug] = useState<string>(existingArticle?.slug || '');
   const [isUploadingFeaturedR2, setIsUploadingFeaturedR2] = useState(false);
+  const [isSavingMetrics, setIsSavingMetrics] = useState(false);
+  const [metricsSavedFeedback, setMetricsSavedFeedback] = useState(false);
   const featuredFileInputRef = useRef<HTMLInputElement | null>(null);
 
   // Sync state whenever articleId or existingArticle changes
@@ -425,6 +430,36 @@ export const AdminArticleEditor: React.FC<AdminArticleEditorProps> = ({
       setShowSavedFeedback(true);
       setTimeout(() => setShowSavedFeedback(false), 5000);
     }
+  };
+
+  // Dedicated instant metric save & publish handler (Admin Boost)
+  const handleSaveMetricsOnly = async () => {
+    setIsSavingMetrics(true);
+    const targetKey = existingArticle?.id || existingArticle?.slug || slug;
+    
+    // 1. Instantly update metrics in CMS Context and execute Turso DB update
+    if (targetKey) {
+      setArticleMetrics(targetKey, {
+        likes: Math.max(0, Math.floor(Number(likes) || 0)),
+        shares: Math.max(0, Math.floor(Number(shares) || 0)),
+        views: Math.max(0, Math.floor(Number(views) || 0))
+      });
+    }
+
+    // 2. If article exists, update article payload as well to guarantee persistence
+    if (existingArticle) {
+      updateArticle(existingArticle.id, {
+        likes: Math.max(0, Math.floor(Number(likes) || 0)),
+        shares: Math.max(0, Math.floor(Number(shares) || 0)),
+        views: Math.max(0, Math.floor(Number(views) || 0))
+      }, 'Ajuste y sincronización de métricas de popularidad');
+    }
+
+    setTimeout(() => {
+      setIsSavingMetrics(false);
+      setMetricsSavedFeedback(true);
+      setTimeout(() => setMetricsSavedFeedback(false), 4500);
+    }, 300);
   };
 
   // Section handlers & Reordering
@@ -1548,6 +1583,38 @@ export const AdminArticleEditor: React.FC<AdminArticleEditorProps> = ({
                 >
                   Reset (0)
                 </button>
+              </div>
+
+              {/* Dedicated Save & Publish Metrics Button */}
+              <div className="pt-2 border-t border-slate-800/80">
+                <button
+                  type="button"
+                  onClick={handleSaveMetricsOnly}
+                  disabled={isSavingMetrics}
+                  className="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-rose-600 via-pink-600 to-amber-600 hover:from-rose-500 hover:to-amber-500 text-white text-xs font-bold font-mono uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg shadow-rose-600/25 transition-all cursor-pointer disabled:opacity-50 active:scale-[0.98]"
+                >
+                  {isSavingMetrics ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin text-white" />
+                      <span>Guardando Métricas en Turso...</span>
+                    </>
+                  ) : metricsSavedFeedback ? (
+                    <>
+                      <CheckCircle2 className="w-4 h-4 text-emerald-300" />
+                      <span className="text-emerald-200">¡Métricas Guardadas y Publicadas!</span>
+                    </>
+                  ) : (
+                    <>
+                      <Save className="w-4 h-4" />
+                      <span>Guardar y Publicar Métricas</span>
+                    </>
+                  )}
+                </button>
+                {metricsSavedFeedback && (
+                  <p className="text-[10px] text-emerald-400 text-center font-mono mt-1.5 animate-pulse">
+                    ✓ Las métricas actualizadas ya están activas y visibles en toda la web y Turso Cloud.
+                  </p>
+                )}
               </div>
             </div>
 
