@@ -1,8 +1,21 @@
 User-agent: *
 Allow: /
 
-# Host
-Host: https://kairosion.online
+# Disallow aggressive AI training scrapers using standard RFC directives
+User-agent: GPTBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
 
 # Sitemaps
 Sitemap: https://kairosion.online/sitemap.xml

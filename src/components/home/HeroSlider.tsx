@@ -97,6 +97,8 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
                 alt={banner.title}
                 className="w-full h-full object-cover object-center transform scale-105 transition-transform duration-10000"
                 loading={idx === 0 ? 'eager' : 'lazy'}
+                fetchPriority={idx === 0 ? 'high' : 'low'}
+                decoding={idx === 0 ? 'sync' : 'async'}
               />
               {/* Radial and Linear Gradients for perfect readability */}
               <div className="absolute inset-0 bg-gradient-to-t from-[#080c14] via-[#080c14]/60 to-transparent" />
@@ -130,7 +132,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
           <div className="pt-2 flex flex-wrap items-center gap-4">
             <button
               onClick={() => handleCtaClick(currentBanner)}
-              className="px-6 py-3.5 rounded-xl bg-[#ff6486] hover:bg-[#ff6486]/90 text-white font-bold text-sm shadow-xl shadow-[#ff6486]/20 transition-all transform hover:-translate-y-0.5 cursor-pointer flex items-center gap-2 font-display uppercase tracking-wide"
+              className="px-6 py-3.5 rounded-xl bg-[#ff6486] hover:bg-[#ff6486]/90 text-white font-bold text-sm shadow-xl shadow-[#ff6486]/20 transition-transform transform hover:-translate-y-0.5 cursor-pointer flex items-center gap-2 font-display uppercase tracking-wide"
             >
               <span>{currentBanner.ctaText || 'Ver Más'}</span>
               <ArrowRight className="w-4 h-4" />
@@ -173,7 +175,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
               <button
                 key={idx}
                 onClick={() => setCurrentIndex(idx)}
-                className={`h-1.5 rounded-full transition-all cursor-pointer ${
+                className={`h-1.5 rounded-full transition-[width,background-color] duration-300 cursor-pointer ${
                   currentIndex === idx ? 'w-8 bg-[#ff6486]' : 'w-2 bg-slate-700 hover:bg-slate-500'
                 }`}
                 aria-label={`Ir al banner ${idx + 1}`}

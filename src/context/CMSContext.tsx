@@ -1013,38 +1013,40 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     }));
   });
 
-  // Sync with Turso on startup and on demand
-  const syncWithTurso = async () => {
+  // Sync with Turso on startup and on demand (High performance & Non-blocking)
+  const syncWithTurso = async (forceInit: boolean = false) => {
     setIsSyncing(true);
     try {
-      await tursoService.initializeAndSeed({
-        articles,
-        categories,
-        authors,
-        tags,
-        media,
-        banners,
-        breakingNews,
-        staticPages,
-        settings
-      });
+      if (forceInit) {
+        await tursoService.initializeAndSeed({
+          articles,
+          categories,
+          authors,
+          tags,
+          media,
+          banners,
+          breakingNews,
+          staticPages,
+          settings
+        });
+      }
 
-      // Load latest articles & data from Turso
+      // Load latest articles & data from Turso concurrently
       const [dbArticles, dbCategories, dbAuthors, dbTags, dbMedia, dbBanners, dbBreaking, dbStatic, dbSettings, dbConsentLogs, dbTrafficLogs] = await Promise.all([
-        tursoService.getArticles(),
-        tursoService.getCategories(),
-        tursoService.getAuthors(),
-        tursoService.getTags(),
-        tursoService.getMedia(),
-        tursoService.getBanners(),
-        tursoService.getBreakingNews(),
-        tursoService.getStaticPages(),
-        tursoService.getSettings(),
-        tursoService.getConsentLogs(),
-        tursoService.getVisitorTrafficLogs()
+        tursoService.getArticles().catch(() => []),
+        tursoService.getCategories().catch(() => []),
+        tursoService.getAuthors().catch(() => []),
+        tursoService.getTags().catch(() => []),
+        tursoService.getMedia().catch(() => []),
+        tursoService.getBanners().catch(() => []),
+        tursoService.getBreakingNews().catch(() => []),
+        tursoService.getStaticPages().catch(() => []),
+        tursoService.getSettings().catch(() => null),
+        tursoService.getConsentLogs().catch(() => []),
+        tursoService.getVisitorTrafficLogs().catch(() => [])
       ]);
 
-      if (dbArticles.length > 0) {
+      if (dbArticles && dbArticles.length > 0) {
         setArticles(prev => {
           const prevMap = new Map(prev.map(p => [p.slug, p]));
           const prevIdMap = new Map(prev.map(p => [p.id, p]));
@@ -1066,10 +1068,9 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         });
       }
 
-      if (dbCategories.length > 0) {
+      if (dbCategories && dbCategories.length > 0) {
         const mergedCategories = MAIN_CATEGORIES.map(defaultCat => {
           if (defaultCat.slug === 'gta-6') {
-            tursoService.saveCategory(defaultCat);
             return defaultCat;
           }
           const found = dbCategories.find(p => p.slug === defaultCat.slug);
@@ -1077,18 +1078,16 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
           const subMap = new Map<string, SubCategory>();
           defaultCat.subcategories.forEach(s => subMap.set(s.slug, s));
           found.subcategories.forEach(s => subMap.set(s.slug, s));
-          const updatedCat = {
+          return {
             ...found,
             subcategories: Array.from(subMap.values())
           };
-          tursoService.saveCategory(updatedCat);
-          return updatedCat;
         });
         setCategories(mergedCategories);
       }
-      if (dbAuthors.length > 0) setAuthors(dbAuthors);
-      if (dbTags.length > 0) setTags(dbTags);
-      if (dbMedia.length > 0) {
+      if (dbAuthors && dbAuthors.length > 0) setAuthors(dbAuthors);
+      if (dbTags && dbTags.length > 0) setTags(dbTags);
+      if (dbMedia && dbMedia.length > 0) {
         const staticMap = new Map(ALL_MEDIA_ITEMS.map(m => [m.url, m]));
         const normalized = dbMedia.map(p => {
           if (p.url && (p.url.includes('.jpg') || p.url.includes('.jpeg') || p.url.includes('.png'))) {
@@ -1108,21 +1107,17 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         });
         setMedia(Array.from(unique.values()));
       }
-      if (dbBanners.length > 0) setBanners(dbBanners);
-      if (dbBreaking.length > 0) setBreakingNews(dbBreaking);
-      if (dbStatic.length > 0) {
+      if (dbBanners && dbBanners.length > 0) setBanners(dbBanners);
+      if (dbBreaking && dbBreaking.length > 0) setBreakingNews(dbBreaking);
+      if (dbStatic && dbStatic.length > 0) {
         const mergedStatic = initialStaticPages.map(defaultPage => {
           const found = dbStatic.find(p => p.slug === defaultPage.slug);
           if (!found || found.content.includes('Leonida Chronicle') || found.content.length < 300) {
-            tursoService.saveStaticPage(defaultPage);
             return defaultPage;
           }
           return found;
         });
         setStaticPages(mergedStatic);
-      } else {
-        initialStaticPages.forEach(p => tursoService.saveStaticPage(p));
-        setStaticPages(initialStaticPages);
       }
       if (dbSettings) setSettings(dbSettings);
 
@@ -1135,7 +1130,6 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       }
 
       setIsTursoConnected(true);
-      console.log('⚡ Turso Cloud DB synchronized successfully');
     } catch (e) {
       console.error('Failed to sync with Turso DB:', e);
       setIsTursoConnected(false);
@@ -1145,7 +1139,8 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   useEffect(() => {
-    syncWithTurso();
+    // Run background sync safely
+    syncWithTurso(false);
   }, []);
 
   // Safe Sync to localStorage

@@ -11,42 +11,47 @@ import { ARTICLES } from './data/articles';
 import { Header } from './components/layout/Header';
 import { Footer } from './components/layout/Footer';
 import { HomeView } from './components/home/HomeView';
-import { ArticleDetail } from './components/articles/ArticleDetail';
-import { CategoryView } from './components/category/CategoryView';
-import { SearchModal } from './components/search/SearchModal';
-import { SEOInspectorModal } from './components/seo/SEOInspectorModal';
-import { LegalModal } from './components/legal/LegalModal';
-import { SitemapView } from './components/seo/SitemapView';
-import { CharacterDetailModal } from './components/characters/CharacterDetailModal';
-import { VehicleDetailModal } from './components/vehicles/VehicleDetailModal';
-import { WeaponDetailModal } from './components/weapons/WeaponDetailModal';
-import { MapExplorerModal } from './components/map/MapExplorerModal';
 import { CookieConsentBanner } from './components/common/CookieConsentBanner';
 import { ErrorBoundary } from './components/common/ErrorBoundary';
+
+const ArticleDetail = React.lazy(() => import('./components/articles/ArticleDetail').then(m => ({ default: m.ArticleDetail })));
+const CategoryView = React.lazy(() => import('./components/category/CategoryView').then(m => ({ default: m.CategoryView })));
 
 import { CHARACTERS_DATA } from './data/characters';
 import { VEHICLES_DATA } from './data/vehicles';
 import { WEAPONS_DATA } from './data/weapons';
 import { MAP_DISTRICTS } from './data/mapDistricts';
 
-// Admin CMS Components
-import { AdminLayout, AdminSection } from './components/admin/AdminLayout';
-import { AdminDashboard } from './components/admin/AdminDashboard';
-import { AdminArticlesList } from './components/admin/AdminArticlesList';
-import { AdminPopularity } from './components/admin/AdminPopularity';
-import { AdminArticleEditor } from './components/admin/AdminArticleEditor';
-import { AdminBanners } from './components/admin/AdminBanners';
-import { AdminBreakingNews } from './components/admin/AdminBreakingNews';
-import { AdminAIAssistant } from './components/admin/AdminAIAssistant';
-import { AdminCategories } from './components/admin/AdminCategories';
-import { AdminTags } from './components/admin/AdminTags';
-import { AdminMediaLibrary } from './components/admin/AdminMediaLibrary';
-import { AdminAuthors } from './components/admin/AdminAuthors';
-import { AdminMenus } from './components/admin/AdminMenus';
-import { AdminPages } from './components/admin/AdminPages';
-import { AdminCookieSettings } from './components/admin/AdminCookieSettings';
-import { AdminSettings } from './components/admin/AdminSettings';
-import { AdminLogin } from './components/admin/AdminLogin';
+import type { AdminSection } from './components/admin/AdminLayout';
+
+// Lazy Loaded Modals & Overlays (Zero Overhead for Initial Public Paint)
+const SearchModal = React.lazy(() => import('./components/search/SearchModal').then(m => ({ default: m.SearchModal })));
+const SEOInspectorModal = React.lazy(() => import('./components/seo/SEOInspectorModal').then(m => ({ default: m.SEOInspectorModal })));
+const LegalModal = React.lazy(() => import('./components/legal/LegalModal').then(m => ({ default: m.LegalModal })));
+const SitemapView = React.lazy(() => import('./components/seo/SitemapView').then(m => ({ default: m.SitemapView })));
+const CharacterDetailModal = React.lazy(() => import('./components/characters/CharacterDetailModal').then(m => ({ default: m.CharacterDetailModal })));
+const VehicleDetailModal = React.lazy(() => import('./components/vehicles/VehicleDetailModal').then(m => ({ default: m.VehicleDetailModal })));
+const WeaponDetailModal = React.lazy(() => import('./components/weapons/WeaponDetailModal').then(m => ({ default: m.WeaponDetailModal })));
+const MapExplorerModal = React.lazy(() => import('./components/map/MapExplorerModal').then(m => ({ default: m.MapExplorerModal })));
+
+// Lazy Loaded Admin CMS Components (Code Splitting)
+const AdminLayout = React.lazy(() => import('./components/admin/AdminLayout').then(m => ({ default: m.AdminLayout })));
+const AdminDashboard = React.lazy(() => import('./components/admin/AdminDashboard').then(m => ({ default: m.AdminDashboard })));
+const AdminArticlesList = React.lazy(() => import('./components/admin/AdminArticlesList').then(m => ({ default: m.AdminArticlesList })));
+const AdminPopularity = React.lazy(() => import('./components/admin/AdminPopularity').then(m => ({ default: m.AdminPopularity })));
+const AdminArticleEditor = React.lazy(() => import('./components/admin/AdminArticleEditor').then(m => ({ default: m.AdminArticleEditor })));
+const AdminBanners = React.lazy(() => import('./components/admin/AdminBanners').then(m => ({ default: m.AdminBanners })));
+const AdminBreakingNews = React.lazy(() => import('./components/admin/AdminBreakingNews').then(m => ({ default: m.AdminBreakingNews })));
+const AdminAIAssistant = React.lazy(() => import('./components/admin/AdminAIAssistant').then(m => ({ default: m.AdminAIAssistant })));
+const AdminCategories = React.lazy(() => import('./components/admin/AdminCategories').then(m => ({ default: m.AdminCategories })));
+const AdminTags = React.lazy(() => import('./components/admin/AdminTags').then(m => ({ default: m.AdminTags })));
+const AdminMediaLibrary = React.lazy(() => import('./components/admin/AdminMediaLibrary').then(m => ({ default: m.AdminMediaLibrary })));
+const AdminAuthors = React.lazy(() => import('./components/admin/AdminAuthors').then(m => ({ default: m.AdminAuthors })));
+const AdminMenus = React.lazy(() => import('./components/admin/AdminMenus').then(m => ({ default: m.AdminMenus })));
+const AdminPages = React.lazy(() => import('./components/admin/AdminPages').then(m => ({ default: m.AdminPages })));
+const AdminCookieSettings = React.lazy(() => import('./components/admin/AdminCookieSettings').then(m => ({ default: m.AdminCookieSettings })));
+const AdminSettings = React.lazy(() => import('./components/admin/AdminSettings').then(m => ({ default: m.AdminSettings })));
+const AdminLogin = React.lazy(() => import('./components/admin/AdminLogin').then(m => ({ default: m.AdminLogin })));
 
 import { ArrowLeft, AlertCircle } from 'lucide-react';
 
@@ -548,94 +553,98 @@ function AppContent() {
 
     if (!isAdminLoggedIn) {
       return (
-        <AdminLogin 
-          onBackToPublicSite={() => navigate({ type: 'portada' })} 
-        />
+        <React.Suspense fallback={<div className="min-h-screen bg-slate-950 flex items-center justify-center text-slate-400 font-mono">Cargando...</div>}>
+          <AdminLogin 
+            onBackToPublicSite={() => navigate({ type: 'portada' })} 
+          />
+        </React.Suspense>
       );
     }
 
     return (
       <ErrorBoundary fallbackTitle="Error en el Panel de Administración">
-        <AdminLayout
-          currentSection={activeSection}
-          onNavigate={handleAdminNavigate}
-          onBackToPublicSite={() => navigate({ type: 'portada' })}
-          editingArticleId={editingId}
-        >
-          {activeSection === 'dashboard' && (
-            <AdminDashboard onNavigate={handleAdminNavigate} />
-          )}
+        <React.Suspense fallback={<div className="min-h-screen bg-slate-950 flex items-center justify-center text-slate-400 font-mono">Cargando Panel CMS...</div>}>
+          <AdminLayout
+            currentSection={activeSection}
+            onNavigate={handleAdminNavigate}
+            onBackToPublicSite={() => navigate({ type: 'portada' })}
+            editingArticleId={editingId}
+          >
+            {activeSection === 'dashboard' && (
+              <AdminDashboard onNavigate={handleAdminNavigate} />
+            )}
 
-          {activeSection === 'articles' && (
-            <AdminArticlesList
-              onNavigate={handleAdminNavigate}
-              onPreviewArticle={(art) => {
-                navigate({ type: 'article', slug: art.slug });
-              }}
-            />
-          )}
+            {activeSection === 'articles' && (
+              <AdminArticlesList
+                onNavigate={handleAdminNavigate}
+                onPreviewArticle={(art) => {
+                  navigate({ type: 'article', slug: art.slug });
+                }}
+              />
+            )}
 
-          {activeSection === 'popularity' && (
-            <AdminPopularity
-              onNavigate={handleAdminNavigate}
-              onPreviewArticle={(art) => {
-                navigate({ type: 'article', slug: art.slug });
-              }}
-            />
-          )}
+            {activeSection === 'popularity' && (
+              <AdminPopularity
+                onNavigate={handleAdminNavigate}
+                onPreviewArticle={(art) => {
+                  navigate({ type: 'article', slug: art.slug });
+                }}
+              />
+            )}
 
-          {(activeSection === 'new-article' || activeSection === 'edit-article') && (
-            <AdminArticleEditor
-              articleId={editingId}
-              onNavigate={handleAdminNavigate}
-              onClose={() => handleAdminNavigate('articles')}
-            />
-          )}
+            {(activeSection === 'new-article' || activeSection === 'edit-article') && (
+              <AdminArticleEditor
+                articleId={editingId}
+                onNavigate={handleAdminNavigate}
+                onClose={() => handleAdminNavigate('articles')}
+              />
+            )}
 
-          {activeSection === 'banners' && (
-            <AdminBanners />
-          )}
+            {activeSection === 'banners' && (
+              <AdminBanners />
+            )}
 
-          {activeSection === 'breaking-news' && (
-            <AdminBreakingNews />
-          )}
+            {activeSection === 'breaking-news' && (
+              <AdminBreakingNews />
+            )}
 
-          {activeSection === 'ai-assistant' && (
-            <AdminAIAssistant onNavigate={handleAdminNavigate} />
-          )}
+            {activeSection === 'ai-assistant' && (
+              <AdminAIAssistant onNavigate={handleAdminNavigate} />
+            )}
 
-          {activeSection === 'categories' && (
-            <AdminCategories />
-          )}
+            {activeSection === 'categories' && (
+              <AdminCategories />
+            )}
 
-          {activeSection === 'tags' && (
-            <AdminTags />
-          )}
+            {activeSection === 'tags' && (
+              <AdminTags />
+            )}
 
-          {activeSection === 'media' && (
-            <AdminMediaLibrary />
-          )}
+            {activeSection === 'media' && (
+              <AdminMediaLibrary />
+            )}
 
-          {activeSection === 'authors' && (
-            <AdminAuthors />
-          )}
+            {activeSection === 'authors' && (
+              <AdminAuthors />
+            )}
 
-          {activeSection === 'menus' && (
-            <AdminMenus />
-          )}
+            {activeSection === 'menus' && (
+              <AdminMenus />
+            )}
 
-          {activeSection === 'pages' && (
-            <AdminPages />
-          )}
+            {activeSection === 'pages' && (
+              <AdminPages />
+            )}
 
-          {activeSection === 'cookies' && (
-            <AdminCookieSettings />
-          )}
+            {activeSection === 'cookies' && (
+              <AdminCookieSettings />
+            )}
 
-          {activeSection === 'settings' && (
-            <AdminSettings />
-          )}
-        </AdminLayout>
+            {activeSection === 'settings' && (
+              <AdminSettings />
+            )}
+          </AdminLayout>
+        </React.Suspense>
       </ErrorBoundary>
     );
   }
@@ -694,49 +703,55 @@ function AppContent() {
 
             {/* VIEW B: SITEMAP & DIRECTORIO WEB */}
             {currentView.type === 'sitemap' && (
-              <SitemapView
-                onNavigate={handleNavigatePath}
-                onBackToHome={() => navigate({ type: 'portada' })}
-              />
+              <React.Suspense fallback={<div className="p-12 text-center text-slate-400">Cargando Mapa del Sitio...</div>}>
+                <SitemapView
+                  onNavigate={handleNavigatePath}
+                  onBackToHome={() => navigate({ type: 'portada' })}
+                />
+              </React.Suspense>
             )}
 
             {/* VIEW C: ARTICLE DETAIL (With Hierarchical URL Traceability) */}
             {currentView.type === 'article' && currentArticle && (
-              <ArticleDetail
-                key={currentArticle.slug || currentArticle.id}
-                article={currentArticle}
-                onBack={() => {
-                  if (currentArticle.category) {
-                    navigate({ 
-                      type: 'category', 
-                      category: currentArticle.category,
-                      subcategory: currentArticle.subcategorySlug && currentArticle.subcategorySlug !== 'all' 
-                        ? currentArticle.subcategorySlug 
-                        : undefined
-                    });
-                  } else {
-                    navigate({ type: 'portada' });
-                  }
-                }}
-                onSelectCategory={handleSelectCategory}
-                onSelectArticle={handleSelectArticle}
-              />
+              <React.Suspense fallback={<div className="py-20 text-center text-slate-400 font-mono">Cargando artículo...</div>}>
+                <ArticleDetail
+                  key={currentArticle.slug || currentArticle.id}
+                  article={currentArticle}
+                  onBack={() => {
+                    if (currentArticle.category) {
+                      navigate({ 
+                        type: 'category', 
+                        category: currentArticle.category,
+                        subcategory: currentArticle.subcategorySlug && currentArticle.subcategorySlug !== 'all' 
+                          ? currentArticle.subcategorySlug 
+                          : undefined
+                      });
+                    } else {
+                      navigate({ type: 'portada' });
+                    }
+                  }}
+                  onSelectCategory={handleSelectCategory}
+                  onSelectArticle={handleSelectArticle}
+                />
+              </React.Suspense>
             )}
 
             {/* VIEW D: MAIN CATEGORY & SUBCATEGORY ARCHIVE */}
             {currentView.type === 'category' && (
-              <CategoryView
-                categorySlug={currentView.category}
-                initialSubCategory={currentView.subcategory || 'all'}
-                articles={publicArticles}
-                onSelectArticle={handleSelectArticle}
-                onBackToHome={() => navigate({ type: 'portada' })}
-                onSelectCategory={handleSelectCategory}
-                onSelectCharacter={handleSelectCharacter}
-                onSelectVehicle={handleSelectVehicle}
-                onSelectWeapon={handleSelectWeapon}
-                onSelectDistrict={handleSelectDistrict}
-              />
+              <React.Suspense fallback={<div className="py-20 text-center text-slate-400 font-mono">Cargando sección...</div>}>
+                <CategoryView
+                  categorySlug={currentView.category}
+                  initialSubCategory={currentView.subcategory || 'all'}
+                  articles={publicArticles}
+                  onSelectArticle={handleSelectArticle}
+                  onBackToHome={() => navigate({ type: 'portada' })}
+                  onSelectCategory={handleSelectCategory}
+                  onSelectCharacter={handleSelectCharacter}
+                  onSelectVehicle={handleSelectVehicle}
+                  onSelectWeapon={handleSelectWeapon}
+                  onSelectDistrict={handleSelectDistrict}
+                />
+              </React.Suspense>
             )}
 
             {/* VIEW E: 404 NOT FOUND */}
@@ -781,76 +796,88 @@ function AppContent() {
         onOpenCookieSettings={() => handleOpenLegal('cookies')}
       />
 
-      {/* 4. MODALS & INTERACTIVE DOSSIERS WITH DEDICATED URLS */}
-      <SearchModal
-        isOpen={searchOpen}
-        onClose={() => setSearchOpen(false)}
-        articles={publicArticles}
-        onSelectArticle={handleSelectArticle}
-      />
+      {/* 4. MODALS & INTERACTIVE DOSSIERS WITH DEDICATED URLS (Lazy Loaded) */}
+      <React.Suspense fallback={null}>
+        {searchOpen && (
+          <SearchModal
+            isOpen={searchOpen}
+            onClose={() => setSearchOpen(false)}
+            articles={publicArticles}
+            onSelectArticle={handleSelectArticle}
+          />
+        )}
 
-      <SEOInspectorModal
-        isOpen={seoModalOpen}
-        onClose={() => setSeoModalOpen(false)}
-        currentArticle={currentArticle}
-      />
+        {seoModalOpen && (
+          <SEOInspectorModal
+            isOpen={seoModalOpen}
+            onClose={() => setSeoModalOpen(false)}
+            currentArticle={currentArticle}
+          />
+        )}
 
-      <LegalModal
-        isOpen={legalModalOpen}
-        onClose={() => {
-          setLegalModalOpen(false);
-          if (currentView.type === 'page') {
-            navigate({ type: 'portada' });
-          }
-        }}
-        defaultTab={legalTab}
-      />
+        {legalModalOpen && (
+          <LegalModal
+            isOpen={legalModalOpen}
+            onClose={() => {
+              setLegalModalOpen(false);
+              if (currentView.type === 'page') {
+                navigate({ type: 'portada' });
+              }
+            }}
+            defaultTab={legalTab}
+          />
+        )}
 
-      {/* Character Dossier Modal */}
-      <CharacterDetailModal
-        character={selectedCharacter}
-        onClose={() => {
-          setSelectedCharacter(null);
-          if (currentView.type === 'character') {
-            navigate({ type: 'category', category: 'personajes' });
-          }
-        }}
-        articles={publicArticles}
-        onSelectArticle={handleSelectArticle}
-      />
+        {selectedCharacter && (
+          <CharacterDetailModal
+            character={selectedCharacter}
+            onClose={() => {
+              setSelectedCharacter(null);
+              if (currentView.type === 'character') {
+                navigate({ type: 'category', category: 'personajes' });
+              }
+            }}
+            articles={publicArticles}
+            onSelectArticle={handleSelectArticle}
+          />
+        )}
 
-      {/* Vehicle Specs Modal */}
-      <VehicleDetailModal
-        vehicle={selectedVehicle}
-        onClose={() => {
-          setSelectedVehicle(null);
-          if (currentView.type === 'vehicle') {
-            navigate({ type: 'category', category: 'vehiculos' });
-          }
-        }}
-      />
+        {selectedVehicle && (
+          <VehicleDetailModal
+            vehicle={selectedVehicle}
+            onClose={() => {
+              setSelectedVehicle(null);
+              if (currentView.type === 'vehicle') {
+                navigate({ type: 'category', category: 'vehiculos' });
+              }
+            }}
+          />
+        )}
 
-      {/* Weapon Specs Modal */}
-      <WeaponDetailModal
-        weapon={selectedWeapon}
-        onClose={() => {
-          setSelectedWeapon(null);
-          if (currentView.type === 'weapon') {
-            navigate({ type: 'category', category: 'armas' });
-          }
-        }}
-      />
+        {selectedWeapon && (
+          <WeaponDetailModal
+            weapon={selectedWeapon}
+            onClose={() => {
+              setSelectedWeapon(null);
+              if (currentView.type === 'weapon') {
+                navigate({ type: 'category', category: 'armas' });
+              }
+            }}
+          />
+        )}
 
-      {/* Map District Modal */}
-      <MapExplorerModal
-        district={selectedDistrict}
-        onClose={() => {
-          setSelectedDistrict(null);
-          if (currentView.type === 'district') {
-            navigate({ type: 'category', category: 'mapa' });
-          }
-        }}
-      />
+        {selectedDistrict && (
+          <MapExplorerModal
+            district={selectedDistrict}
+            onClose={() => {
+              setSelectedDistrict(null);
+              if (currentView.type === 'district') {
+                navigate({ type: 'category', category: 'mapa' });
+              }
+            }}
+          />
+        )}
+      </React.Suspense>
 
       {/* 5. COOKIE CONSENT BANNER & SETTINGS */}
       <CookieConsentBanner />
