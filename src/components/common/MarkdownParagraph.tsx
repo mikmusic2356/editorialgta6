@@ -174,7 +174,7 @@ export const MarkdownParagraph: React.FC<MarkdownParagraphProps> = ({ content, c
   if ((trimmed.startsWith('* ') || trimmed.startsWith('- ')) && !trimmed.startsWith('<ul>') && !trimmed.startsWith('<ol>')) {
     const itemText = trimmed.replace(/^(\*|-)\s+/, '');
     return (
-      <div className={`flex items-start gap-2.5 my-2 pl-2 text-slate-300 leading-relaxed text-sm ${className}`}>
+      <div className={`flex items-start gap-2.5 my-2 pl-2 text-white leading-relaxed text-sm ${className}`}>
         <span className="w-1.5 h-1.5 rounded-full bg-[#ff6486] mt-2 shrink-0"></span>
         <div className="flex-1">
           {renderFormattedInline(itemText)}
@@ -188,7 +188,7 @@ export const MarkdownParagraph: React.FC<MarkdownParagraphProps> = ({ content, c
     const processedHtml = processBadgesAndMarkdownToHtml(trimmed);
     return (
       <div 
-        className={`my-3 text-slate-300 leading-relaxed text-sm sm:text-base font-light prose prose-invert max-w-none ${className}`}
+        className={`my-3 text-white leading-relaxed text-sm sm:text-base font-normal prose prose-invert max-w-none ${className}`}
         dangerouslySetInnerHTML={{ __html: processedHtml }}
       />
     );
@@ -196,7 +196,7 @@ export const MarkdownParagraph: React.FC<MarkdownParagraphProps> = ({ content, c
 
   // 5. Standard paragraph with inline formatting
   return (
-    <p className={`my-3 text-slate-300 leading-relaxed text-sm sm:text-base font-light ${className}`}>
+    <p className={`my-3 text-white leading-relaxed text-sm sm:text-base font-normal ${className}`}>
       {renderFormattedInline(trimmed)}
     </p>
   );

@@ -483,7 +483,7 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
       >
         {/* Drop cap opening lead */}
         {article.content.leadText && (
-          <div className="drop-cap text-slate-200 text-lg leading-relaxed font-light mb-6">
+          <div className="drop-cap text-white text-lg leading-relaxed font-normal mb-6">
             {renderFormattedInline(article.content.leadText)}
           </div>
         )}
@@ -546,7 +546,7 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
                   <div className="font-semibold text-sm font-display tracking-wide uppercase">
                     {section.calloutBox.title}
                   </div>
-                  <div className="text-sm leading-relaxed text-slate-300">
+                  <div className="text-sm leading-relaxed text-white">
                     {section.calloutBox.content}
                   </div>
                 </div>
@@ -568,7 +568,7 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
                       <div className="font-semibold text-base text-white">
                         {step.title}
                       </div>
-                      <div className="text-sm text-slate-300 leading-relaxed">
+                      <div className="text-sm sm:text-base text-white leading-relaxed">
                         {step.description}
                       </div>
                       {step.hint && (

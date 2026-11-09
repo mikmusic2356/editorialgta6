@@ -60,8 +60,8 @@
 
 .editorial-prose p {
   margin-bottom: 1.5rem;
-  color: #ffffff;
-  font-weight: 300;
+  color: #ffffff !important;
+  font-weight: 400;
 }
 
 .editorial-prose h2 {
@@ -105,19 +105,19 @@
   list-style-type: disc;
   padding-left: 1.5rem;
   margin-bottom: 1.5rem;
-  color: #ffffff;
+  color: #ffffff !important;
 }
 
 .editorial-prose ol {
   list-style-type: decimal;
   padding-left: 1.5rem;
   margin-bottom: 1.5rem;
-  color: #ffffff;
+  color: #ffffff !important;
 }
 
 .editorial-prose li {
   margin-bottom: 0.5rem;
-  color: #ffffff;
+  color: #ffffff !important;
 }
 
 /* Drop cap for first paragraph of article */
