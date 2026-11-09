@@ -13,6 +13,7 @@ import { Footer } from './components/layout/Footer';
 import { HomeView } from './components/home/HomeView';
 import { CookieConsentBanner } from './components/common/CookieConsentBanner';
 import { ErrorBoundary } from './components/common/ErrorBoundary';
+import { AdSlot, StickySkyscrapers } from './components/layout/AdSlot';
 
 const ArticleDetail = React.lazy(() => import('./components/articles/ArticleDetail').then(m => ({ default: m.ArticleDetail })));
 const CategoryView = React.lazy(() => import('./components/category/CategoryView').then(m => ({ default: m.CategoryView })));
@@ -375,28 +376,40 @@ function AppContent() {
 
   // Dynamic Title, Description & Canonical Tag Synchronization with Hierarchical URL
   useEffect(() => {
-    let title = 'KAIROSION | Portal Editorial de GTA 6 & Grand Theft Auto VI';
+    let title = 'KAIROSION | Portal Editorial y Revista de GTA 6';
     let description = 'Portal editorial especializado en GTA 6: últimas noticias de Rockstar Games, guías completas, trucos, mapa interactivo de Leonida, vehículos y arsenal.';
+    let imageUrl = `${window.location.origin}/images/Personajes/Jason_and_Lucia_Robbery_With_Logo_landscape.webp`;
+    let imageAlt = 'KAIROSION - Portal Editorial de GTA 6';
     let canonicalPath = formatViewToPath(currentView, articles);
 
     if (currentView.type === 'article') {
       const art = articles.find((a) => a.slug.toLowerCase() === currentView.slug.toLowerCase() || a.id === currentView.slug);
       if (art) {
         title = `${art.seoTitle || art.title} | KAIROSION`;
-        description = art.seoDescription || art.excerpt;
+        description = art.seoDescription || art.excerpt || art.content?.leadText?.slice(0, 160) || description;
+        if (art.featuredImage?.url) {
+          imageUrl = art.featuredImage.url.startsWith('http') 
+            ? art.featuredImage.url 
+            : `${window.location.origin}${art.featuredImage.url}`;
+          imageAlt = art.featuredImage.alt || art.title;
+        }
       }
     } else if (currentView.type === 'category') {
       const catLabel = currentView.category.toUpperCase().replace('-', ' ');
       title = `${catLabel} | Archivo Editorial GTA 6 - KAIROSION`;
-      description = `Explora todas las noticias, guías y análisis de ${currentView.category} en KAIROSION.`;
+      description = `Explora todas las noticias confirmadas, guías paso a paso y análisis técnicos de ${currentView.category} en KAIROSION.`;
     } else if (currentView.type === 'sitemap') {
       title = 'Mapa del Sitio Web & Sitemap XML | KAIROSION GTA 6';
       description = 'Directorio completo de URLs, índice de contenidos y sitemap XML indexable de KAIROSION.';
     } else if (currentView.type === 'character') {
       const char = CHARACTERS_DATA.find(c => c.slug === currentView.slug);
       if (char) {
-        title = `${char.name} · Expediente de Personaje GTA 6 | KAIROSION`;
-        description = char.bio?.slice(0, 150) || `Expediente oficial de ${char.name}.`;
+        title = `${char.name} · Expediente y Biografía GTA 6 | KAIROSION`;
+        description = char.bio?.slice(0, 160) || `Expediente oficial e historia de ${char.name} en Leonida.`;
+        if (char.imageUrl) {
+          imageUrl = char.imageUrl.startsWith('http') ? char.imageUrl : `${window.location.origin}${char.imageUrl}`;
+          imageAlt = `Expediente de ${char.name} en GTA 6`;
+        }
       }
     } else if (currentView.type === 'admin') {
       title = 'KAIROSION Studio | Panel de Administración & CMS';
@@ -405,11 +418,33 @@ function AppContent() {
 
     document.title = title;
 
-    // Meta description
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute('content', description);
-    }
+    // Helper para actualizar o crear meta tags en <head>
+    const setMetaTag = (attrName: string, attrVal: string, content: string) => {
+      let tag = document.querySelector(`meta[${attrName}="${attrVal}"]`);
+      if (!tag) {
+        tag = document.createElement('meta');
+        tag.setAttribute(attrName, attrVal);
+        document.head.appendChild(tag);
+      }
+      tag.setAttribute('content', content);
+    };
+
+    // Meta Description estándar para Google Search Snippets
+    setMetaTag('name', 'description', description);
+
+    // OpenGraph (Google Discover, Redes Sociales, WhatsApp)
+    setMetaTag('property', 'og:title', title);
+    setMetaTag('property', 'og:description', description);
+    setMetaTag('property', 'og:image', imageUrl);
+    setMetaTag('property', 'og:image:alt', imageAlt);
+    setMetaTag('property', 'og:type', currentView.type === 'article' ? 'article' : 'website');
+
+    // Twitter / X Cards (imágenes grandes enriquecidas en resultados)
+    setMetaTag('name', 'twitter:card', 'summary_large_image');
+    setMetaTag('name', 'twitter:title', title);
+    setMetaTag('name', 'twitter:description', description);
+    setMetaTag('name', 'twitter:image', imageUrl);
+    setMetaTag('name', 'twitter:image:alt', imageAlt);
 
     // Canonical link tag
     let canonicalTag = document.querySelector('link[rel="canonical"]');
@@ -422,10 +457,7 @@ function AppContent() {
     canonicalTag.setAttribute('href', fullCanonical);
 
     // OpenGraph URL
-    let ogUrlTag = document.querySelector('meta[property="og:url"]');
-    if (ogUrlTag) {
-      ogUrlTag.setAttribute('content', fullCanonical);
-    }
+    setMetaTag('property', 'og:url', fullCanonical);
 
     // Auto record analytics pageview
     if (currentView.type !== 'admin') {
@@ -667,8 +699,11 @@ function AppContent() {
       />
 
       {/* 2. MAIN EDITORIAL CONTENT ARCHITECTURE */}
+      {/* Torres Laterales Adsterra fijas a izquierda y derecha (160x600) en pantallas amplias */}
+      <StickySkyscrapers />
+
       <div 
-        className="flex-1 py-8"
+        className="flex-1 py-4 sm:py-6"
         onClick={(e) => {
           const target = (e.target as HTMLElement).closest('a');
           if (!target) return;
@@ -685,6 +720,8 @@ function AppContent() {
         }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          {/* BANNER SUPERIOR GLOBAL (Desktop: 728x90, Móvil: 320x50) */}
+          <AdSlot type="leaderboard" slotId="global-top-header" className="mb-6" />
           
           <main className="w-full">
             
@@ -782,6 +819,9 @@ function AppContent() {
             )}
 
           </main>
+
+          {/* BANNER INFERIOR GLOBAL (Desktop: 728x90, Móvil: 300x250) */}
+          <AdSlot type="post-content" slotId="global-bottom-footer" className="mt-10" />
 
         </div>
       </div>

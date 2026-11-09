@@ -645,6 +645,15 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
                 )}
               </div>
             )}
+
+            {/* In-Article Ad Slots: Inserted periodically through reading every 2-3 sections */}
+            {((idx === 1) || (idx > 1 && idx % 3 === 0 && idx < article.content.sections.length - 1)) && (
+              <AdSlot 
+                type="in-article" 
+                slotId={`in-article-${article.slug || article.id}-sec-${idx}`} 
+                className="my-10" 
+              />
+            )}
           </div>
         ))}
 
@@ -705,6 +714,13 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
             ))}
           </div>
         </div>
+
+        {/* Post-Article Content Ad Slot (before virality & comments) */}
+        <AdSlot 
+          type="post-content" 
+          slotId={`post-content-${article.slug || article.id}`} 
+          className="my-8" 
+        />
       </article>
 
       {/* 🚀 ENGAGEMENT & SOCIAL VIRALITY SECTION */}

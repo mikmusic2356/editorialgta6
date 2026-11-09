@@ -10,6 +10,7 @@ import { ArticleCard } from '../articles/ArticleCard';
 import { Pagination } from '../common/Pagination';
 import { CharacterExplorer } from '../characters/CharacterExplorer';
 import { generateBreadcrumbSchema } from '../../utils/schemaGenerator';
+import { AdSlot } from '../layout/AdSlot';
 import { 
   ArrowLeft, 
   ChevronRight, 
@@ -399,6 +400,9 @@ export const CategoryView: React.FC<CategoryViewProps> = ({
                 />
               ))}
             </div>
+
+            {/* In-Category Ad Slot */}
+            <AdSlot type="between-blocks" slotId={`category-${categorySlug}-mid`} className="my-8" />
 
             {/* Pagination Component */}
             <div className="pt-4 border-t border-slate-800/80">

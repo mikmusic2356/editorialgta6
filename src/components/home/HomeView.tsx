@@ -9,6 +9,7 @@ import { TipsTricksBlock } from './TipsTricksBlock';
 import { CharactersBlock } from './CharactersBlock';
 import { DatabaseBlock } from './DatabaseBlock';
 import { RockstarBlock } from './RockstarBlock';
+import { AdSlot } from '../layout/AdSlot';
 import { Sparkles } from 'lucide-react';
 
 interface HomeViewProps {
@@ -55,6 +56,9 @@ export const HomeView: React.FC<HomeViewProps> = ({
         onSelectArticle={onSelectArticle}
       />
 
+      {/* Espacio publicitario elegante en Portada (Desktop 728x90, Móvil 300x250) */}
+      <AdSlot type="between-blocks" slotId="home-mid-1" />
+
       {/* 3. TERCER BLOQUE — CENTRO DE GUÍAS & WALKTHROUGHS */}
       <GuidesSectionBlock
         articles={articles}
@@ -66,6 +70,9 @@ export const HomeView: React.FC<HomeViewProps> = ({
       <TipsTricksBlock
         onSelectCategory={onSelectCategory}
       />
+
+      {/* Espacio publicitario intermedio adicional al scrollear (Desktop 728x90, Móvil 300x250) */}
+      <AdSlot type="between-blocks" slotId="home-mid-tips" />
 
       {/* 5. QUINTO BLOQUE — EXPEDIENTES DE PERSONAJES */}
       <CharactersBlock
@@ -81,12 +88,18 @@ export const HomeView: React.FC<HomeViewProps> = ({
         onSelectCategory={onSelectCategory}
       />
 
+      {/* Segundo espacio publicitario elegante en Portada */}
+      <AdSlot type="between-blocks" slotId="home-mid-2" />
+
       {/* 7. SÉPTIMO BLOQUE — ROCKSTAR GAMES & TAKE-TWO */}
       <RockstarBlock
         articles={articles}
         onSelectArticle={onSelectArticle}
         onSelectCategory={onSelectCategory}
       />
+
+      {/* Espacio publicitario previo al boletín editorial */}
+      <AdSlot type="between-blocks" slotId="home-mid-newsletter" />
 
       {/* 8. NEWSLETTER / SUSCRIPCIÓN EDITORIAL */}
       <section className="p-6 sm:p-10 rounded-2xl bg-gradient-to-r from-slate-900 via-slate-950 to-slate-900 border border-slate-800 text-center space-y-4 shadow-xl">
