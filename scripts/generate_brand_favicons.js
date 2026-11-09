@@ -28,7 +28,7 @@ const svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512
 const publicDir = path.join(process.cwd(), 'public');
 
 async function generateFavicons() {
-  console.log("Generating brand favicons and icons...");
+  console.log("Generating brand favicons and icons compliant with Google Search guidelines...");
 
   // 1. Write favicon.svg
   fs.writeFileSync(path.join(publicDir, 'favicon.svg'), svgContent, 'utf8');
@@ -36,7 +36,20 @@ async function generateFavicons() {
 
   const svgBuffer = Buffer.from(svgContent);
 
-  // 2. Generate 32x32 PNG (favicon-32x32.png and favicon.ico)
+  // 2. Google Search Favicon recommended size: 48x48, 96x96, 192x192
+  await sharp(svgBuffer)
+    .resize(48, 48)
+    .png()
+    .toFile(path.join(publicDir, 'favicon-48x48.png'));
+  console.log("✅ Written public/favicon-48x48.png (Google Search Standard)");
+
+  await sharp(svgBuffer)
+    .resize(96, 96)
+    .png()
+    .toFile(path.join(publicDir, 'favicon-96x96.png'));
+  console.log("✅ Written public/favicon-96x96.png (Google Search HD)");
+
+  // Standard multi-sizes for browsers
   await sharp(svgBuffer)
     .resize(32, 32)
     .png()
@@ -49,18 +62,18 @@ async function generateFavicons() {
     .toFile(path.join(publicDir, 'favicon-16x16.png'));
   console.log("✅ Written public/favicon-16x16.png");
 
-  // Copy 32x32 as favicon.ico
-  fs.copyFileSync(path.join(publicDir, 'favicon-32x32.png'), path.join(publicDir, 'favicon.ico'));
-  console.log("✅ Written public/favicon.ico");
+  // Copy 48x48 as standard favicon.ico (Google Search primary discovery)
+  fs.copyFileSync(path.join(publicDir, 'favicon-48x48.png'), path.join(publicDir, 'favicon.ico'));
+  console.log("✅ Written public/favicon.ico (48x48)");
 
-  // 3. Generate Apple Touch Icon (180x180)
+  // 3. Apple Touch Icon (180x180)
   await sharp(svgBuffer)
     .resize(180, 180)
     .png()
     .toFile(path.join(publicDir, 'apple-touch-icon.png'));
   console.log("✅ Written public/apple-touch-icon.png");
 
-  // 4. Generate 512x512 Android Chrome icon
+  // 4. Android Chrome / PWA icons
   await sharp(svgBuffer)
     .resize(512, 512)
     .png()
