@@ -238,6 +238,11 @@ function formatViewToPath(view: ViewState, articlesList: SimpleArticleRef[] = AR
       const art = articlesList.find(a => a.slug === view.slug);
       if (art) {
         const sub = art.subcategorySlug && art.subcategorySlug !== 'all' ? `${art.subcategorySlug}/` : '';
+        // Si el artículo pertenece a la categoría 'gta-6', la ruta canónica limpia es /gta-6/:sub:slug
+        // Para otras categorías (noticias, guias, etc.): /gta-6/:category/:sub:slug
+        if (art.category === 'gta-6') {
+          return `/gta-6/${sub}${art.slug}`;
+        }
         return `/gta-6/${art.category}/${sub}${art.slug}`;
       }
       return `/gta-6/${view.slug}`;
