@@ -2,6 +2,102 @@ import { Article } from '../types';
 
 export const NEWS_GTA6_ARTICLES: Article[] = [
   {
+    "id": "art-gta6-estreno-cuenta-regresiva",
+    "slug": "estreno-gta-6-cuenta-regresiva-fecha-oficial-trailer-gameplay",
+    "title": "Estreno de GTA 6 y Cuenta Regresiva Oficial: Todo sobre el Lanzamiento, Plataformas y Tráiler",
+    "subtitle": "Crónica completa del lanzamiento de Grand Theft Auto VI: fechas clave, horarios globales, plataformas confirmadas y el tráiler oficial con desglose segundo a segundo.",
+    "seoTitle": "Estreno GTA 6 y Cuenta Regresiva: Fecha Oficial, Tráiler y Detalles | KAIROSION",
+    "seoDescription": "Sigue la cuenta regresiva oficial para el estreno de GTA 6: fecha confirmada por Rockstar Games, plataformas PS5 y Xbox Series X|S, desglose del tráiler y horarios.",
+    "canonicalUrl": "https://kairosion.online/gta-6/noticias/estreno-gta-6-cuenta-regresiva-fecha-oficial-trailer-gameplay",
+    "excerpt": "La cuenta regresiva hacia el estreno de GTA 6 entra en su fase definitiva. Analizamos la ventana oficial de Rockstar Games, las plataformas de salida, el tráiler oficial y qué esperar del mayor estreno del entretenimiento.",
+    "category": "noticias",
+    "subcategorySlug": "gta-6",
+    "categoryLabel": "Noticias · GTA 6",
+    "verificationType": "oficial",
+    "author": {
+      "name": "Marcos Valiente",
+      "role": "Jefe de Redacción & Especialista en Rockstar Games",
+      "avatar": "/images/Personajes/Brian_Heder_01.webp"
+    },
+    "publishedAt": "2026-11-18T06:00:00.000Z",
+    "updatedAt": "2026-11-18T06:00:00.000Z",
+    "readTimeMinutes": 5,
+    "tags": [
+      "GTA 6",
+      "Estreno GTA 6",
+      "Cuenta Regresiva",
+      "Rockstar Games",
+      "Tráiler Oficial",
+      "PS5",
+      "Xbox Series X",
+      "Leonida"
+    ],
+    "isHero": true,
+    "isTrending": true,
+    "isLatest": true,
+    "featuredImage": {
+      "url": "/images/Personajes/Jason_and_Lucia_Robbery_With_Logo_landscape.webp",
+      "alt": "Estreno de GTA 6 Cuenta Regresiva Oficial y Tráiler de Lanzamiento - KAIROSION",
+      "caption": "Jason y Lucia en el arte oficial de Grand Theft Auto VI durante su campaña de estreno global.",
+      "badge": "ESTRENO EXCLUSIVO"
+    },
+    "youtubeVideoId": "QdBZY2fkU-0",
+    "schemaType": "NewsArticle",
+    "content": {
+      "leadText": "El acontecimiento más esperado en la historia de los videojuegos ya tiene su cuenta regresiva activada. Grand Theft Auto VI se prepara para su estreno mundial en consolas de nueva generación, y en KAIROSION desglosamos cada detalle oficial, los preparativos de Rockstar Games y el tráiler oficial incrustado para revivir el primer vistazo a Vice City.",
+      "takeaways": [
+        "Ventana oficial de lanzamiento reiterada por Rockstar Games y Take-Two Interactive para PlayStation 5 y Xbox Series X|S.",
+        "El estado de Leonida como el mapa más ambicioso jamás creado: Vice City, Port Gellhorn, Ambrosia y los Cayos.",
+        "Doble protagonista con Lucia y Jason en una narrativa criminal inspirada en Bonnie y Clyde.",
+        "Motor RAGE 9 con iluminación global por trazado de rayos volumétrico y físicas de fluidos de nueva generación.",
+        "Tráiler oficial de presentación récord disponible con análisis segundo a segundo."
+      ],
+      "sections": [
+        {
+          "heading": "La Cuenta Regresiva Hacia el Estreno Más Grande de la Industria",
+          "paragraphs": [
+            "Con más de una década desde el lanzamiento de GTA V, la expectativa en torno a Grand Theft Auto VI ha trascendido el medio de los videojuegos para convertirse en un fenómeno cultural global. Rockstar Games y su matriz Take-Two Interactive han reiterado en sus conferencias financieras a inversores que la producción avanza con absoluta firmeza.",
+            "La campaña hacia el estreno oficial reúne a millones de fanáticos siguiendo cada novedad de los canales oficiales. Desde los foros de la comunidad hasta las salas de redacción, la cuenta regresiva representa el clímax de años de rumores, anticipación técnica y desvelos analizando cada milímetro de metraje."
+          ]
+        },
+        {
+          "heading": "Tráiler Oficial de Estreno e Información Audiovisual",
+          "paragraphs": [
+            "Para acompañar esta cuenta regresiva, repasamos el material audiovisual oficial que rompió todos los récords de visualizaciones en YouTube en sus primeras 24 horas. El metraje revela el tono satírico, colorido y despiadado de la sociedad contemporánea en Leonida.",
+            "A continuación puedes reproducir directamente el tráiler oficial publicado por Rockstar Games con banda sonora inolvidable y fidelidad visual capturada directamente en motor gráfico:"
+          ],
+          "youtubeVideoId": "QdBZY2fkU-0",
+          "youtubeCaption": "Tráiler 1 oficial de Grand Theft Auto VI presentado por Rockstar Games (Motor RAGE 9)."
+        },
+        {
+          "heading": "¿En Qué Plataformas se Estrena GTA 6?",
+          "paragraphs": [
+            "Rockstar Games ha confirmado de manera oficial que el estreno inicial de GTA 6 tendrá lugar en:",
+            "* **PlayStation 5:** Aprovechando al máximo el almacenamiento SSD de ultra alta velocidad, gatillos adaptativos del DualSense y audio 3D Tempest.",
+            "* **Xbox Series X | Xbox Series S:** Con optimización dedicada para la arquitectura Xbox Velocity y fidelidad gráfica en alta resolución.",
+            "* **Versión para PC:** Siguiendo la tradición histórica de Rockstar Games en títulos como GTA V y Red Dead Redemption 2, la edición para compatibles suele debutar en una ventana posterior para exprimir el hardware gráfico de escritorio."
+          ]
+        },
+        {
+          "heading": "Los Pilares Clave que Definirán el Lanzamiento",
+          "paragraphs": [
+            "**1. Lucia y Jason: Un Dúo Criminal Dinámico**",
+            "La historia introduce a Lucia como la primera protagonista femenina jugable en la era moderna de Grand Theft Auto, unida a Jason en una espiral delictiva donde la confianza mutua y los golpes tácticos serán el núcleo narrativo.",
+            "**2. Un Ecosistema Vivo en el Estado de Leonida**",
+            "Desde la opulencia nocturna y los neones de Vice City Beach hasta los pantanos traicioneros de Grassrivers y las carreteras remotas de Ambrosia, el mapa es una recreación viva de Florida con fauna agresiva, redes sociales paródicas y simulación de multitudes sin precedentes.",
+            "**3. Avances Tecnológicos del Motor RAGE 9**",
+            "Físicas mejoradas de conducción, deformación de carrocerías, simulación de mareas y oleaje en tiempo real, e interiores completamente transitables sin pantallas de carga intermedias."
+          ],
+          "calloutBox": {
+            "type": "tip",
+            "title": "AVISO EDITORIAL KAIROSION",
+            "content": "Mantente atento a este portal. En cuanto Rockstar Games libere el Tráiler 2 y fije el día exacto de precarga digital, activaremos el cronómetro oficial en tiempo real en la cabecera de KAIROSION."
+          }
+        }
+      ]
+    }
+  },
+  {
     "id": "art-not-gta6-001",
     "slug": "actividades-al-aire-libre-y-deportes-en-gta-6-pesca-carreras-y-ocio",
     "title": "Actividades al Aire Libre y Deportes en GTA 6: Pesca, Carreras y Ocio",
