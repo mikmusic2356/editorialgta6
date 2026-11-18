@@ -17,6 +17,6 @@
   <!-- Central Glowing Brand Badge -->
   <rect x="76" y="76" width="360" height="360" rx="84" fill="url(#grad)" />
   
-  <!-- Iconic "VI" numeral in bold dark slate -->
-  <text x="256" y="326" font-family="'Plus Jakarta Sans', 'Arial Black', -apple-system, sans-serif" font-size="210" font-weight="900" text-anchor="middle" fill="#020617" letter-spacing="-4">VI</text>
+  <!-- Iconic "K" monogram for KAIROSION -->
+  <text x="256" y="330" font-family="'Plus Jakarta Sans', 'Arial Black', -apple-system, sans-serif" font-size="220" font-weight="900" text-anchor="middle" fill="#020617" letter-spacing="-4">K</text>
 </svg>

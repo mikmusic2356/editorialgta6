@@ -61,20 +61,24 @@ export const Footer: React.FC<FooterProps> = ({
             </h4>
             <ul className="space-y-2 text-sm">
               {[
-                { slug: 'gta-6' as const, label: 'GTA 6 Hub General' },
-                { slug: 'noticias' as const, label: 'Noticias de última hora' },
-                { slug: 'guias' as const, label: 'Guías y Walkthroughs' },
-                { slug: 'trucos-consejos' as const, label: 'Trucos y Consejos' },
-                { slug: 'rockstar-games' as const, label: 'Rockstar Games & Take-Two' },
+                { slug: 'gta-6' as const, label: 'GTA 6 Hub General', href: '/gta-6' },
+                { slug: 'noticias' as const, label: 'Noticias de última hora', href: '/gta-6/noticias' },
+                { slug: 'guias' as const, label: 'Guías y Walkthroughs', href: '/gta-6/guias' },
+                { slug: 'trucos-consejos' as const, label: 'Trucos y Consejos', href: '/gta-6/trucos-consejos' },
+                { slug: 'rockstar-games' as const, label: 'Rockstar Games & Take-Two', href: '/gta-6/rockstar-games' },
               ].map((item) => (
                 <li key={item.slug}>
-                  <button
-                    onClick={() => onSelectCategory(item.slug)}
+                  <a
+                    href={item.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onSelectCategory(item.slug);
+                    }}
                     className="hover:text-[#ffc456] transition-colors flex items-center gap-1 cursor-pointer text-white/90"
                   >
                     <ChevronRight className="w-3 h-3 text-[#ff6486]" />
                     <span>{item.label}</span>
-                  </button>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -87,19 +91,24 @@ export const Footer: React.FC<FooterProps> = ({
             </h4>
             <ul className="space-y-2 text-sm">
               {[
-                { slug: 'personajes' as const, label: 'Expedientes de Personajes' },
-                { slug: 'mapa' as const, label: 'Mapa de Leonida & Distritos' },
-                { slug: 'vehiculos' as const, label: 'Catálogo de Vehículos' },
-                { slug: 'armas' as const, label: 'Arsenal & Balística' },
+                { slug: 'personajes' as const, label: 'Expedientes de Personajes', href: '/gta-6/personajes' },
+                { slug: 'mapa' as const, label: 'Mapa de Leonida & Distritos', href: '/gta-6/mapa' },
+                { slug: 'vehiculos' as const, label: 'Catálogo de Vehículos', href: '/gta-6/vehiculos' },
+                { slug: 'armas' as const, label: 'Arsenal & Balística', href: '/gta-6/armas' },
+                { slug: 'musica' as const, label: 'Música & Emisoras de Radio', href: '/gta-6/musica' },
               ].map((item) => (
                 <li key={item.slug}>
-                  <button
-                    onClick={() => onSelectCategory(item.slug)}
+                  <a
+                    href={item.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onSelectCategory(item.slug);
+                    }}
                     className="hover:text-[#ffc456] transition-colors flex items-center gap-1 cursor-pointer text-white/90"
                   >
                     <ChevronRight className="w-3 h-3 text-[#ff6486]" />
                     <span>{item.label}</span>
-                  </button>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -112,41 +121,53 @@ export const Footer: React.FC<FooterProps> = ({
             </h4>
             <ul className="space-y-2 text-sm">
               {[
-                { tab: 'about' as const, label: 'Sobre Nosotros (KAIROSION)' },
-                { tab: 'contact' as const, label: 'Contacto editorial' },
-                { tab: 'disclaimer' as const, label: 'Aviso legal y descargo' },
-                { tab: 'privacy' as const, label: 'Política de privacidad' },
-                { tab: 'cookies' as const, label: 'Política de cookies' },
-                { tab: 'terms' as const, label: 'Términos y condiciones' },
+                { tab: 'about' as const, label: 'Sobre Nosotros (KAIROSION)', href: '/pagina/sobre-nosotros' },
+                { tab: 'contact' as const, label: 'Contacto editorial', href: '/pagina/contacto' },
+                { tab: 'disclaimer' as const, label: 'Aviso legal y descargo', href: '/pagina/aviso-legal-y-descargo' },
+                { tab: 'privacy' as const, label: 'Política de privacidad', href: '/pagina/politica-de-privacidad' },
+                { tab: 'cookies' as const, label: 'Política de cookies', href: '/pagina/politica-de-cookies' },
+                { tab: 'terms' as const, label: 'Términos y condiciones', href: '/pagina/terminos-y-condiciones' },
               ].map((item) => (
                 <li key={item.tab}>
-                  <button
-                    onClick={() => onOpenLegalModal(item.tab)}
-                    className="hover:text-[#ffc456] transition-colors cursor-pointer text-white/90 text-xs"
+                  <a
+                    href={item.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onOpenLegalModal(item.tab);
+                    }}
+                    className="hover:text-[#ffc456] transition-colors cursor-pointer text-white/90 text-xs block"
                   >
                     {item.label}
-                  </button>
+                  </a>
                 </li>
               ))}
               <li className="pt-2 flex flex-col gap-2">
                 {onOpenCookieSettings && (
-                  <button
-                    onClick={onOpenCookieSettings}
+                  <a
+                    href="/pagina/politica-de-cookies"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onOpenCookieSettings();
+                    }}
                     className="text-xs font-mono text-[#ffc456] hover:underline flex items-center gap-1 cursor-pointer"
                   >
                     <span>Configuración de Cookies</span>
-                  </button>
+                  </a>
                 )}
 
-                {onOpenSitemap && (
-                  <button
-                    onClick={onOpenSitemap}
-                    className="text-xs font-mono text-[#ffc456] hover:underline flex items-center gap-1 cursor-pointer font-bold"
-                  >
-                    <FileText className="w-3.5 h-3.5 text-[#ff6486]" />
-                    <span>Mapa del Sitio Web (/sitemap)</span>
-                  </button>
-                )}
+                <a
+                  href="/sitemap"
+                  onClick={(e) => {
+                    if (onOpenSitemap) {
+                      e.preventDefault();
+                      onOpenSitemap();
+                    }
+                  }}
+                  className="text-xs font-mono text-[#ffc456] hover:underline flex items-center gap-1 cursor-pointer font-bold"
+                >
+                  <FileText className="w-3.5 h-3.5 text-[#ff6486]" />
+                  <span>Mapa del Sitio Web (/sitemap)</span>
+                </a>
 
                 {onOpenSEOInspector && (
                   <button

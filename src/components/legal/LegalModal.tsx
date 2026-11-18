@@ -23,19 +23,27 @@ interface LegalModalProps {
   isOpen: boolean;
   onClose: () => void;
   defaultTab?: 'about' | 'contact' | 'privacy' | 'cookies' | 'terms' | 'disclaimer';
+  inlinePage?: boolean;
+  onSelectTab?: (tab: 'about' | 'contact' | 'privacy' | 'cookies' | 'terms' | 'disclaimer') => void;
 }
 
 export const LegalModal: React.FC<LegalModalProps> = ({
   isOpen,
   onClose,
   defaultTab = 'about',
+  inlinePage = false,
+  onSelectTab,
 }) => {
   const { staticPages } = useCMS();
   const [activeTab, setActiveTab] = useState<'about' | 'contact' | 'privacy' | 'cookies' | 'terms' | 'disclaimer'>(defaultTab);
   const [sent, setSent] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
 
-  if (!isOpen) return null;
+  React.useEffect(() => {
+    setActiveTab(defaultTab);
+  }, [defaultTab]);
+
+  if (!isOpen && !inlinePage) return null;
 
   // Find page by slug from CMS context
   const getPageBySlug = (slug: string) => {
@@ -114,71 +122,75 @@ export const LegalModal: React.FC<LegalModalProps> = ({
     });
   };
 
-  return (
+  const containerContent = (
     <div 
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/85 backdrop-blur-md animate-in fade-in duration-150"
-      onClick={onClose}
+      className={inlinePage
+        ? "w-full max-w-4xl mx-auto bg-slate-900 border border-slate-800 rounded-2xl shadow-xl overflow-hidden flex flex-col my-6"
+        : "w-full max-w-3xl bg-slate-900 border border-slate-700 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[88vh]"
+      }
+      onClick={(e) => e.stopPropagation()}
     >
-      <div 
-        className="w-full max-w-3xl bg-slate-900 border border-slate-700 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[88vh]"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Modal Header */}
-        <div className="p-4 sm:p-5 bg-slate-950 border-b border-slate-800 flex items-center justify-between">
-          <div className="flex items-center gap-2.5">
-            <div className="p-2 rounded-lg bg-[#ff6486]/20 text-[#ff6486] border border-[#ff6486]/30">
-              <ShieldCheck className="w-5 h-5" />
-            </div>
-            <div>
-              <div className="text-white font-display text-base sm:text-lg font-bold flex items-center gap-2">
-                <span>KAIROSION Editorial & Legal</span>
-                <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-[#ffc456] uppercase">
-                  GTA 6 Portal
-                </span>
-              </div>
-              <p className="text-xs text-slate-400">
-                Transparencia periodística, política editorial, modelo de sostenibilidad y derechos de autor
-              </p>
-            </div>
+      {/* Modal Header */}
+      <div className="p-4 sm:p-5 bg-slate-950 border-b border-slate-800 flex items-center justify-between">
+        <div className="flex items-center gap-2.5">
+          <div className="p-2 rounded-lg bg-[#ff6486]/20 text-[#ff6486] border border-[#ff6486]/30">
+            <ShieldCheck className="w-5 h-5" />
           </div>
-          <button
-            onClick={onClose}
-            className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors cursor-pointer"
-          >
-            <X className="w-5 h-5" />
-          </button>
+          <div>
+            <h1 className="text-white font-display text-base sm:text-lg font-bold flex items-center gap-2">
+              <span>KAIROSION Editorial & Legal</span>
+              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-900 border border-slate-800 text-[#ffc456] uppercase">
+                GTA 6 Portal
+              </span>
+            </h1>
+            <p className="text-xs text-slate-400">
+              Transparencia periodística, política editorial, modelo de sostenibilidad y derechos de autor
+            </p>
+          </div>
         </div>
+        <button
+          onClick={onClose}
+          className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors cursor-pointer"
+        >
+          <X className="w-5 h-5" />
+        </button>
+      </div>
 
-        {/* Tab Navigation */}
-        <div className="flex border-b border-slate-800 bg-slate-950/70 px-4 gap-1 text-xs font-medium overflow-x-auto no-scrollbar">
-          {[
-            { id: 'about', label: 'Sobre Nosotros', icon: Globe },
-            { id: 'contact', label: 'Contacto', icon: Mail },
-            { id: 'disclaimer', label: 'Aviso Legal y Descargo', icon: Info },
-            { id: 'privacy', label: 'Privacidad (RGPD)', icon: Lock },
-            { id: 'cookies', label: 'Cookies & AdSense', icon: Cookie },
-            { id: 'terms', label: 'Términos de Uso', icon: Scale },
-          ].map((tab) => {
-            const Icon = tab.icon;
-            return (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id as any)}
-                className={`py-3 px-3 border-b-2 transition-all whitespace-nowrap cursor-pointer flex items-center gap-1.5 text-xs ${
-                  activeTab === tab.id
-                    ? 'border-[#ff6486] text-white font-bold bg-slate-900/50'
-                    : 'border-transparent text-slate-400 hover:text-slate-200'
-                }`}
-              >
-                <Icon className={`w-3.5 h-3.5 ${activeTab === tab.id ? 'text-[#ff6486]' : 'text-slate-500'}`} />
-                <span>{tab.label}</span>
-              </button>
-            );
-          })}
-        </div>
+      {/* Tab Navigation */}
+      <div className="flex border-b border-slate-800 bg-slate-950/70 px-4 gap-1 text-xs font-medium overflow-x-auto no-scrollbar">
+        {[
+          { id: 'about', label: 'Sobre Nosotros', href: '/pagina/sobre-nosotros', icon: Globe },
+          { id: 'contact', label: 'Contacto', href: '/pagina/contacto', icon: Mail },
+          { id: 'disclaimer', label: 'Aviso Legal y Descargo', href: '/pagina/aviso-legal-y-descargo', icon: Info },
+          { id: 'privacy', label: 'Privacidad (RGPD)', href: '/pagina/politica-de-privacidad', icon: Lock },
+          { id: 'cookies', label: 'Cookies & AdSense', href: '/pagina/politica-de-cookies', icon: Cookie },
+          { id: 'terms', label: 'Términos de Uso', href: '/pagina/terminos-y-condiciones', icon: Scale },
+        ].map((tab) => {
+          const Icon = tab.icon;
+          return (
+            <a
+              key={tab.id}
+              href={tab.href}
+              onClick={(e) => {
+                e.preventDefault();
+                setActiveTab(tab.id as any);
+                if (onSelectTab) onSelectTab(tab.id as any);
+              }}
+              className={`py-3 px-3 border-b-2 transition-all whitespace-nowrap cursor-pointer flex items-center gap-1.5 text-xs ${
+                activeTab === tab.id
+                  ? 'border-[#ff6486] text-white font-bold bg-slate-900/50'
+                  : 'border-transparent text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              <Icon className={`w-3.5 h-3.5 ${activeTab === tab.id ? 'text-[#ff6486]' : 'text-slate-500'}`} />
+              <span>{tab.label}</span>
+            </a>
+          );
+        })}
+      </div>
 
-        {/* Content Body */}
-        <div className="p-6 overflow-y-auto space-y-5 flex-1 text-slate-300 text-sm leading-relaxed">
+      {/* Content Body */}
+      <div className={inlinePage ? "p-6 sm:p-8 space-y-6 text-slate-300 text-sm leading-relaxed" : "p-6 overflow-y-auto space-y-5 flex-1 text-slate-300 text-sm leading-relaxed"}>
           
           {/* 1. SOBRE NOSOTROS */}
           {activeTab === 'about' && (
@@ -376,10 +388,22 @@ export const LegalModal: React.FC<LegalModalProps> = ({
             onClick={onClose}
             className="px-4 py-2 text-xs font-bold text-white bg-slate-800 hover:bg-slate-700 rounded-lg transition-colors cursor-pointer"
           >
-            Cerrar
+            {inlinePage ? 'Volver a la portada' : 'Cerrar'}
           </button>
         </div>
       </div>
+  );
+
+  if (inlinePage) {
+    return containerContent;
+  }
+
+  return (
+    <div 
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/85 backdrop-blur-md animate-in fade-in duration-150"
+      onClick={onClose}
+    >
+      {containerContent}
     </div>
   );
 };

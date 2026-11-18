@@ -21,8 +21,8 @@ const svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512
   <!-- Central Glowing Brand Badge -->
   <rect x="76" y="76" width="360" height="360" rx="84" fill="url(#grad)" />
   
-  <!-- Iconic "VI" numeral in bold dark slate -->
-  <text x="256" y="326" font-family="'Plus Jakarta Sans', 'Arial Black', -apple-system, sans-serif" font-size="210" font-weight="900" text-anchor="middle" fill="#020617" letter-spacing="-4">VI</text>
+  <!-- Iconic "K" monogram for KAIROSION -->
+  <text x="256" y="330" font-family="'Plus Jakarta Sans', 'Arial Black', -apple-system, sans-serif" font-size="220" font-weight="900" text-anchor="middle" fill="#020617" letter-spacing="-4">K</text>
 </svg>`;
 
 const publicDir = path.join(process.cwd(), 'public');
@@ -95,9 +95,9 @@ async function generateFavicons() {
       </linearGradient>
     </defs>
     <rect width="600" height="120" fill="#020617" />
-    <!-- VI Badge -->
+    <!-- K Badge -->
     <rect x="20" y="20" width="80" height="80" rx="20" fill="url(#brandGrad)" />
-    <text x="60" y="75" font-family="'Plus Jakarta Sans', 'Arial Black', sans-serif" font-size="46" font-weight="900" text-anchor="middle" fill="#020617">VI</text>
+    <text x="60" y="76" font-family="'Plus Jakarta Sans', 'Arial Black', sans-serif" font-size="48" font-weight="900" text-anchor="middle" fill="#020617">K</text>
     <!-- Brand Text -->
     <text x="120" y="72" font-family="'Plus Jakarta Sans', sans-serif" font-size="48" font-weight="900" fill="#ffffff" letter-spacing="-1">KAIROS<tspan fill="#ff6486">ION</tspan></text>
     <text x="122" y="96" font-family="'JetBrains Mono', monospace" font-size="14" font-weight="700" fill="#ffc456" letter-spacing="4">PORTAL EDITORIAL GTA 6</text>

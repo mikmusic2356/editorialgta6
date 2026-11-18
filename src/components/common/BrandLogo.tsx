@@ -44,7 +44,7 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
     <div className={`flex items-center gap-2.5 ${className}`}>
       {showBadge && (
         <div className={`${sizeClasses.badge} rounded-lg bg-gradient-to-tr from-[#ff6486] to-[#ffc456] flex items-center justify-center text-slate-950 font-black shadow-md group-hover:scale-105 transition-transform shrink-0`}>
-          VI
+          K
         </div>
       )}
       <div className="flex flex-col text-left">

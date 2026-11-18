@@ -341,7 +341,7 @@ function AppContent() {
       };
       const mappedTab = slugToTab[currentView.slug] || 'about';
       setLegalTab(mappedTab);
-      setLegalModalOpen(true);
+      setLegalModalOpen(false);
     } else {
       setLegalModalOpen(false);
     }
@@ -415,6 +415,38 @@ function AppContent() {
           imageUrl = char.imageUrl.startsWith('http') ? char.imageUrl : `${window.location.origin}${char.imageUrl}`;
           imageAlt = `Expediente de ${char.name} en GTA 6`;
         }
+      }
+    } else if (currentView.type === 'page') {
+      const legalTitles: Record<string, { title: string; desc: string }> = {
+        'sobre-nosotros': {
+          title: 'Sobre Nosotros | KAIROSION - Redacción Editorial Independiente',
+          desc: 'Conoce al equipo editorial independiente de KAIROSION, nuestra misión de investigación periodística y compromiso 100% gratuito.'
+        },
+        'contacto': {
+          title: 'Contacto con la Redacción | KAIROSION',
+          desc: 'Canales oficiales de contacto con los redactores, editores y administradores de KAIROSION.'
+        },
+        'politica-de-privacidad': {
+          title: 'Política de Privacidad (RGPD) | KAIROSION',
+          desc: 'Información exhaustiva sobre la protección de datos personales y tratamiento de privacidad en KAIROSION conforme al RGPD.'
+        },
+        'politica-de-cookies': {
+          title: 'Política de Cookies & AdSense | KAIROSION',
+          desc: 'Detalles sobre las cookies técnicas, de personalización y de Google AdSense empleadas en KAIROSION.'
+        },
+        'terminos-y-condiciones': {
+          title: 'Términos y Condiciones de Uso | KAIROSION',
+          desc: 'Condiciones generales de acceso, propiedad intelectual y uso libre del portal KAIROSION.'
+        },
+        'aviso-legal-y-descargo': {
+          title: 'Aviso Legal y Descargo de Responsabilidad | KAIROSION',
+          desc: 'Declaración de independencia editorial y aviso legal sobre marcas registradas de terceros.'
+        }
+      };
+      const foundLegal = legalTitles[currentView.slug];
+      if (foundLegal) {
+        title = foundLegal.title;
+        description = foundLegal.desc;
       }
     } else if (currentView.type === 'admin') {
       title = 'KAIROSION Studio | Panel de Administración & CMS';
@@ -792,6 +824,19 @@ function AppContent() {
                   onSelectVehicle={handleSelectVehicle}
                   onSelectWeapon={handleSelectWeapon}
                   onSelectDistrict={handleSelectDistrict}
+                />
+              </React.Suspense>
+            )}
+
+            {/* VIEW D2: INSTITUTIONAL & LEGAL PAGES (/pagina/:slug) */}
+            {currentView.type === 'page' && (
+              <React.Suspense fallback={<div className="py-20 text-center text-slate-400 font-mono">Cargando documento legal...</div>}>
+                <LegalModal
+                  isOpen={true}
+                  inlinePage={true}
+                  defaultTab={legalTab}
+                  onClose={() => navigate({ type: 'portada' })}
+                  onSelectTab={(tab) => handleOpenLegal(tab)}
                 />
               </React.Suspense>
             )}
