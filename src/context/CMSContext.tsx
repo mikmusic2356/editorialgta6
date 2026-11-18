@@ -586,27 +586,12 @@ async function fetchRealClientGeo() {
   if (cachedClientGeo || isFetchingGeo) return;
   isFetchingGeo = true;
   try {
-    const res = await fetch('https://freeipapi.com/api/json', { signal: AbortSignal.timeout(3000) });
-    if (res.ok) {
-      const data = await res.json();
-      const rawIp = data.ipAddress || '';
-      const ipParts = rawIp.split('.');
-      const ipAnonymized = ipParts.length === 4 ? `${ipParts[0]}.${ipParts[1]}.***.*** (RGPD)` : rawIp;
-      cachedClientGeo = {
-        ipAnonymized: ipAnonymized || (window.location.hostname === 'localhost' ? '127.0.0.1 (Localhost)' : 'Anonimizada'),
-        country: data.countryName || 'Desconocido',
-        countryCode: data.countryCode || 'XX',
-        city: data.cityName || undefined,
-        language: typeof navigator !== 'undefined' ? navigator.language : 'es-ES'
-      };
-    }
-  } catch (e) {
     const browserLocale = typeof navigator !== 'undefined' ? navigator.language : 'es-ES';
     const loc = parseCountryFromLocale(browserLocale);
     cachedClientGeo = {
       ipAnonymized: typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
         ? '127.0.0.1 (Localhost / Desarrollo)'
-        : 'Anonimizada (RGPD)',
+        : 'Anonimizada (RGPD / Navegador)',
       country: loc.country,
       countryCode: loc.countryCode,
       language: loc.language
