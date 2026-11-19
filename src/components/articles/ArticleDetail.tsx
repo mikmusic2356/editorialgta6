@@ -3,6 +3,7 @@ import { Article, Comment } from '../../types';
 import { useCMS } from '../../context/CMSContext';
 import { EditorialVisual } from '../common/EditorialVisual';
 import { MarkdownParagraph, renderFormattedInline } from '../common/MarkdownParagraph';
+import { SectionParagraphsRenderer } from '../common/SectionParagraphsRenderer';
 import { AdSlot } from '../layout/AdSlot';
 import { ArticleCard } from './ArticleCard';
 import { generatePageGraphSchema, resolveArticleSchemaType } from '../../utils/schemaGenerator';
@@ -499,9 +500,9 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
               <h3>{renderFormattedInline(section.subheading)}</h3>
             )}
 
-            {section.paragraphs && section.paragraphs.map((p, pIdx) => (
-              <MarkdownParagraph key={pIdx} content={p} />
-            ))}
+            {section.paragraphs && (
+              <SectionParagraphsRenderer paragraphs={section.paragraphs} />
+            )}
 
             {/* Section Featured / Additional Image */}
             {section.image && section.image.url && (

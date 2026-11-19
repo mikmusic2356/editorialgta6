@@ -54,7 +54,18 @@ function buildStaticFooterLinksHtml(): string {
 
 function renderArticleBodyHtml(art: any): string {
   const sectionsHtml = (art.content?.sections || []).map((s: any) => {
-    const paragraphs = (s.paragraphs || []).map((p: string) => `<p>${escapeHtml(p.replace(/\*\*/g, ''))}</p>`).join('\n');
+    const paragraphs = (s.paragraphs || [])
+      .map((p: string) => p.trim())
+      .filter((p: string) => p && !p.startsWith('```') && !/^[┌├└─┬┼┴┐┤┘]+$/.test(p) && !/^\|?\s*:?-+:?\s*(\|\s*:?-+:?\s*)+\|?$/.test(p))
+      .map((p: string) => {
+        const cleaned = p
+          .replace(/^[│|]\s*/, '')
+          .replace(/\s*[│|]$/, '')
+          .replace(/[│|]/g, ' — ')
+          .replace(/\*\*/g, '');
+        return `<p>${escapeHtml(cleaned)}</p>`;
+      })
+      .join('\n');
     const steps = (s.steps || []).map((st: any) => `<li><strong>${escapeHtml(st.title)}:</strong> ${escapeHtml(st.description)}</li>`).join('\n');
     return `
       <section>
