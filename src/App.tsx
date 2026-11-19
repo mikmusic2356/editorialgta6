@@ -483,14 +483,16 @@ function AppContent() {
     setMetaTag('name', 'twitter:image', imageUrl);
     setMetaTag('name', 'twitter:image:alt', imageAlt);
 
-    // Canonical link tag
+    // Canonical link tag (self-referencing for clean valid paths without query strings to avoid "Alternate page with proper canonical tag" in Google Search Console)
     let canonicalTag = document.querySelector('link[rel="canonical"]');
     if (!canonicalTag) {
       canonicalTag = document.createElement('link');
       canonicalTag.setAttribute('rel', 'canonical');
       document.head.appendChild(canonicalTag);
     }
-    const fullCanonical = `${window.location.origin}${canonicalPath}`;
+    const currentCleanPath = window.location.pathname.replace(/\/$/, '') || '/';
+    const resolvedCanonicalPath = currentView.type === '404' ? '/' : (currentCleanPath === '/' ? '/' : canonicalPath);
+    const fullCanonical = `${window.location.origin}${resolvedCanonicalPath}`;
     canonicalTag.setAttribute('href', fullCanonical);
 
     // OpenGraph URL

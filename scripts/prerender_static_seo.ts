@@ -95,7 +95,7 @@ function renderArticleBodyHtml(art: any): string {
 }
 
 function renderCategoryBodyHtml(cat: any, subSlug?: string): string {
-  const catArticles = ARTICLES.filter(a => {
+  let catArticles = ARTICLES.filter(a => {
     if (cat.slug === 'gta-6') {
       return subSlug ? (a.category === subSlug || a.subcategorySlug === subSlug) : true;
     }
@@ -103,6 +103,14 @@ function renderCategoryBodyHtml(cat: any, subSlug?: string): string {
     if (subSlug && a.subcategorySlug !== subSlug) return false;
     return true;
   });
+
+  // Fallback to parent category articles if a specific subcategory filter has 0 exact matches, preventing thin/empty pages in Google Search Console
+  if (catArticles.length === 0) {
+    catArticles = ARTICLES.filter(a => cat.slug === 'gta-6' ? true : a.category === cat.slug);
+  }
+  if (catArticles.length === 0) {
+    catArticles = ARTICLES.slice(0, 15);
+  }
 
   const subObj = subSlug ? cat.subcategories?.find((s: any) => s.slug === subSlug) : null;
   const heading = subObj ? `${subObj.name} - ${cat.name} en GTA 6` : `${cat.name} en GTA 6: Archivo Editorial y Guías`;
@@ -291,28 +299,44 @@ async function runPrerender() {
     writeRouteHtml(canonicalPath, artHtml);
     count++;
 
-    // Also write direct slug route if different
+    // Also write direct slug route with self-referencing canonical
     if (canonicalPath !== `/gta-6/${art.slug}`) {
-      writeRouteHtml(`/gta-6/${art.slug}`, artHtml);
+      const directArtHtml = injectHtmlPage(baseTemplate, {
+        title: finalTitle,
+        description: art.seoDescription || art.excerpt || art.title,
+        canonicalUrl: `${SITE_URL}/gta-6/${art.slug}`,
+        ogImage: art.featuredImage?.url,
+        ogType: 'article',
+        schemaJson: schema,
+        bodyHtml: renderArticleBodyHtml(art),
+      });
+      writeRouteHtml(`/gta-6/${art.slug}`, directArtHtml);
     }
   }
 
   // 3. Prerender all Categories & Subcategories (both /gta-6/:cat and /:cat)
   for (const cat of MAIN_CATEGORIES) {
     const catCanonicalPath = cat.slug === 'gta-6' ? '/gta-6' : `/gta-6/${cat.slug}`;
+    const catBody = renderCategoryBodyHtml(cat);
     const catHtml = injectHtmlPage(baseTemplate, {
       title: `${cat.name} en GTA 6: Noticias, Guías y Archivo | KAIROSION`,
       description: cat.shortDesc,
       canonicalUrl: `${SITE_URL}${catCanonicalPath}`,
-      bodyHtml: renderCategoryBodyHtml(cat),
+      bodyHtml: catBody,
     });
 
     writeRouteHtml(catCanonicalPath, catHtml);
     count++;
 
-    // Also write short alias (/armas, /mapa, /noticias, /guias, /personajes, /vehiculos) for Sitelinks
+    // Also write short alias (/armas, /mapa, /noticias, /guias, /personajes, /vehiculos) with self-referencing canonical for Google Ads Sitelinks & GSC
     if (cat.slug !== 'gta-6') {
-      writeRouteHtml(`/${cat.slug}`, catHtml);
+      const shortAliasHtml = injectHtmlPage(baseTemplate, {
+        title: `${cat.name} en GTA 6: Noticias, Guías y Archivo | KAIROSION`,
+        description: cat.shortDesc,
+        canonicalUrl: `${SITE_URL}/${cat.slug}`,
+        bodyHtml: catBody,
+      });
+      writeRouteHtml(`/${cat.slug}`, shortAliasHtml);
       count++;
     }
 

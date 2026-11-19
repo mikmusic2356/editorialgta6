@@ -1016,7 +1016,8 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         });
       }
 
-      // Load latest articles & data from Turso concurrently
+      // Load latest public articles & editorial data from Turso concurrently
+      // Only fetch admin audit logs (consent/traffic) if admin is authenticated
       const [dbArticles, dbCategories, dbAuthors, dbTags, dbMedia, dbBanners, dbBreaking, dbStatic, dbSettings, dbConsentLogs, dbTrafficLogs] = await Promise.all([
         tursoService.getArticles().catch(() => []),
         tursoService.getCategories().catch(() => []),
@@ -1027,8 +1028,8 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         tursoService.getBreakingNews().catch(() => []),
         tursoService.getStaticPages().catch(() => []),
         tursoService.getSettings().catch(() => null),
-        tursoService.getConsentLogs().catch(() => []),
-        tursoService.getVisitorTrafficLogs().catch(() => [])
+        isAdminLoggedIn ? tursoService.getConsentLogs().catch(() => []) : Promise.resolve([]),
+        isAdminLoggedIn ? tursoService.getVisitorTrafficLogs().catch(() => []) : Promise.resolve([])
       ]);
 
       if (dbArticles && dbArticles.length > 0) {
@@ -1487,7 +1488,10 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         views: nextViews
       };
 
-      tursoService.saveArticle(updatedArticle);
+      // Only write view counter to remote DB if user consented to analytics
+      if (cookieConsent.hasAnswered && cookieConsent.analytics) {
+        tursoService.saveArticle(updatedArticle);
+      }
 
       return prev.map(a => (a.id === art.id ? updatedArticle : a));
     });
@@ -2021,7 +2025,10 @@ export const CMSProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     };
 
     setTrafficLogs(prev => [newLog, ...prev.slice(0, 499)]);
-    tursoService.saveVisitorTrafficLog(newLog);
+    // Only send analytics telemetry if user explicitly consented to analytics cookies
+    if (cookieConsent.hasAnswered && cookieConsent.analytics) {
+      tursoService.saveVisitorTrafficLog(newLog);
+    }
   };
 
   const clearTrafficLogs = () => {
