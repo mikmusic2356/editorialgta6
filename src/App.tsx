@@ -88,8 +88,30 @@ interface SimpleArticleRef {
   subcategorySlug?: string;
 }
 
+function normalizeSlugForMatch(val: string): string {
+  try {
+    return decodeURIComponent(val)
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .trim();
+  } catch {
+    return (val || '')
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .trim();
+  }
+}
+
 function parsePathToView(pathname: string, articlesList: SimpleArticleRef[] = ARTICLES): ViewState {
-  const clean = pathname.replace(/\/$/, '') || '/';
+  let decodedPathname = pathname;
+  try {
+    decodedPathname = decodeURIComponent(pathname);
+  } catch {
+    // ignore malformed URI sequence
+  }
+  const clean = decodedPathname.replace(/\/$/, '') || '/';
 
   if (clean === '/' || clean === '') {
     return { type: 'portada' };
@@ -113,7 +135,7 @@ function parsePathToView(pathname: string, articlesList: SimpleArticleRef[] = AR
       if (isKnownCat) {
         return { type: 'category', category: parts[0] as MainCategorySlug };
       }
-      const isArticle = articlesList.find(a => a.slug.toLowerCase() === parts[0].toLowerCase());
+      const isArticle = articlesList.find(a => normalizeSlugForMatch(a.slug) === normalizeSlugForMatch(parts[0]));
       if (isArticle) {
         return { type: 'article', slug: isArticle.slug };
       }
@@ -122,7 +144,7 @@ function parsePathToView(pathname: string, articlesList: SimpleArticleRef[] = AR
 
     if (parts.length === 2) {
       // Check if parts[1] is an article
-      const isArticle = articlesList.find(a => a.slug.toLowerCase() === parts[1].toLowerCase());
+      const isArticle = articlesList.find(a => normalizeSlugForMatch(a.slug) === normalizeSlugForMatch(parts[1]));
       if (isArticle) {
         return { type: 'article', slug: isArticle.slug };
       }
@@ -132,7 +154,8 @@ function parsePathToView(pathname: string, articlesList: SimpleArticleRef[] = AR
     if (parts.length >= 3) {
       // Last part is the article slug
       const articleSlug = parts[parts.length - 1];
-      return { type: 'article', slug: articleSlug };
+      const matched = articlesList.find(a => normalizeSlugForMatch(a.slug) === normalizeSlugForMatch(articleSlug));
+      return { type: 'article', slug: matched ? matched.slug : articleSlug };
     }
   }
 
@@ -235,7 +258,7 @@ function formatViewToPath(view: ViewState, articlesList: SimpleArticleRef[] = AR
     case 'sitemap':
       return '/sitemap';
     case 'article': {
-      const art = articlesList.find(a => a.slug === view.slug);
+      const art = articlesList.find(a => normalizeSlugForMatch(a.slug) === normalizeSlugForMatch(view.slug));
       if (art) {
         const sub = art.subcategorySlug && art.subcategorySlug !== 'all' ? `${art.subcategorySlug}/` : '';
         // Si el artículo pertenece a la categoría 'gta-6', la ruta canónica limpia es /gta-6/:sub:slug
@@ -388,7 +411,7 @@ function AppContent() {
     let canonicalPath = formatViewToPath(currentView, articles);
 
     if (currentView.type === 'article') {
-      const art = articles.find((a) => a.slug.toLowerCase() === currentView.slug.toLowerCase() || a.id === currentView.slug);
+      const art = articles.find((a) => normalizeSlugForMatch(a.slug) === normalizeSlugForMatch(currentView.slug) || a.id === currentView.slug);
       if (art) {
         title = `${art.seoTitle || art.title} | KAIROSION`;
         description = art.seoDescription || art.excerpt || art.content?.leadText?.slice(0, 160) || description;
@@ -520,14 +543,21 @@ function AppContent() {
     const parts = clean.split('/').filter(Boolean);
     const candidateSlug = parts.length > 0 ? parts[parts.length - 1] : clean;
 
-    // Check direct slug or ID match
+    // Check direct slug or ID match (supporting encoded UTF-8 characters like ñ)
+    const normRaw = normalizeSlugForMatch(rawTarget);
+    const normClean = normalizeSlugForMatch(clean);
+    const normCand = normalizeSlugForMatch(candidateSlug);
     const foundArticle = articles.find(
-      (a) =>
-        a.slug.toLowerCase() === rawTarget.toLowerCase() ||
-        a.slug.toLowerCase() === clean.toLowerCase() ||
-        a.slug.toLowerCase() === candidateSlug.toLowerCase() ||
-        a.id === rawTarget ||
-        a.id === candidateSlug
+      (a) => {
+        const normArt = normalizeSlugForMatch(a.slug);
+        return (
+          normArt === normRaw ||
+          normArt === normClean ||
+          normArt === normCand ||
+          a.id === rawTarget ||
+          a.id === candidateSlug
+        );
+      }
     );
 
     if (foundArticle) {
@@ -601,7 +631,7 @@ function AppContent() {
   };
 
   const currentArticle = currentView.type === 'article' 
-    ? articles.find((a) => a.slug.toLowerCase() === currentView.slug.toLowerCase() || a.id === currentView.slug) || null
+    ? articles.find((a) => normalizeSlugForMatch(a.slug) === normalizeSlugForMatch(currentView.slug) || a.id === currentView.slug) || null
     : null;
 
   const activeHeaderCategory = (() => {
